@@ -1,26 +1,21 @@
-import React, { Fragment, useState } from "react";
 import Diagram, { createSchema, useSchema } from 'beautiful-react-diagrams';
 
 
 // the diagram model
-
-const Con_Node='node-1';
-let New_Node= 'node-2';
-
 const initialSchema = createSchema({
   nodes: [
     { id: 'node-1', content: 'Table', coordinates: [250, 60], },
     { id: 'node-2', content: 'row', coordinates: [100, 200], }
   ],
   links: [
-    { input: Con_Node,  output: New_Node }
+    { input: 'node-1',  output: 'node-2' }
   ]
 });
 
 
 const Visualizer = () => {
   // create diagrams schema
-  const [schema, { onChange, addNode, removeNode }] = useSchema(initialSchema);
+  const [schema, { onChange, addNode, connect }] = useSchema(initialSchema);
   //const [New_Node, setValue] = useState('node-2');
 
   const addNewNode = () => {
@@ -32,8 +27,7 @@ const Visualizer = () => {
           schema.nodes[schema.nodes.length - 1].coordinates[1],
         ],
     };
-    New_Node=String(nextNode.id);
-    schema.links.push({ input: Con_Node,  output: New_Node });
+    connect('node-1', nextNode.id);
     addNode(nextNode);
   }
 
