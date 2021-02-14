@@ -1,20 +1,19 @@
+import React, { Fragment, useState } from "react";
 import Diagram, { createSchema, useSchema } from 'beautiful-react-diagrams';
+
 
 // the diagram model
 
-
+const Con_Node='node-1';
+let New_Node= 'node-2';
 
 const initialSchema = createSchema({
   nodes: [
     { id: 'node-1', content: 'Table', coordinates: [250, 60], },
-    { id: 'node-2', content: 'row', coordinates: [100, 200], },
-    { id: 'node-3', content: 'row', coordinates: [250, 220], },
-    { id: 'node-4', content: 'row', coordinates: [400, 200], },
+    { id: 'node-2', content: 'row', coordinates: [100, 200], }
   ],
   links: [
-    { input: 'node-1',  output: 'node-2' },
-    { input: 'node-1',  output: 'node-3' },
-    { input: 'node-1',  output: 'node-4' },
+    { input: Con_Node,  output: New_Node }
   ]
 });
 
@@ -22,8 +21,7 @@ const initialSchema = createSchema({
 const Visualizer = () => {
   // create diagrams schema
   const [schema, { onChange, addNode, removeNode }] = useSchema(initialSchema);
-
-
+  //const [New_Node, setValue] = useState('node-2');
 
   const addNewNode = () => {
     const nextNode = {
@@ -34,6 +32,8 @@ const Visualizer = () => {
           schema.nodes[schema.nodes.length - 1].coordinates[1],
         ],
     };
+    New_Node=String(nextNode.id);
+    schema.links.push({ input: Con_Node,  output: New_Node });
     addNode(nextNode);
   }
 
