@@ -4,7 +4,7 @@ import Diagram, { createSchema, useSchema } from 'beautiful-react-diagrams';
 // the diagram model
 const initialSchema = createSchema({
   nodes: [
-    { id: 'node-1', content: 'Table', coordinates: [250, 60], },
+    { id: 'node-1', content: 'Table', coordinates: [250, 60], outputs: [ { id: 'port-1', alignment: 'right' } ],},
     { id: 'node-2', content: 'row', coordinates: [100, 200], }
   ],
   links: [
@@ -26,11 +26,26 @@ const Visualizer = () => {
           schema.nodes[schema.nodes.length - 1].coordinates[0] + 100,
           schema.nodes[schema.nodes.length - 1].coordinates[1],
         ],
+        inputs: [{ id: `port-${Math.random()}`}],
     };
-    connect('node-1', nextNode.id);
+    // connect('node-1', nextNode.id);
     addNode(nextNode);
   }
 
+  
+  // useEffect(() => {
+    
+  //   schema.links.forEach((value) => {
+  //     if(value.outputs !== "node-1")
+  //     {
+  //       console.log(value, "happend")
+  //       const index = schema.links.indexOf(value);
+  //       if (index > -1) {
+  //         schema.links.splice(index, 1);
+  //       }
+  //     }
+  //   })
+  // }, [schema])
 
 
   return (
