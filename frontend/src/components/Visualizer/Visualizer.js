@@ -1,5 +1,5 @@
 import Diagram, { createSchema, useSchema } from 'beautiful-react-diagrams';
-
+import { Button, Icon, Input } from "atomize";
 
 // the diagram model
 const initialSchema = createSchema({
@@ -12,11 +12,21 @@ const initialSchema = createSchema({
   ]
 });
 
+const Field = () => {
+  return (
+    <div style={{ background: '#717EC3', borderRadius: '10px' }}>
+      New Feild
+      <Input style = {{padding: '10px'}} placeholder="Basic Input" onChange = {(event) => console.log(event.target.value) } />
+    </div>
+  );
+};
+
 
 const Visualizer = () => {
+  
   // create diagrams schema
-  const [schema, { onChange, addNode, connect }] = useSchema(initialSchema);
-  //const [New_Node, setValue] = useState('node-2');
+  const [schema, { onChange, addNode }] = useSchema(initialSchema);
+  
 
   const addNewNode = () => {
     const nextNode = {
@@ -26,30 +36,29 @@ const Visualizer = () => {
           schema.nodes[schema.nodes.length - 1].coordinates[0] + 100,
           schema.nodes[schema.nodes.length - 1].coordinates[1],
         ],
+        render: Field,
         inputs: [{ id: `port-${Math.random()}`}],
     };
-    // connect('node-1', nextNode.id);
+
     addNode(nextNode);
   }
-
-  
-  // useEffect(() => {
-    
-  //   schema.links.forEach((value) => {
-  //     if(value.outputs !== "node-1")
-  //     {
-  //       console.log(value, "happend")
-  //       const index = schema.links.indexOf(value);
-  //       if (index > -1) {
-  //         schema.links.splice(index, 1);
-  //       }
-  //     }
-  //   })
-  // }, [schema])
 
 
   return (
     <div style={{ height: '22.5rem' }}>
+    
+    <Button suffix={ 
+      <Icon
+        name="LongRight"
+        size="16px"
+        color="white"
+        m={{ l: "1rem" }}
+      />
+      } shadow="3" hoverShadow="4" m={{ r: "1rem" }}
+      onClick={addNewNode}
+    >
+      Add Field
+    </Button>
       <button color="primary" icon="plus" onClick={addNewNode}>Add new node</button>
       <Diagram schema={schema} onChange={onChange} />
     </div>
