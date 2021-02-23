@@ -28,22 +28,19 @@ const App = () => {
           className="ml-auto"
         >
           <Nav>
-            <Nav.Link href="#home">
+            <Nav.Link href="#home" className = {classes.home__navbar__logo}>
               <i
                 className="far fa-envelope"
-                style={{ color: "black", padding: "5px" }}
               ></i>
             </Nav.Link>
             <Nav.Link href="#features">
               <i
                 className="fab fa-github"
-                style={{ color: "black", padding: "5px" }}
               ></i>
             </Nav.Link>
-            <Nav.Link>
+            <Nav.Link href="/visualizer">
               <i
                 class="fas fa-sign-in-alt"
-                style={{ color: "black", padding: "5px" }}
               ></i>
             </Nav.Link>
           </Nav>
@@ -55,14 +52,7 @@ const App = () => {
       <br />
       <Container className="text-center">
         <div>
-          <h1
-            style={{
-              fontSize: "3.2rem",
-              fontWeight: "600",
-              color: "#333",
-              lineHeight: "75px"
-            }}
-          >
+          <h1>
             Create Stunning 🚩 Blazing ⚡ Interactive{" "}
             <span className={classes.home_span_gradient}>
               Database Diagrams{" "}
@@ -71,8 +61,10 @@ const App = () => {
           </h1>
         </div>
         <br />
-        <h2 style={{ fontSize: "2.0rem", fontWeight: "300" }}>
+        {/* <h2 style={{ fontSize: "2.0rem", fontWeight: "300" }}> */}
+        <h2><span className = {classes.body_text}>
           Say Hi 👋 to the No Code Era
+          </span>
         </h2>
         <br />
         <br />

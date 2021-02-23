@@ -1,20 +1,41 @@
 import Diagram, { createSchema, useSchema } from "beautiful-react-diagrams";
-import { Div, Button, Icon, Input, Row, Col, Label } from "atomize";
-import { cloneElement, useState } from "react";
+import { Div, Icon,Button, Input, Label,Text } from "atomize";
+import { cloneElement, useState ,Fragment} from "react";
+import { Row, Col ,Container} from "react-bootstrap";
+
+import AceEditor from "react-ace";
+import "ace-builds/src-min-noconflict/ext-searchbox";
+import "ace-builds/src-min-noconflict/ext-language_tools";
+import "ace-builds/src-noconflict/mode-jsx";
+
 import {
-  Dialog,
-  DialogContent,
-  MenuItem,
+  AppBar,
   FormControl,
+  InputLabel,
+  makeStyles,
+  MenuItem,
   Select,
   FormGroup,
   Checkbox,
+  Toolbar,
+  Typography,
   FormControlLabel,
+  Switch,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  useTheme,
 } from "@material-ui/core";
 
 //Row Data of Each Node
 const rowData = new Object();
 rowData.data = [];
+
+//extracting themes and language
+require(`ace-builds/src-noconflict/theme-monokai`);
+require(`ace-builds/src-noconflict/mode-sql`);
+require(`ace-builds/src-noconflict/snippets/sql`);
 
 //Modal Section
 const ModalSize = ({ isOpen, onClose, nodeId }) => {
@@ -159,10 +180,9 @@ const initialSchema = createSchema({
     {
       id: "node-1",
       content: "Table",
-      coordinates: [250, 60],
+      coordinates: [100, 30],
       outputs: [{ id: "port-1", alignment: "right" }],
     },
-    { id: "test", coordinates: [1230, 10] },
   ],
   links: [],
 });
@@ -213,15 +233,20 @@ const Field = (props) => {
 
 const Visualizer = () => {
   // create diagrams schema
+  const [value, setValue] = useState("");  
+  const [fontSize, setFontSize] = useState(16);
+  const [theme, setTheme] = useState("monokai");
   const [schema, { onChange, addNode }] = useSchema(initialSchema);
+  const [x_coordinate, setxCoordinate] = useState(1200);
+  const [y_coordinate, setyCoordinate] = useState(5);
 
   const addNewNode = () => {
     const nextNode = {
       id: `node-${schema.nodes.length + 1}`,
       content: `Node ${schema.nodes.length + 1}`,
       coordinates: [
-        schema.nodes[schema.nodes.length - 1].coordinates[0] - 10,
-        schema.nodes[schema.nodes.length - 1].coordinates[1] + 10,
+        x_coordinate,
+        y_coordinate,
       ],
       render: Field,
       inputs: [{ id: `port-${Math.random()}` }],
@@ -237,27 +262,98 @@ const Visualizer = () => {
 
     rowData.data.push(row);
 
+    setxCoordinate(x_coordinate - 10);
+    setyCoordinate(y_coordinate + 10);
+
     addNode(nextNode);
   };
 
   return (
-    <div style={{ height: "22.5rem" }}>
-      <Button
-        suffix={
-          <Icon name="LongRight" size="16px" color="white" m={{ l: "1rem" }} />
-        }
-        shadow="3"
-        hoverShadow="4"
-        m={{ r: "1rem" }}
-        onClick={addNewNode}
-      >
-        Add Field
-      </Button>
-      <button color="primary" icon="plus" onClick={addNewNode}>
-        Add new node
-      </button>
-      <Diagram schema={schema} onChange={onChange} />
-    </div>
+    <Container fluid>
+      <div style={{ height: "22.5rem" }}>
+        
+        <Text style={{textAlign:"center",padding:"3px"}}>Visualizer</Text>
+        
+        <Diagram schema={schema} onChange={onChange} />
+
+        <Row>          
+          
+          <Col>
+              <Text style={{textAlign:"center",padding:"2px",background:"black",color:"white"}}>Editor</Text>
+              <AceEditor
+                mode="sql"
+                theme="monokai"
+                value={value}
+                height="200px"
+                width={"auto"}
+                fontSize={fontSize}
+                showPrintMargin
+                showGutter
+              />
+          </Col>
+
+          <Col>
+              <Text style={{textAlign:"center",padding:"2px",background:"black",color:"white"}}>Features</Text>
+              <Row>
+                  <Col style={{padding:"10px"}} >
+                    <Button
+                      suffix={
+                        <Icon name="LongRight" size="16px" color="white" m={{ l: "1rem" }} />
+                      }
+                      shadow="3"
+                      hoverShadow="4"
+                      m={{ r: "1rem" }}
+
+                    >
+                      Add Table
+                    </Button>
+                  </Col>
+                  <Col style={{padding:"10px"}}>
+                    <Button
+                      suffix={
+                        <Icon name="LongRight" size="16px" color="white" m={{ l: "1rem" }} />
+                      }
+                      shadow="3"
+                      hoverShadow="4"
+                      m={{ r: "1rem" }}
+                      onClick={addNewNode}
+                    >
+                      Add Field
+                    </Button>
+                  </Col>
+              </Row>
+
+              <Row>
+                  <Col style={{padding:"10px"}}>
+                    <Button
+                      suffix={
+                        <Icon name="LongRight" size="16px" color="white" m={{ l: "1rem" }} />
+                      }
+                      shadow="3"
+                      hoverShadow="4"
+                      m={{ r: "1rem" }}
+                    >
+                      Generate Code
+                    </Button>
+                  </Col>
+                  <Col style={{padding:"10px"}}>
+                    <Button
+                      suffix={
+                        <Icon name="LongRight" size="16px" color="white" m={{ l: "1rem" }} />
+                      }
+                      shadow="3"
+                      hoverShadow="4"
+                      m={{ r: "1rem" }}
+                    >
+                      Save Code
+                    </Button>
+                  </Col>
+              </Row>
+          </Col>
+        
+        </Row>
+      </div>
+    </Container>
   );
 };
 
