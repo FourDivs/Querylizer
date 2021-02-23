@@ -9,16 +9,11 @@ const App = () => {
     <div className="App">
       <Navbar>
         <div
-          style={{
-            fontSize: "2.3rem",
-            paddingTop: "10px",
-            paddingLeft: "30px",
-            fontFamily: "Poppins",
-          }}
+          className = {classes.home__navbar__brand}
         >
           <img
             src={logo}
-            style={{ height: "50px", width: "50px" }}
+            className = {classes.home__navbar__brand__logo}
             alt="astsdsad"
           />
           <span style={{ fontWeight: "800" }}>Query</span>

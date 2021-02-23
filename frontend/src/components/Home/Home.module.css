@@ -13,3 +13,25 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+.home__navbar__brand {
+  font-size: 2.3rem;
+  padding-top: 10px;
+  padding-left: 30px;
+  font-family: "Poppins";
+}
+
+.home__navbar__brand__logo {
+  height: 50px;
+  width: 50px;
+}
+@media only screen and (max-width: 768px) {
+  .home__navbar__brand {
+    font-size: 1rem;
+  }
+
+  .home__navbar__brand__logo {
+    height: 25px;
+    width: 25px;
+  }
+}
