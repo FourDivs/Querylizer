@@ -26,18 +26,14 @@
   width: 50px;
 }
 
-.home__navbar__logo{
-  color: "black";
-  padding : "5px"
-}
-
-.body_text{
-  color: "red";
+.home__navbar__icons {
+  color: black;
+  padding: 5px;
 }
 
 @media only screen and (max-width: 768px) {
   .home__navbar__brand {
-    font-size: 1rem;
+    font-size: 1.2rem;
   }
 
   .home__navbar__brand__logo {
@@ -45,15 +41,8 @@
     width: 25px;
   }
 
-  .home__navbar__logo{
-    color: "black";
-    padding : "5px"
-  }
-
-  .body_text{
-    fontSize: "0.5rem";
-    fontWeight: "600";
-    color: "red";
-    lineHeight: "75px"
+  .home__navbar__icons {
+    font-size: 20px;
+    padding: 0px;
   }
 }

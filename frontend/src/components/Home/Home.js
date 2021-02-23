@@ -30,18 +30,16 @@ const App = () => {
           <Nav>
             <Nav.Link href="#home" className = {classes.home__navbar__logo}>
               <i
-                className="far fa-envelope"
+                className= {"far fa-envelope " + classes.home__navbar__icons}
               ></i>
             </Nav.Link>
             <Nav.Link href="#features">
               <i
-                className="fab fa-github"
+                className = {"fab fa-github " + classes.home__navbar__icons}
               ></i>
             </Nav.Link>
             <Nav.Link href="/visualizer">
-              <i
-                class="fas fa-sign-in-alt"
-              ></i>
+              <i className= {"fas fa-sign-in-alt " + classes.home__navbar__icons}></i>
             </Nav.Link>
           </Nav>
         </div>

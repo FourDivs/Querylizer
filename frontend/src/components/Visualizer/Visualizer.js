@@ -1,6 +1,6 @@
 import Diagram, { createSchema, useSchema } from "beautiful-react-diagrams";
 import { Div, Icon,Button, Input, Label,Text } from "atomize";
-import { cloneElement, useState ,Fragment} from "react";
+import { cloneElement, useState } from "react";
 import { Row, Col ,Container} from "react-bootstrap";
 
 import AceEditor from "react-ace";
@@ -9,27 +9,18 @@ import "ace-builds/src-min-noconflict/ext-language_tools";
 import "ace-builds/src-noconflict/mode-jsx";
 
 import {
-  AppBar,
   FormControl,
-  InputLabel,
-  makeStyles,
   MenuItem,
   Select,
   FormGroup,
   Checkbox,
-  Toolbar,
-  Typography,
   FormControlLabel,
-  Switch,
   Dialog,
-  DialogTitle,
   DialogContent,
-  DialogActions,
-  useTheme,
 } from "@material-ui/core";
 
 //Row Data of Each Node
-const rowData = new Object();
+const rowData = {};
 rowData.data = [];
 
 //extracting themes and language
@@ -48,12 +39,10 @@ const ModalSize = ({ isOpen, onClose, nodeId }) => {
   });
   const { primary, unique, not_null } = properties;
 
-  const a = rowData.data.findIndex(function (el) {
-    if (el.id == nodeId) {
-      return el;
-    }
-  });
+  const getRowIndex = (element) => element.id === nodeId;
 
+  const a = rowData.data.findIndex(getRowIndex);
+  
   const handleColName = (event) => {
     setcolName(event.target.value);
     rowData.data[a].name = event.target.value;
@@ -190,11 +179,9 @@ const initialSchema = createSchema({
 const Field = (props) => {
   const { inputs } = props;
   const [showModal, setState] = useState(false);
-  const a = rowData.data.findIndex(function (el) {
-    if (el.id == props.id) {
-      return el;
-    }
-  });
+
+  const getRowIndex = (element) => element.id === props.id;
+  const a = rowData.data.findIndex(getRowIndex);
 
   return (
     <div
@@ -234,12 +221,12 @@ const Field = (props) => {
 const Visualizer = () => {
   // create diagrams schema
   const [value, setValue] = useState("");  
-  const [fontSize, setFontSize] = useState(16);
-  const [theme, setTheme] = useState("monokai");
+  const [fontSize] = useState(16);
   const [schema, { onChange, addNode }] = useSchema(initialSchema);
   const [x_coordinate, setxCoordinate] = useState(1200);
   const [y_coordinate, setyCoordinate] = useState(5);
 
+  console.log(rowData)
   const addNewNode = () => {
     const nextNode = {
       id: `node-${schema.nodes.length + 1}`,
@@ -252,7 +239,7 @@ const Visualizer = () => {
       inputs: [{ id: `port-${Math.random()}` }],
     };
 
-    const row = new Object();
+    const row = {};
     row.id = nextNode.id;
     row.name = nextNode.id;
     row.data_type = "";
