@@ -15,7 +15,7 @@
 }
 
 .home__navbar__brand {
-  font-size: 2.3rem;
+  font-size: 35px;
   padding-top: 10px;
   padding-left: 30px;
   font-family: "Poppins";
@@ -31,9 +31,36 @@
   padding: 5px;
 }
 
+.home_h1_text {
+  font-size: 40px;
+}
+
+.home_h2_text {
+  font-size: 35px;
+}
+
+.home_h2_last_text{
+  font-size: 35px;
+  font-weight: 300
+}
+
+.home_button_col{
+  display:flex;
+  justify-content:center; 
+  margin-left: 0px;
+}
+
+
+.home_button{
+  font-size: 20px;
+  padding: auto;  
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
 @media only screen and (max-width: 768px) {
   .home__navbar__brand {
-    font-size: 1.2rem;
+    font-size: 20px;
   }
 
   .home__navbar__brand__logo {
@@ -45,4 +72,28 @@
     font-size: 20px;
     padding: 0px;
   }
+
+  .home_button_col{ 
+    margin-left: 10px;
+  }
+
+  .home_button{
+    font-size: 15px;
+    padding: auto;
+    margin-left: 5px;
+  }
+
+  .home_h1_text {
+    font-size: 20px;
+  }
+
+  .home_h2_text {
+    font-size: 20px;
+  }
+
+  .home_h2_last_text{
+    font-size: 25px;
+    font-weight: 300
+  }
+  
 }

@@ -8,6 +8,7 @@ import "ace-builds/src-min-noconflict/ext-searchbox";
 import "ace-builds/src-min-noconflict/ext-language_tools";
 import "ace-builds/src-noconflict/mode-jsx";
 
+import CloseIcon from "@material-ui/icons/Close";
 import {
   FormControl,
   MenuItem,
@@ -17,21 +18,64 @@ import {
   FormControlLabel,
   Dialog,
   DialogContent,
+  IconButton,
+  withStyles,
+  Slider,
 } from "@material-ui/core";
 
 //Row Data of Each Node
+
 const rowData = {};
 rowData.data = [];
+
+const tableData = {};
+tableData.tableName = "Table";
+tableData.row = rowData;
+
+const sqlData ={}
+sqlData.tables=[]
 
 //extracting themes and language
 require(`ace-builds/src-noconflict/theme-monokai`);
 require(`ace-builds/src-noconflict/mode-sql`);
 require(`ace-builds/src-noconflict/snippets/sql`);
 
+const PrettoSlider = withStyles({
+  root: {
+    color: "#52af77",
+    height: 8,
+  },
+  thumb: {
+    height: 24,
+    width: 24,
+    backgroundColor: "#fff",
+    border: "2px solid currentColor",
+    marginTop: -8,
+    marginLeft: -12,
+    "&:focus, &:hover, &$active": {
+      boxShadow: "inherit",
+    },
+  },
+  active: {},
+  valueLabel: {
+    left: "calc(-50% + 4px)",
+  },
+  track: {
+    height: 8,
+    borderRadius: 4,
+  },
+  rail: {
+    height: 8,
+    borderRadius: 4,
+  },
+})(Slider);
+
 //Modal Section
 const ModalSize = ({ isOpen, onClose, nodeId }) => {
   const [colName, setcolName] = useState("");
+  const [disable, setSliderDisable] = useState(true);
   const [dataType, setdataType] = useState("");
+  const [maxLength, setMaxLength] = useState(0);
   const [properties, setProperties] = useState({
     primary: false,
     unique: false,
@@ -41,37 +85,42 @@ const ModalSize = ({ isOpen, onClose, nodeId }) => {
 
   const getRowIndex = (element) => element.id === nodeId;
 
-  const a = rowData.data.findIndex(getRowIndex);
+  const rowIndex = rowData.data.findIndex(getRowIndex);
   
   const handleColName = (event) => {
     setcolName(event.target.value);
-    rowData.data[a].name = event.target.value;
+    rowData.data[rowIndex].column_name = event.target.value;
+  };
+
+  const handleMaxLength = (event, newValue) => {
+    setMaxLength(newValue);
+    rowData.data[rowIndex].max_length = newValue;
   };
 
   const handleChange = (event) => {
     setdataType(event.target.value);
+    if(event.target.value == "varchar"){
+      setSliderDisable(false)
+    }
+    else{
+      setSliderDisable(true)
+      rowData.data[rowIndex].max_length = 0;
+    }
   };
 
   const handleCheckbox = (event) => {
     setProperties({ ...properties, [event.target.name]: event.target.checked });
   };
 
-  rowData.data[a].primary_key = primary;
-  rowData.data[a].unique = unique;
-  rowData.data[a].not_null = not_null;
-  rowData.data[a].data_type = dataType;
+  rowData.data[rowIndex].primary_key = primary;
+  rowData.data[rowIndex].unique = unique;
+  rowData.data[rowIndex].not_null = not_null;
+  rowData.data[rowIndex].data_type = dataType;
+
+  
 
   return (
     <Dialog open={isOpen} onClose={onClose} rounded="md">
-      <Icon
-        name="Cross"
-        pos="absolute"
-        top="1rem"
-        right="1rem"
-        size="16px"
-        onClick={onClose}
-        cursor="pointer"
-      />
       <DialogContent style={{ width: "600px" }}>
         <Row p={{ l: "0.5rem", t: "0.25rem" }} m={{ b: "2rem" }}>
           <Col>
@@ -105,6 +154,18 @@ const ModalSize = ({ isOpen, onClose, nodeId }) => {
               </Select>
             </FormControl>
           </Col>
+        </Row>
+        <Row>
+          <Label>Max Length:</Label>
+          <Container>
+            <PrettoSlider
+              disabled={disable}
+              valueLabelDisplay="auto"
+              aria-label="pretto slider"
+              value={typeof maxLength === 'number' ? maxLength : 0}
+              onChange={handleMaxLength}
+            />
+          </Container>
         </Row>
 
         <Row p={{ l: "1rem", t: "0.25rem" }} m={{ b: "2rem" }}>
@@ -163,25 +224,101 @@ const ModalSize = ({ isOpen, onClose, nodeId }) => {
   );
 };
 
-// the diagram model
-const initialSchema = createSchema({
-  nodes: [
-    {
-      id: "node-1",
-      content: "Table",
-      coordinates: [100, 30],
-      outputs: [{ id: "port-1", alignment: "right" }],
-    },
-  ],
-  links: [],
-});
+const TableModal = ({ isOpen, onClose }) => {
+  const [Table_Name, setTableName] = useState("");
+
+  const handleTableName = (event) => {
+    setTableName(event.target.value);
+    tableData.tableName = event.target.value;
+  };
+
+  return (
+    <Dialog open={isOpen} onClose={onClose} rounded="md">
+      <Icon
+        name="Cross"
+        pos="absolute"
+        top="1rem"
+        right="1rem"
+        size="16px"
+        onClick={onClose}
+        cursor="pointer"
+      />
+      <DialogContent style={{ width: "600px" }}>
+        <Row p={{ l: "0.5rem", t: "0.25rem" }} m={{ b: "2rem" }}>
+          <Col>
+            <Label>Column Name:</Label>
+            <Input
+              placeholder="Enter Table Name"
+              value={Table_Name}
+              onChange={handleTableName}
+              h="3rem"
+            />
+          </Col>
+        </Row>
+
+        <Div d="flex" justify="flex-end">
+          <Button
+            onClick={onClose}
+            bg="gray200"
+            textColor="medium"
+            m={{ r: "1rem" }}
+          >
+            Close
+          </Button>
+          <Button onClick={onClose} style={{ background: "#9D4EDD" }}>
+            OK
+          </Button>
+        </Div>
+      </DialogContent>
+    </Dialog>
+  );
+};
+
+const TableNode = (props) => {
+  const { outputs } = props;
+  const [showModal, setState] = useState(false);
+  return (
+    <div
+      style={{
+        background: "#C77DFF",
+        borderRadius: "5px",
+        textAlign: "center",
+        position: "back",
+      }}
+    >
+      <div
+        style={{
+          marginTop: "10px",
+          display: "flex",
+          justifyContent: "space-between",
+        }}
+      >
+        {outputs.map((port) =>
+          cloneElement(port, {
+            style: { width: "25px", height: "25px", background: "#1B263B" },
+          })
+        )}
+      </div>
+      <div style={{ padding: "5px" }}>
+        {tableData.tableName}
+        <Button
+          onClick={() => setState(true)}
+          style={{ marginTop: "5px", background: "#9D4EDD" }}
+        >
+          Set Table Name
+        </Button>
+      </div>
+      <TableModal isOpen={showModal} onClose={() => setState(false)} />
+    </div>
+  );
+};
 
 const Field = (props) => {
-  const { inputs } = props;
+  const { inputs, id, data } = props;
   const [showModal, setState] = useState(false);
 
   const getRowIndex = (element) => element.id === props.id;
-  const a = rowData.data.findIndex(getRowIndex);
+  const rowIndex = rowData.data.findIndex(getRowIndex);
 
   return (
     <div
@@ -193,15 +330,36 @@ const Field = (props) => {
       }}
     >
       <div>
-        {inputs.map((port) =>
-          cloneElement(port, {
-            style: { width: "30px", height: "20px", background: "#1B263B" },
-          })
-        )}
+        <Row>
+          <Col>
+            {inputs.map((port) =>
+              cloneElement(port, {
+                style: { width: "30px", height: "20px", background: "#1B263B" },
+              })
+            )}
+          </Col>
+          <Col>
+            <IconButton
+              aria-label="delete"
+              style={{
+                textAlign: "right",
+                paddingRight: "0px",
+                paddingTop: "4px",
+              }}
+              onClick={() => data.onClick(id)}
+            >
+              <CloseIcon fontSize="small" />
+            </IconButton>
+          </Col>
+        </Row>
       </div>
 
+      {/* <div >
+        <Button icon="times" size="small" onClick={()=>data.onClick(id)}/>
+      </div> */}
+
       <div style={{ padding: "5px" }}>
-        {rowData.data[a].name}
+        {rowData.data[rowIndex].column_name}
         <Button
           onClick={() => setState(true)}
           style={{ marginTop: "5px", background: "#9D4EDD" }}
@@ -218,31 +376,53 @@ const Field = (props) => {
   );
 };
 
+const initialSchema = createSchema({
+  nodes: [
+    {
+      id: "node-1",
+      content: "Table",
+      coordinates: [100, 30],
+      render: TableNode,
+      outputs: [{ id: "port-1" }],
+    },
+  ],
+  links: [],
+});
+
 const Visualizer = () => {
   // create diagrams schema
-  const [value, setValue] = useState("");  
+  const [value, setValue] = useState("");
   const [fontSize] = useState(16);
-  const [schema, { onChange, addNode }] = useSchema(initialSchema);
+  const [schema, { onChange, addNode, removeNode }] = useSchema(initialSchema);
   const [x_coordinate, setxCoordinate] = useState(1200);
   const [y_coordinate, setyCoordinate] = useState(5);
+  const [colCount, setColCount] = useState(1);
 
-  console.log(rowData)
+  const deleteNodeFromSchema = (id) => {
+    const nodeToRemove = schema.nodes.find((node) => node.id === id);
+    removeNode(nodeToRemove);
+  };
+
+  let json1 = JSON.stringify(schema);
+  let json2 = JSON.stringify(tableData); 
+  console.log(json1);
+  console.log(json2);
+
   const addNewNode = () => {
     const nextNode = {
-      id: `node-${schema.nodes.length + 1}`,
-      content: `Node ${schema.nodes.length + 1}`,
-      coordinates: [
-        x_coordinate,
-        y_coordinate,
-      ],
+      id: `Column-${colCount}`,
+      content: `Column-${colCount}`,
+      coordinates: [x_coordinate, y_coordinate],
       render: Field,
-      inputs: [{ id: `port-${Math.random()}` }],
+      data: { onClick: deleteNodeFromSchema },
+      inputs: [{ id: `port-column-${colCount}` }],
     };
 
     const row = {};
     row.id = nextNode.id;
-    row.name = nextNode.id;
+    row.column_name = nextNode.id;
     row.data_type = "";
+    row.max_length = 0;
     row.primary_key = false;
     row.unique = false;
     row.not_null = false;
@@ -251,6 +431,7 @@ const Visualizer = () => {
 
     setxCoordinate(x_coordinate - 10);
     setyCoordinate(y_coordinate + 10);
+    setColCount(colCount+1);
 
     addNode(nextNode);
   };
@@ -258,12 +439,11 @@ const Visualizer = () => {
   return (
     <Container fluid>
       <div style={{ height: "22.5rem" }}>
-        
-        <Text style={{textAlign:"center",padding:"3px"}}>Visualizer</Text>
-        
+        <Text style={{ textAlign: "center", padding: "3px" }}>Visualizer</Text>
+
         <Diagram schema={schema} onChange={onChange} />
 
-        <Row>          
+        <Row>
           
           <Col>
               <Text style={{textAlign:"center",padding:"2px",background:"black",color:"white"}}>Editor</Text>
@@ -280,64 +460,82 @@ const Visualizer = () => {
           </Col>
 
           <Col>
-              <Text style={{textAlign:"center",padding:"2px",background:"black",color:"white"}}>Features</Text>
+          <Text style={{textAlign:"center",padding:"2px",background:"black",color:"white"}}>Features</Text>
               <Row>
-                  <Col style={{padding:"10px"}} >
-                    <Button
-                      suffix={
-                        <Icon name="LongRight" size="16px" color="white" m={{ l: "1rem" }} />
-                      }
-                      shadow="3"
-                      hoverShadow="4"
-                      m={{ r: "1rem" }}
+              <Col style={{ padding: "10px" }}>
+                <Button
+                  suffix={
+                    <Icon
+                      name="LongRight"
+                      size="16px"
+                      color="white"
+                      m={{ l: "1rem" }}
+                    />
+                  }
+                  shadow="3"
+                  hoverShadow="4"
+                  m={{ r: "1rem" }}
+                >
+                  Add Table
+                </Button>
+              </Col>
+              <Col style={{ padding: "10px" }}>
+                <Button
+                  suffix={
+                    <Icon
+                      name="LongRight"
+                      size="16px"
+                      color="white"
+                      m={{ l: "1rem" }}
+                    />
+                  }
+                  shadow="3"
+                  hoverShadow="4"
+                  m={{ r: "1rem" }}
+                  onClick={addNewNode}
+                >
+                  Add Field
+                </Button>
+              </Col>
+            </Row>
 
-                    >
-                      Add Table
-                    </Button>
-                  </Col>
-                  <Col style={{padding:"10px"}}>
-                    <Button
-                      suffix={
-                        <Icon name="LongRight" size="16px" color="white" m={{ l: "1rem" }} />
-                      }
-                      shadow="3"
-                      hoverShadow="4"
-                      m={{ r: "1rem" }}
-                      onClick={addNewNode}
-                    >
-                      Add Field
-                    </Button>
-                  </Col>
-              </Row>
-
-              <Row>
-                  <Col style={{padding:"10px"}}>
-                    <Button
-                      suffix={
-                        <Icon name="LongRight" size="16px" color="white" m={{ l: "1rem" }} />
-                      }
-                      shadow="3"
-                      hoverShadow="4"
-                      m={{ r: "1rem" }}
-                    >
-                      Generate Code
-                    </Button>
-                  </Col>
-                  <Col style={{padding:"10px"}}>
-                    <Button
-                      suffix={
-                        <Icon name="LongRight" size="16px" color="white" m={{ l: "1rem" }} />
-                      }
-                      shadow="3"
-                      hoverShadow="4"
-                      m={{ r: "1rem" }}
-                    >
-                      Save Code
-                    </Button>
-                  </Col>
-              </Row>
+            <Row>
+              <Col style={{ padding: "10px" }}>
+                <Button
+                  suffix={
+                    <Icon
+                      name="LongRight"
+                      size="16px"
+                      color="white"
+                      m={{ l: "1rem" }}
+                    />
+                  }
+                  shadow="3"
+                  hoverShadow="4"
+                  m={{ r: "1rem" }}
+                >
+                  Generate Code
+                </Button>
+              </Col>
+              <Col style={{ padding: "10px" }}>
+                <Button
+                  suffix={
+                    <Icon
+                      name="LongRight"
+                      size="16px"
+                      color="white"
+                      m={{ l: "1rem" }}
+                    />
+                  }
+                  shadow="3"
+                  hoverShadow="4"
+                  m={{ r: "1rem" }}
+                >
+                  Save Code
+                </Button>
+              </Col>
+            </Row>
           </Col>
-        
         </Row>
       </div>
     </Container>
