@@ -99,7 +99,7 @@ const ModalSize = ({ isOpen, onClose, nodeId }) => {
 
   const handleChange = (event) => {
     setdataType(event.target.value);
-    if(event.target.value == "varchar"){
+    if(event.target.value === "varchar"){
       setSliderDisable(false)
     }
     else{

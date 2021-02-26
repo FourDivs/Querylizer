@@ -3,7 +3,7 @@ import classes from "./Home.module.css";
 import logo from "../../assets/Query.png";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
-import { Div, Icon,Button, Anchor } from "atomize";
+import { Button, Anchor } from "atomize";
 import { Row, Col} from "react-bootstrap";
 
 const App = () => {
