@@ -5,10 +5,11 @@ import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import { Button, Anchor } from "atomize";
 import { Row, Col} from "react-bootstrap";
+import wallIamge from "../../assets/square_mid_light.svg"
 
 const App = () => {
   return (
-    <div className="App">
+    <div className="App" style = {{backgroundImage: `url(${wallIamge})`}}>
       <Navbar>
         <div
           className = {classes.home__navbar__brand}
@@ -53,8 +54,10 @@ const App = () => {
       <Container className="text-center">
         <div>
           <h1 className = {classes.home_h1_text}>
-            Create Stunning 🚩 Blazing ⚡ Interactive{" "}
+            Create Stunning 🚩 Blazing ⚡ Interactive 🧠{" "}
             <span className={classes.home_span_gradient}>
+              <br/>
+              <br/>
               Database Diagrams{" "}
             </span>
             🚀
@@ -76,7 +79,7 @@ const App = () => {
                     m={{ r: "1rem" }}
                     className = {classes.home_button}
                   >
-                    Login                    
+                    LOGIN                    
                   </Button>
                 </Anchor>
                 <Anchor href="/visualizer">
@@ -86,7 +89,7 @@ const App = () => {
                     m={{ r: "1rem" }}
                     className = {classes.home_button}
                   >                   
-                    Getting Started                    
+                    GET STARTED                    
                   </Button>
                 </Anchor>
                     
@@ -97,7 +100,7 @@ const App = () => {
                     m={{ r: "1rem" }}
                     className = {classes.home_button}
                     // onClick={addNewNode}
-                  >About Us
+                  >ABOUT US
                   </Button>
                 </Anchor>
               </Col>
@@ -106,7 +109,18 @@ const App = () => {
         <h2 className = {classes.home_h2_last_text}>
           Easily convert your Database Diagram to code. Hassle Free.
         </h2>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
       </Container>
+     
     </div>
   );
 }
