@@ -403,11 +403,6 @@ const Visualizer = () => {
     removeNode(nodeToRemove);
   };
 
-  let json1 = JSON.stringify(schema);
-  let json2 = JSON.stringify(tableData); 
-  console.log(json1);
-  console.log(json2);
-
   const addNewNode = () => {
     const nextNode = {
       id: `Column-${colCount}`,
@@ -438,10 +433,30 @@ const Visualizer = () => {
 
   const handleSubmit = async () => {
     console.log("Handle submit called")
-    await axios.get(`http://127.0.0.1:8000/createTable/`)
-      .then(res => {
-        console.log(res);
+    // let data = {
+    //   schema: schema,
+    //   tableData: tableData
+    // };
+    let options = {
+      method: "POST",
+      url: "http://127.0.0.1:8000/createTable/",
+      headers: {
+        "content-type": "application/json",
+      },
+      data: {
+        schema: schema,
+        tableData: tableData
+      },
+    };
+
+    await axios
+      .request(options)
+      .then(function (response) {
+        console.log("compile: ", response);
       })
+      .catch(function (error) {
+        console.error(error);
+      });
   }
 
   return (

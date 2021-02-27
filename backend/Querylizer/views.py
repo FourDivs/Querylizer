@@ -25,4 +25,5 @@ def createTable(request):
         except:
             return JsonResponse({"error": "not a valid data"}, safe=False)
     else:
+        print("Error")
         return JsonResponse({"error": "Invalid Request Type"}, safe=False)
