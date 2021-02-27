@@ -2,7 +2,7 @@ import Diagram, { createSchema, useSchema } from "beautiful-react-diagrams";
 import { Div, Icon,Button, Input, Label,Text } from "atomize";
 import { cloneElement, useState } from "react";
 import { Row, Col ,Container} from "react-bootstrap";
-
+import axios from 'axios';
 import AceEditor from "react-ace";
 import "ace-builds/src-min-noconflict/ext-searchbox";
 import "ace-builds/src-min-noconflict/ext-language_tools";
@@ -436,6 +436,14 @@ const Visualizer = () => {
     addNode(nextNode);
   };
 
+  const handleSubmit = async () => {
+    console.log("Handle submit called")
+    await axios.get(`http://127.0.0.1:8000/createTable/`)
+      .then(res => {
+        console.log(res);
+      })
+  }
+
   return (
     <Container fluid>
       <div style={{ height: "22.5rem" }}>
@@ -513,6 +521,7 @@ const Visualizer = () => {
                   shadow="3"
                   hoverShadow="4"
                   m={{ r: "1rem" }}
+                  onClick = {handleSubmit}
                 >
                   Generate Code
                 </Button>

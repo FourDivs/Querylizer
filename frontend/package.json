@@ -9,6 +9,7 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "atomize": "^1.0.26",
+    "axios": "^0.21.1",
     "beautiful-react-diagrams": "^0.5.1",
     "bootstrap": "^4.6.0",
     "react": "^17.0.1",
