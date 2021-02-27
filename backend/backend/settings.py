@@ -137,5 +137,10 @@ django_heroku.settings(locals())
 # CORS for Querilizer
 CORS_ORIGIN_WHITELIST = [
     "http://localhost:3000",
+    "https://querylizer-git-main-kothariji.vercel.app",
+    "https://querylizer.vercel.app",
+    "https://querylizer-kothariji.vercel.app",
+    "https://querylizer.netlify.app",
+
 
 ]
