@@ -438,7 +438,7 @@ const Visualizer = () => {
     
     let options = {
       method: "POST",
-      url: "http://127.0.0.1:8000/createTable/",
+      url: process.env.REACT_APP_BANCKEND_API + "createTable/",
       headers: {
         "content-type": "application/json",
       },
