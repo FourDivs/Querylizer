@@ -25,11 +25,8 @@ const rowData = {};
 rowData.data = [];
 
 const tableData = {};
-tableData.tableName = "Table";
-tableData.row = rowData;
+tableData.data =[];
 
-const sqlData = {};
-sqlData.tables = [];
 
 const PrettoSlider = withStyles({
   root: {
@@ -212,12 +209,15 @@ const ModalSize = ({ isOpen, onClose, nodeId }) => {
   );
 };
 
-const TableModal = ({ isOpen, onClose }) => {
+const TableModal = ({ isOpen, onClose,nodeId }) => {
   const [Table_Name, setTableName] = useState("");
+
+  const getTableIndex = (element) => element.id === nodeId;
+  const tableIndex = tableData.data.findIndex(getTableIndex);
 
   const handleTableName = (event) => {
     setTableName(event.target.value);
-    tableData.tableName = event.target.value;
+    tableData.data[tableIndex].table_name = event.target.value;
   };
 
   return (
@@ -263,8 +263,12 @@ const TableModal = ({ isOpen, onClose }) => {
 };
 
 const TableNode = (props) => {
-  const { outputs } = props;
+  const { outputs, id, data  } = props;
   const [showModal, setState] = useState(false);
+
+  const getTableIndex = (element) => element.id === props.id;
+  const tableIndex = tableData.data.findIndex(getTableIndex);
+
   return (
     <div
       style={{
@@ -274,21 +278,33 @@ const TableNode = (props) => {
         position: "back",
       }}
     >
-      <div
-        style={{
-          marginTop: "10px",
-          display: "flex",
-          justifyContent: "space-between",
-        }}
-      >
-        {outputs.map((port) =>
-          cloneElement(port, {
-            style: { width: "25px", height: "25px", background: "#1B263B" },
-          })
-        )}
+       <div>
+        <Row>
+          <Col>
+          {outputs.map((port) =>
+            cloneElement(port, {
+              style: { width: "25px", height: "25px", background: "#1B263B" },
+            })
+          )}
+          </Col>
+          <Col>
+            <IconButton
+              aria-label="delete"
+              style={{
+                textAlign: "right",
+                paddingRight: "0px",
+                paddingTop: "4px",
+              }}
+              onClick={() => data.onClick(id)}
+            >
+              <CloseIcon fontSize="small" />
+            </IconButton>
+          </Col>
+        </Row>
       </div>
+
       <div style={{ padding: "5px" }}>
-        {tableData.tableName}
+        {tableData.data[tableIndex].table_name}
         <Button
           onClick={() => setState(true)}
           style={{ marginTop: "5px", background: "#9D4EDD" }}
@@ -296,7 +312,7 @@ const TableNode = (props) => {
           Set Table Name
         </Button>
       </div>
-      <TableModal isOpen={showModal} onClose={() => setState(false)} />
+      <TableModal isOpen={showModal} onClose={() => setState(false)} nodeId={props.id} />
     </div>
   );
 };
@@ -378,15 +394,7 @@ const Options = (props) => (
 );
 
 const initialSchema = createSchema({
-  nodes: [
-    {
-      id: "node-1",
-      content: "Table",
-      coordinates: [100, 30],
-      render: TableNode,
-      outputs: [{ id: "port-1" }],
-    },
-  ],
+  nodes: [],
   links: [],
 });
 
@@ -396,12 +404,34 @@ const Visualizer = () => {
     "CLICK ON GENERATE CODE BUTTON TO GET CODE"
   );
   const [schema, { onChange, addNode, removeNode }] = useSchema(initialSchema);
+  
+  //for column
   const [x_coordinate, setxCoordinate] = useState(1200);
   const [y_coordinate, setyCoordinate] = useState(5);
   const [colCount, setColCount] = useState(1);
 
-  const deleteNodeFromSchema = (id) => {
+  //for table
+  const [t_x_coordinate, setTablexCoordinate] = useState(100);
+  const [t_y_coordinate, setTableyCoordinate] = useState(3);  
+  const [tableCount, setTableCount] = useState(1);
+
+  const deleteRowNodeFromSchema = (id) => {
     const nodeToRemove = schema.nodes.find((node) => node.id === id);
+    
+    const getRowIndex = (element) => element.id === id;
+    const rowIndex = rowData.data.findIndex(getRowIndex);
+
+    rowData.data.splice(rowIndex,1);
+    removeNode(nodeToRemove);
+  };
+
+  const deleteTableNodeFromSchema = (id) => {
+    const nodeToRemove = schema.nodes.find((node) => node.id === id);
+    
+    const getTableIndex = (element) => element.id === id;
+    const tableIndex = tableData.data.findIndex(getTableIndex);
+
+    tableData.data.splice(tableIndex,1);
     removeNode(nodeToRemove);
   };
 
@@ -411,7 +441,7 @@ const Visualizer = () => {
       content: `Column-${colCount}`,
       coordinates: [x_coordinate, y_coordinate],
       render: Field,
-      data: { onClick: deleteNodeFromSchema },
+      data: { onClick: deleteRowNodeFromSchema },
       inputs: [{ id: `port-column-${colCount}` }],
     };
 
@@ -433,6 +463,29 @@ const Visualizer = () => {
     addNode(nextNode);
   };
 
+  const addTableNode = () => {
+    const nextNode = {
+      id: `Table-${tableCount}`,
+      content: `Table-${tableCount}`,
+      coordinates: [t_x_coordinate, t_y_coordinate],
+      render: TableNode,
+      data: { onClick: deleteTableNodeFromSchema },
+      outputs: [{ id: `table-${tableCount}` }],
+    };
+
+    const table = {};
+    table.id = nextNode.id;
+    table.table_name = nextNode.id;
+
+    tableData.data.push(table);
+
+    setTablexCoordinate(t_x_coordinate - 10);
+    setTableyCoordinate(t_y_coordinate + 10);
+    setTableCount(tableCount + 1);
+
+    addNode(nextNode);
+  };
+
   const handleSubmit = async () => {
     console.log("Handle submit called");
     
@@ -444,7 +497,8 @@ const Visualizer = () => {
       },
       data: {
         schema: schema,
-        tableData: tableData,
+        rowData: rowData,
+        tableData: tableData
       },
     };
 
@@ -483,7 +537,7 @@ const Visualizer = () => {
               Features
             </Text>
             <Row>
-              <Options actionName="Add Table" actionFunction={addNewNode} />
+              <Options actionName="Add Table" actionFunction={addTableNode} />
               <Options actionName="Add Field" actionFunction={addNewNode} />
             </Row>
             <Row>
