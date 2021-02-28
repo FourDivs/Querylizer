@@ -1,13 +1,9 @@
 import Diagram, { createSchema, useSchema } from "beautiful-react-diagrams";
-import { Div, Icon,Button, Input, Label,Text } from "atomize";
+import { Div, Icon, Button, Input, Label, Text } from "atomize";
 import { cloneElement, useState } from "react";
-import { Row, Col ,Container} from "react-bootstrap";
-import axios from 'axios';
-import AceEditor from "react-ace";
-import "ace-builds/src-min-noconflict/ext-searchbox";
-import "ace-builds/src-min-noconflict/ext-language_tools";
-import "ace-builds/src-noconflict/mode-jsx";
-
+import { Row, Col, Container } from "react-bootstrap";
+import axios from "axios";
+import CodeEditor from "../CodeEditor/CodeEditor";
 import CloseIcon from "@material-ui/icons/Close";
 import {
   FormControl,
@@ -32,13 +28,8 @@ const tableData = {};
 tableData.tableName = "Table";
 tableData.row = rowData;
 
-const sqlData ={}
-sqlData.tables=[]
-
-//extracting themes and language
-require(`ace-builds/src-noconflict/theme-monokai`);
-require(`ace-builds/src-noconflict/mode-sql`);
-require(`ace-builds/src-noconflict/snippets/sql`);
+const sqlData = {};
+sqlData.tables = [];
 
 const PrettoSlider = withStyles({
   root: {
@@ -86,7 +77,7 @@ const ModalSize = ({ isOpen, onClose, nodeId }) => {
   const getRowIndex = (element) => element.id === nodeId;
 
   const rowIndex = rowData.data.findIndex(getRowIndex);
-  
+
   const handleColName = (event) => {
     setcolName(event.target.value);
     rowData.data[rowIndex].column_name = event.target.value;
@@ -99,11 +90,10 @@ const ModalSize = ({ isOpen, onClose, nodeId }) => {
 
   const handleChange = (event) => {
     setdataType(event.target.value);
-    if(event.target.value === "varchar"){
-      setSliderDisable(false)
-    }
-    else{
-      setSliderDisable(true)
+    if (event.target.value === "varchar") {
+      setSliderDisable(false);
+    } else {
+      setSliderDisable(true);
       rowData.data[rowIndex].max_length = 0;
     }
   };
@@ -116,8 +106,6 @@ const ModalSize = ({ isOpen, onClose, nodeId }) => {
   rowData.data[rowIndex].unique = unique;
   rowData.data[rowIndex].not_null = not_null;
   rowData.data[rowIndex].data_type = dataType;
-
-  
 
   return (
     <Dialog open={isOpen} onClose={onClose} rounded="md">
@@ -162,7 +150,7 @@ const ModalSize = ({ isOpen, onClose, nodeId }) => {
               disabled={disable}
               valueLabelDisplay="auto"
               aria-label="pretto slider"
-              value={typeof maxLength === 'number' ? maxLength : 0}
+              value={typeof maxLength === "number" ? maxLength : 0}
               onChange={handleMaxLength}
             />
           </Container>
@@ -354,9 +342,6 @@ const Field = (props) => {
         </Row>
       </div>
 
-      {/* <div >
-        <Button icon="times" size="small" onClick={()=>data.onClick(id)}/>
-      </div> */}
 
       <div style={{ padding: "5px" }}>
         {rowData.data[rowIndex].column_name}
@@ -376,6 +361,22 @@ const Field = (props) => {
   );
 };
 
+const Options = (props) => (
+  <Col style={{ padding: "10px" }}>
+    <Button
+      suffix={
+        <Icon name="LongRight" size="16px" color="white" m={{ l: "1rem" }} />
+      }
+      shadow="3"
+      hoverShadow="4"
+      m={{ r: "1rem" }}
+      onClick={props.actionFunction}
+    >
+      {props.actionName}
+    </Button>
+  </Col>
+);
+
 const initialSchema = createSchema({
   nodes: [
     {
@@ -391,8 +392,9 @@ const initialSchema = createSchema({
 
 const Visualizer = () => {
   // create diagrams schema
-  const [value, setValue] = useState("");
-  const [fontSize] = useState(16);
+  const [value, setValue] = useState(
+    "CLICK ON GENERATE CODE BUTTON TO GET CODE"
+  );
   const [schema, { onChange, addNode, removeNode }] = useSchema(initialSchema);
   const [x_coordinate, setxCoordinate] = useState(1200);
   const [y_coordinate, setyCoordinate] = useState(5);
@@ -426,17 +428,14 @@ const Visualizer = () => {
 
     setxCoordinate(x_coordinate - 10);
     setyCoordinate(y_coordinate + 10);
-    setColCount(colCount+1);
+    setColCount(colCount + 1);
 
     addNode(nextNode);
   };
 
   const handleSubmit = async () => {
-    console.log("Handle submit called")
-    // let data = {
-    //   schema: schema,
-    //   tableData: tableData
-    // };
+    console.log("Handle submit called");
+    
     let options = {
       method: "POST",
       url: "http://127.0.0.1:8000/createTable/",
@@ -445,19 +444,20 @@ const Visualizer = () => {
       },
       data: {
         schema: schema,
-        tableData: tableData
+        tableData: tableData,
       },
     };
 
     await axios
       .request(options)
       .then(function (response) {
-        console.log("compile: ", response);
+        console.log("compile: ", response.data);
+        setValue(response.data["node-1"]);
       })
       .catch(function (error) {
         console.error(error);
       });
-  }
+  };
 
   return (
     <Container fluid>
@@ -467,97 +467,31 @@ const Visualizer = () => {
         <Diagram schema={schema} onChange={onChange} />
 
         <Row>
-          
           <Col>
-              <Text style={{textAlign:"center",padding:"2px",background:"black",color:"white"}}>Editor</Text>
-              <AceEditor
-                mode="sql"
-                theme="monokai"
-                value={value}
-                height="200px"
-                width={"auto"}
-                fontSize={fontSize}
-                showPrintMargin
-                showGutter
-              />
+            <CodeEditor value={value} />
           </Col>
 
           <Col>
-          <Text style={{textAlign:"center",padding:"2px",background:"black",color:"white"}}>Features</Text>
-              <Row>
-              <Col style={{ padding: "10px" }}>
-                <Button
-                  suffix={
-                    <Icon
-                      name="LongRight"
-                      size="16px"
-                      color="white"
-                      m={{ l: "1rem" }}
-                    />
-                  }
-                  shadow="3"
-                  hoverShadow="4"
-                  m={{ r: "1rem" }}
-                >
-                  Add Table
-                </Button>
-              </Col>
-              <Col style={{ padding: "10px" }}>
-                <Button
-                  suffix={
-                    <Icon
-                      name="LongRight"
-                      size="16px"
-                      color="white"
-                      m={{ l: "1rem" }}
-                    />
-                  }
-                  shadow="3"
-                  hoverShadow="4"
-                  m={{ r: "1rem" }}
-                  onClick={addNewNode}
-                >
-                  Add Field
-                </Button>
-              </Col>
-            </Row>
-
+            <Text
+              style={{
+                textAlign: "center",
+                padding: "2px",
+                background: "black",
+                color: "white",
+              }}
+            >
+              Features
+            </Text>
             <Row>
-              <Col style={{ padding: "10px" }}>
-                <Button
-                  suffix={
-                    <Icon
-                      name="LongRight"
-                      size="16px"
-                      color="white"
-                      m={{ l: "1rem" }}
-                    />
-                  }
-                  shadow="3"
-                  hoverShadow="4"
-                  m={{ r: "1rem" }}
-                  onClick = {handleSubmit}
-                >
-                  Generate Code
-                </Button>
-              </Col>
-              <Col style={{ padding: "10px" }}>
-                <Button
-                  suffix={
-                    <Icon
-                      name="LongRight"
-                      size="16px"
-                      color="white"
-                      m={{ l: "1rem" }}
-                    />
-                  }
-                  shadow="3"
-                  hoverShadow="4"
-                  m={{ r: "1rem" }}
-                >
-                  Save Code
-                </Button>
-              </Col>
+              <Options actionName="Add Table" actionFunction={addNewNode} />
+              <Options actionName="Add Field" actionFunction={addNewNode} />
+            </Row>
+            <Row>
+              <Options
+                actionName="Generate Code"
+                actionFunction={handleSubmit}
+              />
+              <Options actionName="Save Code" actionFunction={addNewNode} />
             </Row>
           </Col>
         </Row>
