@@ -133,7 +133,7 @@ const ModalSize = ({ isOpen, onClose, nodeId }) => {
                 <MenuItem value="">
                   <em>None</em>
                 </MenuItem>
-                <MenuItem value={"number"}>Number</MenuItem>
+                <MenuItem value={"int"}>Integer</MenuItem>
                 <MenuItem value={"varchar"}>Varchar</MenuItem>
                 <MenuItem value={"date"}>Date</MenuItem>
               </Select>
@@ -222,19 +222,10 @@ const TableModal = ({ isOpen, onClose,nodeId }) => {
 
   return (
     <Dialog open={isOpen} onClose={onClose} rounded="md">
-      <Icon
-        name="Cross"
-        pos="absolute"
-        top="1rem"
-        right="1rem"
-        size="16px"
-        onClick={onClose}
-        cursor="pointer"
-      />
       <DialogContent style={{ width: "600px" }}>
         <Row p={{ l: "0.5rem", t: "0.25rem" }} m={{ b: "2rem" }}>
           <Col>
-            <Label>Column Name:</Label>
+            <Label>Table Name:</Label>
             <Input
               placeholder="Enter Table Name"
               value={Table_Name}
