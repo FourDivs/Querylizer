@@ -1,8 +1,7 @@
-
 def CreateTableQuery_Function (newData):
 
     schema = newData["schema"]
-    table = newData["tableData"]
+    table = newData["rowData"]
 
     NodeData = schema["nodes"]
     LinkData = schema["links"]
@@ -12,7 +11,7 @@ def CreateTableQuery_Function (newData):
     TableList = {}
 
     for node in NodeData:
-        if node["content"] == "Table":
+        if "Table" in node["content"]:
             TableList[node["id"]] = node["outputs"][0]["id"]
             
         else:
@@ -27,10 +26,15 @@ def CreateTableQuery_Function (newData):
 
     #print(LinksInfo)
 
-    TableNames = {"node-1" : table["tableName"]}
+    #TableNames = {"node-1" : table["tableName"]}
+    TableData = newData["tableData"]["data"]
+    TableNames = {}
+    for info in TableData:
+        TableNames[info["id"]] = info["table_name"]
+
     #print(TableNames)
 
-    TableColData = table["row"]["data"]
+    TableColData = table["data"]
 
     FinalTableData = {}
 
@@ -76,7 +80,7 @@ def CreateTableQuery_Function (newData):
     for eachTable in FinalTableData.keys():
         query = "CREATE TABLE "
         query = query + FinalTableData[eachTable]["TableName"]
-        query = query + " ( \n"
+        query = query + " ( \n "
 
         UniqueColList = []
 
@@ -97,7 +101,7 @@ def CreateTableQuery_Function (newData):
             if eachColumn["Unique"] == 1:
                 UniqueColList.append(eachColumn["Name"])
             
-            colQuery = colQuery + ", \n"
+            colQuery = colQuery + ", "
 
             query  = query + colQuery
         
@@ -109,13 +113,16 @@ def CreateTableQuery_Function (newData):
             uniQuery = uniQuery[:-2]
             uniQuery = uniQuery + ")"
 
-            query = query + uniQuery + "); "
+            query = query + uniQuery + "\n ); "
 
         else:
             query = query[:-2]
-            query = query + "); "
+            query = query + "\n ); "
         
         CreateTableQuery[eachTable] = query
+    
+    FinalQuery = ""
+    for SingleQuery in CreateTableQuery.keys():
+        FinalQuery = FinalQuery + CreateTableQuery[SingleQuery] + " \n "
 
-    return CreateTableQuery
-
+    return {"node-1" : FinalQuery}
