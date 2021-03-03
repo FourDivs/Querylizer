@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import Container from "react-bootstrap/Container";
 import classes from "./Home.module.css";
 import logo from "../../assets/Query.png";
@@ -7,29 +8,59 @@ import { Button, Anchor } from "atomize";
 import { Row, Col} from "react-bootstrap";
 import wallIamge from "../../assets/square_mid_light.svg"
 
-const App = () => {
+//firebase 
+import { UserContext } from "../../context/UserContext";
+import firebase from "firebase/app";
+import "firebase/auth"
+var provider = new firebase.auth.GoogleAuthProvider();
+
+const Home = () => {
+
+  const context = useContext(UserContext)
+
+  const handleLogin = () => {
+    firebase.auth()
+    .signInWithPopup(provider)
+    .then((result) => {
+      /** @type {firebase.auth.OAuthCredential} */
+      var credential = result.credential;
+      console.log("credential: ",credential)
+      // This gives you a Google Access Token. You can use it to access the Google API.
+      var token = credential.accessToken;
+      console.log("token: ",token)
+      // The signed-in user info.
+      var user = result.user;
+      console.log("userset", user)
+      context.setUser(user);
+      // ...
+    }).catch((error) => {
+      // Handle Errors here.
+      var errorCode = error.code;
+      console.log(errorCode)
+      var errorMessage = error.message;
+      console.log(errorMessage)
+      // The email of the user's account used.
+      var email = error.email;
+      console.log(email)
+      // The firebase.auth.AuthCredential type that was used.
+      var credential = error.credential;
+      console.log(credential)
+      // ...
+    });
+  }
+
+
+
+
+
   return (
-    <div className="App" style = {{backgroundImage: `url(${wallIamge})`}}>
+    <div style = {{backgroundImage: `url(${wallIamge})`}}>
       <Navbar>
-        <div
-          className = {classes.home__navbar__brand}
-        >
-          <img
-            src={logo}
-            className = {classes.home__navbar__brand__logo}
-            alt="astsdsad"
-          />
-          <span style={{ fontWeight: "800" }}>Query</span>
-          lizer
+        <div className = {classes.home__navbar__brand}>
+          <img src={logo} className = {classes.home__navbar__brand__logo} alt="Querylizer" />
+          <span style={{ fontWeight: "800" }}>Query</span>lizer
         </div>
-        <div
-          style={{
-            fontSize: "1.7rem",
-            paddingTop: "10px",
-            paddingRight: "30px"
-          }}
-          className="ml-auto"
-        >
+        <div style={{ fontSize: "1.7rem", paddingTop: "10px", paddingRight: "30px"}} className="ml-auto">
           <Nav>
             <Nav.Link href="#home" className = {classes.home__navbar__logo}>
               <i
@@ -72,16 +103,9 @@ const App = () => {
         <br />
         <Row>
               <Col sm={{ size: 'auto', offset: 1 }} className = {classes.home_button_col}>
-                <Anchor href="/visualizer">
-                  <Button
-                    shadow="3"
-                    hoverShadow="4"
-                    m={{ r: "1rem" }}
-                    className = {classes.home_button}
-                  >
-                    LOGIN                    
-                  </Button>
-                </Anchor>
+                <Button onClick = {handleLogin} shadow="3" hoverShadow="4" m={{ r: "1rem" }} className = {classes.home_button}>
+                  LOGIN                    
+                </Button>
                 <Anchor href="/visualizer">
                   <Button
                     shadow="3"
@@ -89,7 +113,7 @@ const App = () => {
                     m={{ r: "1rem" }}
                     className = {classes.home_button}
                   >                   
-                    GET STARTED                    
+                    { context.user?.email ? "welocme back " + context.user.email : "Continue as a Guest"}   
                   </Button>
                 </Anchor>
                     
@@ -126,4 +150,4 @@ const App = () => {
 }
 
 
-export default App;
+export default Home;
