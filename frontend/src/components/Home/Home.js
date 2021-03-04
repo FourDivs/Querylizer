@@ -8,6 +8,7 @@ import { Button, Anchor } from "atomize";
 import { Row, Col} from "react-bootstrap";
 import wallIamge from "../../assets/square_mid_light.svg"
 
+
 //firebase 
 import { UserContext } from "../../context/UserContext";
 import firebase from "firebase/app";
@@ -22,38 +23,35 @@ const Home = () => {
     firebase.auth()
     .signInWithPopup(provider)
     .then((result) => {
-      /** @type {firebase.auth.OAuthCredential} */
-      var credential = result.credential;
-      console.log("credential: ",credential)
-      // This gives you a Google Access Token. You can use it to access the Google API.
-      var token = credential.accessToken;
-      console.log("token: ",token)
-      // The signed-in user info.
-      var user = result.user;
-      console.log("userset", user)
-      context.setUser(user);
-      // ...
+      context.setUser(result.user);
     }).catch((error) => {
-      // Handle Errors here.
       var errorCode = error.code;
-      console.log(errorCode)
       var errorMessage = error.message;
-      console.log(errorMessage)
-      // The email of the user's account used.
-      var email = error.email;
-      console.log(email)
-      // The firebase.auth.AuthCredential type that was used.
-      var credential = error.credential;
-      console.log(credential)
-      // ...
+      console.log(errorCode, errorMessage)
     });
   }
 
+  const handleLogut = () => {
+    firebase.auth().signOut().then(() => {
+      console.log("logout")
+      context.setUser(null)
+    }).catch((error) => {
+      console.log("logout Error")  
+    });
+  }
 
-
-
+  firebase.auth().onAuthStateChanged(user => {
+    if(user) {
+      localStorage.setItem('authUser', JSON.stringify(user));
+      // window.location = '/visualizer';
+    }
+    else{
+      localStorage.removeItem('authUser');
+    }
+  });
 
   return (
+    
     <div style = {{backgroundImage: `url(${wallIamge})`}}>
       <Navbar>
         <div className = {classes.home__navbar__brand}>
@@ -63,14 +61,10 @@ const Home = () => {
         <div style={{ fontSize: "1.7rem", paddingTop: "10px", paddingRight: "30px"}} className="ml-auto">
           <Nav>
             <Nav.Link href="#home" className = {classes.home__navbar__logo}>
-              <i
-                className= {"far fa-envelope " + classes.home__navbar__icons}
-              ></i>
+              <i className= {"far fa-envelope " + classes.home__navbar__icons}></i>
             </Nav.Link>
             <Nav.Link href="#features">
-              <i
-                className = {"fab fa-github " + classes.home__navbar__icons}
-              ></i>
+              <i className = {"fab fa-github " + classes.home__navbar__icons}></i>
             </Nav.Link>
             <Nav.Link href="/visualizer">
               <i className= {"fas fa-sign-in-alt " + classes.home__navbar__icons}></i>
@@ -103,9 +97,11 @@ const Home = () => {
         <br />
         <Row>
               <Col sm={{ size: 'auto', offset: 1 }} className = {classes.home_button_col}>
-                <Button onClick = {handleLogin} shadow="3" hoverShadow="4" m={{ r: "1rem" }} className = {classes.home_button}>
+                {context.user?.email ? (<Button onClick = {handleLogut} shadow="3" hoverShadow="4" m={{ r: "1rem" }} className = {classes.home_button}>
+                  LOGOUT                    
+                </Button>) : (<Button onClick = {handleLogin} shadow="3" hoverShadow="4" m={{ r: "1rem" }} className = {classes.home_button}>
                   LOGIN                    
-                </Button>
+                </Button>)}
                 <Anchor href="/visualizer">
                   <Button
                     shadow="3"
@@ -144,7 +140,6 @@ const Home = () => {
         <br />
         <br />
       </Container>
-     
     </div>
   );
 }
