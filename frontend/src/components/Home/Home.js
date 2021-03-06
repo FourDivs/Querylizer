@@ -113,7 +113,7 @@ const Home = () => {
                   </Button>
                 </Anchor>
                     
-                <Anchor href="https://www.google.com" className = {classes.home_button_link}>                      
+                <Anchor href="/aboutus" className = {classes.home_button_link}>                      
                   <Button
                     shadow="3"
                     hoverShadow="4"

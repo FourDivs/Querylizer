@@ -19,6 +19,7 @@ import {
   Slider,
 } from "@material-ui/core";
 
+import classes from "./Visualizer.module.css";
 //Row Data of Each Node
 
 const rowData = {};
@@ -363,8 +364,32 @@ const Field = (props) => {
         isOpen={showModal}
         onClose={() => setState(false)}
         nodeId={props.id}
+        style={{background:"#000000"}}
       />
     </div>
+
+    
+    // <div className = {classes.field_node} onClick={() => setState(true)}>      
+      
+    //   <div style={{ padding: "5px" }}>
+    //   <div className = {classes.field_name}>{rowData.data[rowIndex].column_name}</div>
+    //   </div>
+       
+    //   <div className = {classes.field_panel}>
+    //     <div className = {classes.circle}></div>
+    //     <div className = {classes.circle}></div>
+    //     <div className = {classes.circle}></div>
+    //     <div className = {classes.circle}></div>
+    //     <div className = {classes.circle}></div>
+    //   </div>
+    //   <ModalSize
+    //     isOpen={showModal}
+    //     onClose={() => setState(false)}
+    //     nodeId={props.id}
+    //     style={{background:"#000000"}}
+    //   />
+      
+    // </div>
   );
 };
 
