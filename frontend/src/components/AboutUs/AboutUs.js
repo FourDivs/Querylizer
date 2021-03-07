@@ -55,12 +55,12 @@ const AboutUs = () => {
         <MediaCard
           name="Prajakta Mane"
           image={PrajaktaIMG}
-          desc="An aspiring React and Django developer🚀💻. Endeavouring competitve programming👨‍💻. Always open for the opportunities.🙌"
-          github="https://github.com/Nishant127"
-          linkedin="https://www.linkedin.com/in/nishant-handge-618673190/"
-          twitter="https://twitter.com/Nishant40079455"
-          gmail="mailto:handgenishant@gmail.com"
-          insta="https://www.instagram.com/nishant_127/"
+          desc="A 3rd year undergrade at DYPCOE Pune India 💻|Data Science Enthusiast 👨‍💻|Always open for the opportunities.🙌"
+          github="https://github.com/maneprajakta"
+          linkedin="https://linkedin.com/in/maneprajakta"
+          twitter="https://twitter.com/prajakta_mane_"
+          gmail="mailto:prajakta916mane1@gmail.com"
+          insta="https://www.instagram.com/prajakta_mane1/"
         />
         </div>
         <div style={{marginRight:"10px"}}>
