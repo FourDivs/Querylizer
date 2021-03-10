@@ -19,6 +19,7 @@ import {
   Slider,
 } from "@material-ui/core";
 
+import Navbar from "../Navbar/Navbar";
 import classes from "./Visualizer.module.css";
 //Row Data of Each Node
 
@@ -531,8 +532,8 @@ const Visualizer = () => {
 
   return (
     <Container fluid>
+      <Navbar />
       <div style={{ height: "22.5rem" }}>
-        <Text style={{ textAlign: "center", padding: "3px" }}>Visualizer</Text>
 
         <Diagram schema={schema} onChange={onChange} />
 
