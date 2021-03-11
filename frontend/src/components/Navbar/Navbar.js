@@ -6,7 +6,7 @@
 import React, { Fragment,useContext,useState } from "react";
 import AppBar from '@material-ui/core/AppBar';
 import { Toolbar, Typography, Button,Popover ,IconButton} from '@material-ui/core';
-import logo from '../../assets/Query.png'
+import logo from '../../assets/NavQuery.png'
 import PersonIcon from '@material-ui/icons/Person';
 import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'; 
@@ -37,7 +37,7 @@ const Navbar = (props) => {
 
     return (
         <Fragment>
-            <AppBar position="static" style={{ 'backgroundColor': "#000A29" }}>
+            <AppBar position="static" style={{ 'backgroundColor': "#000000" }}>
             <Toolbar>
                 <img src={logo} style={{ 'maxWidth': "50px", 'maxHeight': "50px" }} alt = 'SyntaxMeets'/>
                 <Typography variant="h5" style={{ "color": "white", 'fontFamily': "poppins"}}>
@@ -45,7 +45,7 @@ const Navbar = (props) => {
                 </Typography>
                 
                 <Button variant="contained" startIcon={<PersonIcon />} color = "secondary" style={{ 'fontFamily': "poppins", 'marginLeft': "30%", 'fontWeight': "600", 'color': "white" }}>
-                Welcome User !{/*  {context.user.email} */}
+                { context.user?.email ? "Welcome User ! " + context.user.email : "Welcome Guest !"}   
                 </Button>
 
                 <Button variant="contained" startIcon={<InfoOutlinedIcon />} onClick={handleClick} color = "primary" style={{ 'fontFamily': "poppins", 'marginLeft': "auto", 'fontWeight': "600", 'color': "white" }}>

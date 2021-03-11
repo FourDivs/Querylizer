@@ -318,48 +318,75 @@ const Field = (props) => {
   const rowIndex = rowData.data.findIndex(getRowIndex);
 
   return (
-    <div
-      style={{
-        background: "#C77DFF",
-        borderRadius: "5px",
-        textAlign: "center",
-        position: "back",
-      }}
-    >
-      <div>
-        <Row>
-          <Col>
-            {inputs.map((port) =>
-              cloneElement(port, {
-                style: { width: "30px", height: "20px", background: "#1B263B" },
-              })
-            )}
-          </Col>
-          <Col>
-            <IconButton
-              aria-label="delete"
-              style={{
-                textAlign: "right",
-                paddingRight: "0px",
-                paddingTop: "4px",
-              }}
-              onClick={() => data.onClick(id)}
-            >
-              <CloseIcon fontSize="small" />
-            </IconButton>
-          </Col>
-        </Row>
-      </div>
+    // <div
+    //   style={{
+    //     background: "#C77DFF",
+    //     borderRadius: "5px",
+    //     textAlign: "center",
+    //     position: "back",
+    //   }}
+    // >
+    //   <div>
+    //     <Row>
+    //       <Col>
+    //         {inputs.map((port) =>
+    //           cloneElement(port, {
+    //             style: { width: "30px", height: "20px", background: "#1B263B" },
+    //           })
+    //         )}
+    //       </Col>
+    //       <Col>
+    //         <IconButton
+    //           aria-label="delete"
+    //           style={{
+    //             textAlign: "right",
+    //             paddingRight: "0px",
+    //             paddingTop: "4px",
+    //           }}
+    //           onClick={() => data.onClick(id)}
+    //         >
+    //           <CloseIcon fontSize="small" />
+    //         </IconButton>
+    //       </Col>
+    //     </Row>
+    //   </div>
 
 
+    //   <div style={{ padding: "5px" }}>
+    //     {rowData.data[rowIndex].column_name}
+    //     <Button
+    //       onClick={() => setState(true)}
+    //       style={{ marginTop: "5px", background: "#9D4EDD" }}
+    //     >
+    //       Set the Values
+    //     </Button>
+    //   </div>
+    //   <ModalSize
+    //     isOpen={showModal}
+    //     onClose={() => setState(false)}
+    //     nodeId={props.id}
+    //     style={{background:"#000000"}}
+    //   />
+    // </div>
+
+    
+    <div className = {classes.field_node}>  
+      
       <div style={{ padding: "5px" }}>
-        {rowData.data[rowIndex].column_name}
-        <Button
+      <div className = {classes.field_name}>
+      <span
           onClick={() => setState(true)}
-          style={{ marginTop: "5px", background: "#9D4EDD" }}
         >
-          Set the Values
-        </Button>
+          {rowData.data[rowIndex].column_name}
+        </span>
+        </div>
+      </div>
+      <div className = {classes.field_panel}>
+        <div className = {classes.circle}></div>
+        <div className = {classes.circle}></div>
+        <div className = {classes.circle}></div>
+        <div className = {classes.circle}></div>
+        <div className = {classes.circle}></div>
       </div>
       <ModalSize
         isOpen={showModal}
@@ -368,29 +395,6 @@ const Field = (props) => {
         style={{background:"#000000"}}
       />
     </div>
-
-    
-    // <div className = {classes.field_node} onClick={() => setState(true)}>      
-      
-    //   <div style={{ padding: "5px" }}>
-    //   <div className = {classes.field_name}>{rowData.data[rowIndex].column_name}</div>
-    //   </div>
-       
-    //   <div className = {classes.field_panel}>
-    //     <div className = {classes.circle}></div>
-    //     <div className = {classes.circle}></div>
-    //     <div className = {classes.circle}></div>
-    //     <div className = {classes.circle}></div>
-    //     <div className = {classes.circle}></div>
-    //   </div>
-    //   <ModalSize
-    //     isOpen={showModal}
-    //     onClose={() => setState(false)}
-    //     nodeId={props.id}
-    //     style={{background:"#000000"}}
-    //   />
-      
-    // </div>
   );
 };
 
@@ -535,7 +539,7 @@ const Visualizer = () => {
       <Navbar />
       <div style={{ height: "22.5rem" }}>
 
-        <Diagram schema={schema} onChange={onChange} />
+        <Diagram schema={schema} onChange={onChange} style={{background:"#121212",height:"120%"}}/>
 
         <Row>
           <Col>

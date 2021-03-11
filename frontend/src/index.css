@@ -2,3 +2,7 @@ body,
 html {
   font-family: "Poppins", sans-serif;
 }
+
+.bi-link-canvas-layer{
+  display: none;
+}

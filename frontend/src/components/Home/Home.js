@@ -109,7 +109,7 @@ const Home = () => {
                     m={{ r: "1rem" }}
                     className = {classes.home_button}
                   >                   
-                    { context.user?.email ? "welocme back " + context.user.email : "Continue as a Guest"}   
+                    { context.user?.email ? "welcome back " + context.user.email : "Continue as a Guest"}   
                   </Button>
                 </Anchor>
                     
