@@ -1,6 +1,6 @@
 import Diagram, { createSchema, useSchema } from "beautiful-react-diagrams";
 import { Div, Icon, Button, Input, Label, Text } from "atomize";
-import { cloneElement, useState } from "react";
+import { cloneElement, Fragment, useState } from "react";
 import { Row, Col, Container } from "react-bootstrap";
 import axios from "axios";
 import CodeEditor from "../CodeEditor/CodeEditor";
@@ -18,7 +18,7 @@ import {
   withStyles,
   Slider,
 } from "@material-ui/core";
-
+import Panel from "../Panel/Panel"
 import Navbar from "../Navbar/Navbar";
 import classes from "./Visualizer.module.css";
 //Row Data of Each Node
@@ -318,75 +318,48 @@ const Field = (props) => {
   const rowIndex = rowData.data.findIndex(getRowIndex);
 
   return (
-    // <div
-    //   style={{
-    //     background: "#C77DFF",
-    //     borderRadius: "5px",
-    //     textAlign: "center",
-    //     position: "back",
-    //   }}
-    // >
-    //   <div>
-    //     <Row>
-    //       <Col>
-    //         {inputs.map((port) =>
-    //           cloneElement(port, {
-    //             style: { width: "30px", height: "20px", background: "#1B263B" },
-    //           })
-    //         )}
-    //       </Col>
-    //       <Col>
-    //         <IconButton
-    //           aria-label="delete"
-    //           style={{
-    //             textAlign: "right",
-    //             paddingRight: "0px",
-    //             paddingTop: "4px",
-    //           }}
-    //           onClick={() => data.onClick(id)}
-    //         >
-    //           <CloseIcon fontSize="small" />
-    //         </IconButton>
-    //       </Col>
-    //     </Row>
-    //   </div>
-
-
-    //   <div style={{ padding: "5px" }}>
-    //     {rowData.data[rowIndex].column_name}
-    //     <Button
-    //       onClick={() => setState(true)}
-    //       style={{ marginTop: "5px", background: "#9D4EDD" }}
-    //     >
-    //       Set the Values
-    //     </Button>
-    //   </div>
-    //   <ModalSize
-    //     isOpen={showModal}
-    //     onClose={() => setState(false)}
-    //     nodeId={props.id}
-    //     style={{background:"#000000"}}
-    //   />
-    // </div>
-
-    
-    <div className = {classes.field_node}>  
-      
-      <div style={{ padding: "5px" }}>
-      <div className = {classes.field_name}>
-      <span
-          onClick={() => setState(true)}
-        >
-          {rowData.data[rowIndex].column_name}
-        </span>
-        </div>
+    <div
+      style={{
+        background: "#C77DFF",
+        borderRadius: "5px",
+        textAlign: "center",
+        position: "back",
+      }}
+    >
+      <div>
+        <Row>
+          <Col>
+            {inputs.map((port) =>
+              cloneElement(port, {
+                style: { width: "30px", height: "20px", background: "#1B263B" },
+              })
+            )}
+          </Col>
+          <Col>
+            <IconButton
+              aria-label="delete"
+              style={{
+                textAlign: "right",
+                paddingRight: "0px",
+                paddingTop: "4px",
+              }}
+              onClick={() => data.onClick(id)}
+            >
+              <CloseIcon fontSize="small" />
+            </IconButton>
+          </Col>
+        </Row>
       </div>
-      <div className = {classes.field_panel}>
-        <div className = {classes.circle}></div>
-        <div className = {classes.circle}></div>
-        <div className = {classes.circle}></div>
-        <div className = {classes.circle}></div>
-        <div className = {classes.circle}></div>
+
+
+      <div style={{ padding: "5px" }}>
+        {rowData.data[rowIndex].column_name}
+        <Button
+          onClick={() => setState(true)}
+          style={{ marginTop: "5px", background: "#9D4EDD" }}
+        >
+          Set the Values
+        </Button>
       </div>
       <ModalSize
         isOpen={showModal}
@@ -395,24 +368,51 @@ const Field = (props) => {
         style={{background:"#000000"}}
       />
     </div>
+
+    
+    // <div className = {classes.field_node}>  
+      
+    //   <div style={{ padding: "5px" }}>
+    //   <div className = {classes.field_name}>
+    //   <span
+    //       onClick={() => setState(true)}
+    //     >
+    //       {rowData.data[rowIndex].column_name}
+    //     </span>
+    //     </div>
+    //   </div>
+    //   <div className = {classes.field_panel}>
+    //     <div className = {classes.circle + " " + classes.unique_circle}></div>
+    //     <div className = {classes.circle}></div>
+    //     <div className = {classes.circle}></div>
+    //     <div className = {classes.circle}></div>
+    //     <div className = {classes.circle}></div>
+    //   </div>
+    //   <ModalSize
+    //     isOpen={showModal}
+    //     onClose={() => setState(false)}
+    //     nodeId={props.id}
+    //     style={{background:"#000000"}}
+    //   />
+    // </div>
   );
 };
 
-const Options = (props) => (
-  <Col style={{ padding: "10px" }}>
-    <Button
-      suffix={
-        <Icon name="LongRight" size="16px" color="white" m={{ l: "1rem" }} />
-      }
-      shadow="3"
-      hoverShadow="4"
-      m={{ r: "1rem" }}
-      onClick={props.actionFunction}
-    >
-      {props.actionName}
-    </Button>
-  </Col>
-);
+// const Options = (props) => (
+//   <Col style={{ padding: "10px" }}>
+//     <Button
+//       suffix={
+//         <Icon name="LongRight" size="16px" color="white" m={{ l: "1rem" }} />
+//       }
+//       shadow="3"
+//       hoverShadow="4"
+//       m={{ r: "1rem" }}
+//       onClick={props.actionFunction}
+//     >
+//       {props.actionName}
+//     </Button>
+//   </Col>
+// );
 
 const initialSchema = createSchema({
   nodes: [],
@@ -535,7 +535,7 @@ const Visualizer = () => {
   };
 
   return (
-    <Container fluid>
+    <Fragment>
       <Navbar />
       <div style={{ height: "22.5rem" }}>
 
@@ -557,21 +557,18 @@ const Visualizer = () => {
             >
               Features
             </Text>
-            <Row>
-              <Options actionName="Add Table" actionFunction={addTableNode} />
-              <Options actionName="Add Field" actionFunction={addNewNode} />
+            <Row className="justify-content-md-center">
+              <Panel actionName="Add Table" actionFunction={addTableNode} />
+              <Panel actionName="Add Field" actionFunction={addNewNode} />
             </Row>
-            <Row>
-              <Options
-                actionName="Generate Code"
-                actionFunction={handleSubmit}
-              />
-              <Options actionName="Save Code" actionFunction={addNewNode} />
+            <Row className="justify-content-md-center">
+              <Panel actionName="Generate Code" actionFunction={handleSubmit} />
+              <Panel actionName="Save Code" actionFunction={addNewNode} />
             </Row>
           </Col>
         </Row>
       </div>
-    </Container>
+    </Fragment>
   );
 };
 

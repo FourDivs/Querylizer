@@ -3,6 +3,6 @@ html {
   font-family: "Poppins", sans-serif;
 }
 
-.bi-link-canvas-layer{
-  display: none;
+.bi {
+  background: rgb(18, 18, 18) !important;
 }

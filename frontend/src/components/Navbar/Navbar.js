@@ -39,7 +39,7 @@ const Navbar = (props) => {
         <Fragment>
             <AppBar position="static" style={{ 'backgroundColor': "#000000" }}>
             <Toolbar>
-                <img src={logo} style={{ 'maxWidth': "50px", 'maxHeight': "50px" }} alt = 'SyntaxMeets'/>
+                <img src={logo} style={{ 'maxWidth': "35px", 'maxHeight': "35px" }} alt = 'SyntaxMeets'/>
                 <Typography variant="h5" style={{ "color": "white", 'fontFamily': "poppins"}}>
                     &nbsp;<span style={{ "fontWeight": "700"}}>Query</span>lizer
                 </Typography>

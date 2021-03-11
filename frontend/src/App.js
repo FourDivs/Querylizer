@@ -13,17 +13,17 @@ firebase.initializeApp(firebaseConfig);
 //lazy loading
 const Home = lazy(() => {
   return new Promise(resolve => {
-    setTimeout(() => resolve(import("./components/Home/Home")), 1500);
+    setTimeout(() => resolve(import("./components/Home/Home")), 1000);
   });
 });
 const Visualizer = lazy(() => {
   return new Promise(resolve => {
-    setTimeout(() => resolve(import('./components/Visualizer/Visualizer')), 1500);
+    setTimeout(() => resolve(import('./components/Visualizer/Visualizer')), 1000);
   });
 });
 const  AboutUs = lazy(() => {
   return new Promise(resolve => {
-    setTimeout(() => resolve(import("./components/AboutUs/AboutUs")), 1500);
+    setTimeout(() => resolve(import("./components/AboutUs/AboutUs")), 1000);
   });
 });
 

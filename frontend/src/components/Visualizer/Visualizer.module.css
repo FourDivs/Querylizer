@@ -1,24 +1,23 @@
+.field_node {
+  position: absolute;
+  margin: 0;
+  width: 150px;
+  height: 40px;
+  border-radius: 48px;
+  background: linear-gradient(145deg, #1e1e1e, #232323);
+  box-shadow: 8px 8px 16px #0d0d0d, -4px -4px 4px #353535;
+  background: #151515;
+}
+.field_name {
+  text-align: center;
+  font-size: 18px;
+  padding-top: 5px;
+  color: white;
+  font-weight: bold;
+  font-family: "Poppins", sans-serif;
+}
 
-  .field_node {
-    position: absolute;
-    margin: 0;
-    width: 150px;
-    height: 40px;
-    border-radius: 48px;
-	  background: linear-gradient(145deg, #1e1e1e, #232323);
-	  box-shadow:  8px 8px 16px #0d0d0d, -8px -8px 16px #353535;
-    background: #151515;
-  }
-  .field_name{
-    text-align: center;
-    font-size: 18px;
-    padding-top: 5px;
-    color: white;
-    font-weight: bold;
-    font-family: 'Poppins', sans-serif;
-  }
-
-.field_panel{
+.field_panel {
   position: absolute;
   border-radius: 0 0 10px 10px;
   top: 40px;
@@ -31,9 +30,13 @@
   justify-content: space-around;
 }
 
-.circle{
+.circle {
   width: 10px;
   height: 10px;
   border-radius: 10px;
-  background: #7ED957;
+  background: #aaa;
+}
+
+.unique_circle {
+  background: #7ed957;
 }
