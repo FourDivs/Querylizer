@@ -10,10 +10,10 @@
 }
 .field_name {
   text-align: center;
-  font-size: 18px;
+  font-size: 16px;
   padding-top: 5px;
   color: white;
-  font-weight: bold;
+  font-weight: 600;
   font-family: "Poppins", sans-serif;
 }
 
@@ -24,7 +24,7 @@
   left: 25px;
   background: #ffffff;
   width: 100px;
-  padding-top: 3px;
+  padding: 2px;
   height: 15px;
   display: flex;
   justify-content: space-around;
@@ -39,4 +39,20 @@
 
 .unique_circle {
   background: #7ed957;
+}
+
+.notnull_circle {
+  background: #5ce1e6;
+}
+
+.primary_circle {
+  background: #ff5757;
+}
+
+.autoincrement_circle {
+  background: #ffde59;
+}
+
+.foriegnkey_circle {
+  background: #8c52ff;
 }

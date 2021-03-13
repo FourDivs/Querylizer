@@ -37,18 +37,18 @@ const Navbar = (props) => {
 
     return (
         <Fragment>
-            <AppBar position="static" style={{ 'backgroundColor': "#000000" }}>
+            <AppBar position="static" style={{ backgroundColor: "#080808" }}>
             <Toolbar>
-                <img src={logo} style={{ 'maxWidth': "35px", 'maxHeight': "35px" }} alt = 'SyntaxMeets'/>
-                <Typography variant="h5" style={{ "color": "white", 'fontFamily': "poppins"}}>
+                <img src={logo} style={{ maxWidth: "35px", maxHeight: "35px" }} alt = 'SyntaxMeets'/>
+                <Typography variant="h5" style={{ color: "white", fontFamily: "poppins"}}>
                     &nbsp;<span style={{ "fontWeight": "700"}}>Query</span>lizer
                 </Typography>
                 
-                <Button variant="contained" startIcon={<PersonIcon />} color = "secondary" style={{ 'fontFamily': "poppins", 'marginLeft': "30%", 'fontWeight': "600", 'color': "white" }}>
+                <Button variant="contained" startIcon={<PersonIcon />} color = "secondary" style={{ fontFamily: "poppins", marginLeft: "30%", fontWeight: "600", color: "white", backgroundImage:"linear-gradient(to right, #ff9966, #ff5e62)" }}>
                 { context.user?.email ? "Welcome User ! " + context.user.email : "Welcome Guest !"}   
                 </Button>
 
-                <Button variant="contained" startIcon={<InfoOutlinedIcon />} onClick={handleClick} color = "primary" style={{ 'fontFamily': "poppins", 'marginLeft': "auto", 'fontWeight': "600", 'color': "white" }}>
+                <Button variant="contained" startIcon={<InfoOutlinedIcon />} onClick={handleClick} color = "primary" style={{ fontFamily: "poppins", marginLeft: "auto", fontWeight: "600", color: "white", background: "linear-gradient(to top, #00d2ff, #3a7bd5)" }}>
                 Info
                 </Button>
                 <Popover
@@ -68,7 +68,7 @@ const Navbar = (props) => {
                     <Typography className={classes.typography}>Lets Give the details What to do.</Typography>
                 </Popover>
 
-                <Button variant="contained" startIcon={<ExitToAppIcon />} color = "secondary" style={{ 'fontFamily': "poppins", 'marginLeft': "15px", 'fontWeight': "600", 'color': "white" }}>
+                <Button variant="contained" startIcon={<ExitToAppIcon />} color = "secondary" style={{ fontFamily: "poppins", marginLeft: "15px", fontWeight: "600", color: "white", background: "linear-gradient(to top, #00d2ff, #3a7bd5)" }}>
                 Logout
                 </Button>
             </Toolbar>
