@@ -11,6 +11,15 @@ html {
   background: rgb(18, 18, 18) !important;
 }
 
+.bh.bi {
+  background: #ffffff !important;
+}
+
 .bi-diagram-port {
   background: #ffb91d !important;
+}
+
+.bi-diagram{
+  border: .07rem solid #000000 !important;
+  border-radius: 0% !important;
 }

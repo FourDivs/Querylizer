@@ -299,7 +299,7 @@ const TableNode = (props) => {
     <div className = {classes.table_field_node}> 
       <div style={{ padding: "5px" }}>
         <div className = {classes.field_name}>  
-        <span onDoubleClick={() => setState(true)} style= {{color: "black"}}>
+        <span onDoubleClick={() => setState(true)} style= {{color: "black",wordWrap:"break-word"}}>
             {tableData.data[tableIndex].table_name}
          </span>
         </div>
@@ -331,12 +331,12 @@ const Field = (props) => {
     <div className = {classes.field_node}>
       {inputs.map((port) =>
               cloneElement(port, {
-                style: {position: 'absolute', borderRadius: "10px 10px 0 0", width: "20px", height: "10px", top: "-10px",  left: "60px"},
+                style: {position: 'absolute', borderRadius: "10px 10px 0 0", width: "20px", height: "10px", top: "-23%",  left: "45%"},
               })
             )}  
       <div style={{ padding: "5px" }}>
         <div className = {classes.field_name}>  
-        <span onDoubleClick={() => setState(true)} >
+        <span onDoubleClick={() => setState(true)} style={{wordWrap:"break-word",padding:"10px"}}>
           {rowData.data[rowIndex].column_name}
           </span>         
         </div>
@@ -484,7 +484,7 @@ const Visualizer = () => {
   return (
     <Fragment>
       <Navbar />
-      <div style={{ height: "22.5rem", width: "99%", textAlign: 'center' }}>
+      <div style={{ height: "22.5rem", width: "100%", textAlign: 'center' }}>
 
         <Diagram schema={schema} onChange={onChange} style={{background:"#121212",height:"120%"}}/>
 
@@ -493,7 +493,7 @@ const Visualizer = () => {
             <CodeEditor value={value} />
           </Col>
 
-          <Col>
+          <Col style={{ paddingLeft: "0px" }}>
             <Text
               style={{
                 textAlign: "center",

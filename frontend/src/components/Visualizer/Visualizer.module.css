@@ -1,8 +1,10 @@
 .field_node {
   position: absolute;
   margin: 0;
-  width: 150px;
-  height: 40px;
+  width: auto;
+  height: auto;
+  min-width: 150px;
+  min-height: 40px;
   border-radius: 48px;
   background: linear-gradient(145deg, #1e1e1e, #232323);
   box-shadow: 8px 8px 16px #0d0d0d, -4px -4px 4px #353535;
@@ -12,8 +14,10 @@
 .table_field_node {
   position: absolute;
   margin: 0;
-  width: 150px;
-  height: 40px;
+  width: auto;
+  height: auto;
+  min-width: 150px;
+  min-height: 40px;
   border-radius: 5px;
   background: linear-gradient(145deg, #1e1e1e, #232323);
   box-shadow: 8px 8px 16px #0d0d0d, -4px -4px 4px #353535;
@@ -42,8 +46,8 @@
 .table_panel {
   position: absolute;
   border-radius: 0 0 10px 10px;
-  top: 40px;
-  left: 25px;
+  top: 100%;
+  left: 18%;
   width: 100px;
   padding: 2px;
   height: 15px;
@@ -69,8 +73,8 @@
 .field_panel {
   position: absolute;
   border-radius: 0 0 10px 10px;
-  top: 40px;
-  left: 25px;
+  top: 100%;
+  left: 18%;
   background: #ffffff;
   width: 100px;
   padding: 2px;
