@@ -14,10 +14,20 @@
   margin: 0;
   width: 150px;
   height: 40px;
-  border-radius: 48px;
+  border-radius: 5px;
   background: linear-gradient(145deg, #1e1e1e, #232323);
-  box-shadow: 0px 4px 5px #ffffff, 0px -4px 5px #ffffff;
-  background: #4B0082;
+  box-shadow: 8px 8px 16px #0d0d0d, -4px -4px 4px #353535;
+  background: #d3cce3; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #e9e4f0,
+    #d3cce3
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #e9e4f0,
+    #d3cce3
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .field_name {
@@ -27,6 +37,33 @@
   color: white;
   font-weight: 600;
   font-family: "Poppins", sans-serif;
+}
+
+.table_panel {
+  position: absolute;
+  border-radius: 0 0 10px 10px;
+  top: 40px;
+  left: 25px;
+  width: 100px;
+  padding: 2px;
+  height: 15px;
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient 3s ease infinite;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .field_panel {

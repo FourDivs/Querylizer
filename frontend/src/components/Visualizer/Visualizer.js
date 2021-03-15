@@ -296,35 +296,29 @@ const TableNode = (props) => {
     //     </Row>
     //   </div>
 
-    //   <div style={{ padding: "5px" }}>
-    //     {tableData.data[tableIndex].table_name}
-    //     <Button
-    //       onClick={() => setState(true)}
-    //       style={{ marginTop: "5px", background: "#9D4EDD" }}
-    //     >
-    //       Set Table Name
-    //     </Button>
-    //   </div>
-    //   <TableModal isOpen={showModal} onClose={() => setState(false)} nodeId={props.id} />
-    // </div>
-
     <div className = {classes.table_field_node}> 
       <div style={{ padding: "5px" }}>
         <div className = {classes.field_name}>  
-        <span onDoubleClick={() => setState(true)} >
+        <span onDoubleClick={() => setState(true)} style= {{color: "black"}}>
             {tableData.data[tableIndex].table_name}
          </span>
         </div>
       </div>
-      {outputs.map((port) =>
+        {outputs.map((port) =>
             cloneElement(port, {
-              style: {position: 'absolute', borderRadius: "0 0 10px 10px", width: "20px", height: "10px", top: "40px",  left: "70px"},
+              className: classes.table_panel,
             })
-          )}     
+          )}
       <TableModal isOpen={showModal} onClose={() => setState(false)} nodeId={props.id} />
     </div>
   );
 };
+
+const FieldBullet = (props) => {
+  let colorProp = "";
+  if(props.selected) colorProp = props.classProperty;
+  return (<div className = {classes.circle + " " + colorProp}></div>)
+}
 
 const Field = (props) => {
   const { inputs, id, data } = props;
@@ -334,58 +328,6 @@ const Field = (props) => {
   const rowIndex = rowData.data.findIndex(getRowIndex);
 
   return (
-    // <div
-    //   style={{
-    //     background: "#C77DFF",
-    //     borderRadius: "5px",
-    //     textAlign: "center",
-    //     position: "back",
-    //   }}
-    // >
-    //   <div>
-    //     <Row>
-    //       <Col>
-    //         {inputs.map((port) =>
-    //           cloneElement(port, {
-    //             style: { borderRadius: "10px 10px 0 0", width: "20px", height: "20px"},
-    //           })
-    //         )}
-    //       </Col>
-    //       <Col>
-    //         <IconButton
-    //           aria-label="delete"
-    //           style={{
-    //             textAlign: "right",
-    //             paddingRight: "0px",
-    //             paddingTop: "4px",
-    //           }}
-    //           onClick={() => data.onClick(id)}
-    //         >
-    //           <CloseIcon fontSize="small" />
-    //         </IconButton>
-    //       </Col>
-    //     </Row>
-    //   </div>
-
-
-    //   <div style={{ padding: "5px" }}>
-    //     {rowData.data[rowIndex].column_name}
-    //     <Button
-    //       onClick={() => setState(true)}
-    //       style={{ marginTop: "5px", background: "#9D4EDD" }}
-    //     >
-    //       Set the Values
-    //     </Button>
-    //   </div>
-    //   <ModalSize
-    //     isOpen={showModal}
-    //     onClose={() => setState(false)}
-    //     nodeId={props.id}
-    //     style={{background:"#000000"}}
-    //   />
-    // </div>
-
-    
     <div className = {classes.field_node}>
       {inputs.map((port) =>
               cloneElement(port, {
@@ -400,11 +342,12 @@ const Field = (props) => {
         </div>
       </div>
       <div className = {classes.field_panel}>
-        <div className = {classes.circle + " " + classes.unique_circle}></div>
-        <div className = {classes.circle + " " + classes.notnull_circle}></div>
-        <div className = {classes.circle + " " + classes.primary_circle}></div>
-        <div className = {classes.circle + " " + classes.autoincrement_circle}></div>
-        <div className = {classes.circle + " " + classes.foriegnkey_circle}></div>
+      
+        <FieldBullet selected = {rowData.data[rowIndex].unique} classProperty = {classes.unique_circle} />
+        <FieldBullet selected = {rowData.data[rowIndex].not_null} classProperty = {classes.notnull_circle} />
+        <FieldBullet selected = {rowData.data[rowIndex].primary_key} classProperty = {classes.primary_circle} />
+        <FieldBullet selected = {true} classProperty = {classes.autoincrement_circle} />
+        <FieldBullet selected = {true} classProperty = {classes.foriegnkey_circle} />
       </div>
       
       <ModalSize
@@ -417,21 +360,6 @@ const Field = (props) => {
   );
 };
 
-// const Options = (props) => (
-//   <Col style={{ padding: "10px" }}>
-//     <Button
-//       suffix={
-//         <Icon name="LongRight" size="16px" color="white" m={{ l: "1rem" }} />
-//       }
-//       shadow="3"
-//       hoverShadow="4"
-//       m={{ r: "1rem" }}
-//       onClick={props.actionFunction}
-//     >
-//       {props.actionName}
-//     </Button>
-//   </Col>
-// );
 
 const initialSchema = createSchema({
   nodes: [],
