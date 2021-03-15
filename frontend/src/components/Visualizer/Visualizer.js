@@ -263,48 +263,64 @@ const TableNode = (props) => {
   const tableIndex = tableData.data.findIndex(getTableIndex);
 
   return (
-    <div
-      style={{
-        background: "#C77DFF",
-        borderRadius: "5px",
-        textAlign: "center",
-        position: "back",
-      }}
-    >
-       <div>
-        <Row>
-          <Col>
-          {outputs.map((port) =>
-            cloneElement(port, {
-              style: { width: "25px", height: "25px", background: "#1B263B" },
-            })
-          )}
-          </Col>
-          <Col>
-            <IconButton
-              aria-label="delete"
-              style={{
-                textAlign: "right",
-                paddingRight: "0px",
-                paddingTop: "4px",
-              }}
-              onClick={() => data.onClick(id)}
-            >
-              <CloseIcon fontSize="small" />
-            </IconButton>
-          </Col>
-        </Row>
-      </div>
+    // <div
+    //   style={{
+    //     background: "#C77DFF",
+    //     borderRadius: "5px",
+    //     textAlign: "center",
+    //     position: "back",
+    //   }}
+    // >
+    //    <div>
+    //     <Row>
+    //       <Col>
+    //       {outputs.map((port) =>
+    //         cloneElement(port, {
+    //           style: { width: "25px", height: "25px", background: "#1B263B" },
+    //         })
+    //       )}
+    //       </Col>
+    //       <Col>
+    //         <IconButton
+    //           aria-label="delete"
+    //           style={{
+    //             textAlign: "right",
+    //             paddingRight: "0px",
+    //             paddingTop: "4px",
+    //           }}
+    //           onClick={() => data.onClick(id)}
+    //         >
+    //           <CloseIcon fontSize="small" />
+    //         </IconButton>
+    //       </Col>
+    //     </Row>
+    //   </div>
 
+    //   <div style={{ padding: "5px" }}>
+    //     {tableData.data[tableIndex].table_name}
+    //     <Button
+    //       onClick={() => setState(true)}
+    //       style={{ marginTop: "5px", background: "#9D4EDD" }}
+    //     >
+    //       Set Table Name
+    //     </Button>
+    //   </div>
+    //   <TableModal isOpen={showModal} onClose={() => setState(false)} nodeId={props.id} />
+    // </div>
+
+    <div className = {classes.table_field_node}> 
       <div style={{ padding: "5px" }}>
-        {tableData.data[tableIndex].table_name}
-        <Button
-          onClick={() => setState(true)}
-          style={{ marginTop: "5px", background: "#9D4EDD" }}
-        >
-          Set Table Name
-        </Button>
+        <div className = {classes.field_name}>  
+        <span onDoubleClick={() => setState(true)} >
+            {tableData.data[tableIndex].table_name}
+         </span>
+        </div>
       </div>
+      {outputs.map((port) =>
+            cloneElement(port, {
+              style: {position: 'absolute', borderRadius: "0 0 10px 10px", width: "20px", height: "10px", top: "40px",  left: "70px"},
+            })
+          )}     
       <TableModal isOpen={showModal} onClose={() => setState(false)} nodeId={props.id} />
     </div>
   );
@@ -378,10 +394,11 @@ const Field = (props) => {
             )}  
       <div style={{ padding: "5px" }}>
         <div className = {classes.field_name}>  
+        <span onDoubleClick={() => setState(true)} >
           {rowData.data[rowIndex].column_name}
+          </span>         
         </div>
       </div>
-      <span onClick={() => setState(true)} >
       <div className = {classes.field_panel}>
         <div className = {classes.circle + " " + classes.unique_circle}></div>
         <div className = {classes.circle + " " + classes.notnull_circle}></div>
@@ -389,7 +406,7 @@ const Field = (props) => {
         <div className = {classes.circle + " " + classes.autoincrement_circle}></div>
         <div className = {classes.circle + " " + classes.foriegnkey_circle}></div>
       </div>
-      </span>
+      
       <ModalSize
         isOpen={showModal}
         onClose={() => setState(false)}

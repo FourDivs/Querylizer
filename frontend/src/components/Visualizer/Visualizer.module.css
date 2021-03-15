@@ -8,6 +8,18 @@
   box-shadow: 8px 8px 16px #0d0d0d, -4px -4px 4px #353535;
   background: #151515;
 }
+
+.table_field_node {
+  position: absolute;
+  margin: 0;
+  width: 150px;
+  height: 40px;
+  border-radius: 48px;
+  background: linear-gradient(145deg, #1e1e1e, #232323);
+  box-shadow: 0px 4px 5px #ffffff, 0px -4px 5px #ffffff;
+  background: #4B0082;
+}
+
 .field_name {
   text-align: center;
   font-size: 16px;
