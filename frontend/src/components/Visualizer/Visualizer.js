@@ -1,10 +1,9 @@
 import Diagram, { createSchema, useSchema } from "beautiful-react-diagrams";
-import { Div, Icon, Button, Input, Label, Text } from "atomize";
+import { Div, Button, Input, Label, Text } from "atomize";
 import { cloneElement, Fragment, useState } from "react";
 import { Row, Col, Container } from "react-bootstrap";
 import axios from "axios";
 import CodeEditor from "../CodeEditor/CodeEditor";
-import CloseIcon from "@material-ui/icons/Close";
 import {
   FormControl,
   MenuItem,
@@ -14,10 +13,10 @@ import {
   FormControlLabel,
   Dialog,
   DialogContent,
-  IconButton,
   withStyles,
   Slider,
 } from "@material-ui/core";
+import CancelIcon from '@material-ui/icons/Cancel';
 import Panel from "../Panel/Panel"
 import Navbar from "../Navbar/Navbar";
 import classes from "./Visualizer.module.css";
@@ -256,52 +255,20 @@ const TableModal = ({ isOpen, onClose,nodeId }) => {
 };
 
 const TableNode = (props) => {
-  const { outputs, id, data  } = props;
+  const { outputs, data, id } = props;
   const [showModal, setState] = useState(false);
 
   const getTableIndex = (element) => element.id === props.id;
   const tableIndex = tableData.data.findIndex(getTableIndex);
 
   return (
-    // <div
-    //   style={{
-    //     background: "#C77DFF",
-    //     borderRadius: "5px",
-    //     textAlign: "center",
-    //     position: "back",
-    //   }}
-    // >
-    //    <div>
-    //     <Row>
-    //       <Col>
-    //       {outputs.map((port) =>
-    //         cloneElement(port, {
-    //           style: { width: "25px", height: "25px", background: "#1B263B" },
-    //         })
-    //       )}
-    //       </Col>
-    //       <Col>
-    //         <IconButton
-    //           aria-label="delete"
-    //           style={{
-    //             textAlign: "right",
-    //             paddingRight: "0px",
-    //             paddingTop: "4px",
-    //           }}
-    //           onClick={() => data.onClick(id)}
-    //         >
-    //           <CloseIcon fontSize="small" />
-    //         </IconButton>
-    //       </Col>
-    //     </Row>
-    //   </div>
-
     <div className = {classes.table_field_node}> 
       <div style={{ padding: "5px" }}>
+      <CancelIcon fontSize ="small" onClick={() => data.onClick(id)} style = {{position: 'absolute', color: 'red', top: '-5px', left: '135px', cursor: 'default'}}/>
         <div className = {classes.field_name}>  
-        <span onDoubleClick={() => setState(true)} style= {{color: "black",wordWrap:"break-word"}}>
+          <span onDoubleClick={() => setState(true)} style= {{color: "black",wordWrap:"break-word"}}>
             {tableData.data[tableIndex].table_name}
-         </span>
+          </span>
         </div>
       </div>
         {outputs.map((port) =>
@@ -321,7 +288,7 @@ const FieldBullet = (props) => {
 }
 
 const Field = (props) => {
-  const { inputs, id, data } = props;
+  const { inputs, data, id } = props;
   const [showModal, setState] = useState(false);
 
   const getRowIndex = (element) => element.id === props.id;
@@ -335,6 +302,7 @@ const Field = (props) => {
               })
             )}  
       <div style={{ padding: "5px" }}>
+      <CancelIcon fontSize ="small" onClick={() => data.onClick(id)} style = {{position: 'absolute', color: '#F32013', top: '-5px', left: '135px', cursor: 'default'}}/>
         <div className = {classes.field_name}>  
         <span onDoubleClick={() => setState(true)} style={{wordWrap:"break-word",padding:"10px"}}>
           {rowData.data[rowIndex].column_name}
