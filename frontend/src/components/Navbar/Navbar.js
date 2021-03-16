@@ -1,13 +1,8 @@
-// import React, { Fragment ,useState} from "react";
-// import AppBar from '@material-ui/core/AppBar';
-// import { Toolbar, Typography, Button} from '@material-ui/core';
-// import Query from "../../assets/Query.png"
-
 import React, { Fragment,useContext,useState } from "react";
 import AppBar from '@material-ui/core/AppBar';
 import { Toolbar, Typography, Popover } from '@material-ui/core';
 import logo from '../../assets/NavQuery.png'
-import PersonIcon from '@material-ui/icons/Person';
+// import PersonIcon from '@material-ui/icons/Person';
 import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'; 
 import VerifiedUserIcon from '@material-ui/icons/VerifiedUser';

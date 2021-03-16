@@ -1,5 +1,5 @@
 import Diagram, { createSchema, useSchema } from "beautiful-react-diagrams";
-import { Div, Icon, Button, Input, Label, Text,Modal } from "atomize";
+import { Div, Button, Input, Label, Text } from "atomize";
 import { cloneElement, Fragment, useState,createRef} from "react";
 import { Row, Col, Container } from "react-bootstrap";
 import axios from "axios";
@@ -357,13 +357,6 @@ const Visualizer = () => {
   //screenshot
   const ref = createRef(null)
   const [image, takeScreenshot] = useScreenshot()
-  const getImage = () => {
-    takeScreenshot(ref.current)
-    setOpen(true);
-  }
-  const [isOpen, setOpen] = useState(false);
-  const [onClose, setClose] = useState(false);
-
 
   const deleteRowNodeFromSchema = (id) => {
     const nodeToRemove = schema.nodes.find((node) => node.id === id);
@@ -436,10 +429,11 @@ const Visualizer = () => {
     addNode(nextNode);
   };
 
-  const handleSave = () => {
+  const handleImageSave = () => {
+    takeScreenshot(ref.current);
     const screenCaptureSource = image;
     const downloadLink = document.createElement('a');
-    const fileName = 'daigram_screenshot.png';
+    const fileName = 'querylizer_daigram.png';
 
     downloadLink.href = screenCaptureSource;
     downloadLink.download = fileName;
@@ -478,8 +472,7 @@ const Visualizer = () => {
       <Navbar />
       
       <div style={{ height: "22.5rem", width: "100%", textAlign: 'center' }}>
-        
-        <div onClick={getImage} style={{top:"12%",left:"97%",zIndex:"1",position:"absolute"}}>
+        <div onClick={handleImageSave} style={{top:"12%",left:"97%",zIndex:"1",position:"absolute"}}>
           <WallpaperIcon style={{color:"#8352ff"}}/>
         </div>
         <div ref={ref} >
@@ -487,20 +480,10 @@ const Visualizer = () => {
         </div>
         <Row>
           <Col>
-            <div style={{zIndex:"1"}}>
-              <CodeEditor2 value={value} />
-            </div>
+            <CodeEditor2 value={value} />
           </Col>
-
           <Col style={{ paddingLeft: "0px" }}>
-            <Text
-              style={{
-                textAlign: "center",
-                padding: "2px",
-                background: "black",
-                color: "white",
-              }}
-            >
+            <Text style={{ textAlign: "center", padding: "2px", background: "black", color: "white"}}>
               Features
             </Text>
             <Row className="justify-content-md-center">
@@ -511,26 +494,8 @@ const Visualizer = () => {
               <Panel actionName="Generate Code" actionFunction={handleSubmit} />
               <Panel actionName="Save Code" actionFunction={addNewNode} />
             </Row>
-            
           </Col>
         </Row>
-        <Modal isOpen={isOpen} onClose={onClose} rounded="0" maxW="100vw" m="0" h="100vh" >
-            <Icon
-              name="Cross"
-              pos="absolute"
-              top="1rem"
-              right="1rem"
-              size="30px"
-              onClick={() => setOpen(false)}
-              cursor="pointer"
-            />
-            <div style={{ marginTop:"0px"}}>
-              <img width="auto" height="auto" src={image} alt={'Screenshot'} />
-            
-              <br />
-              <Button onClick={handleSave} style={{marginTop:"20px",marginLeft:"auto",marginRight:"auto", fontFamily: "poppins", height:"55px",width:"300px", fontWeight: "600", background: "linear-gradient(to top,#493295, #121212)" }}>download</Button>
-            </div>
-        </Modal>
       </div>
     </Fragment>
   );
