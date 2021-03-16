@@ -15,7 +15,7 @@ require(`ace-builds/src-noconflict/snippets/sql`);
 const CodeEditor = (props) => {
     return (
         <Fragment>
-            <Text style={{textAlign:"center",padding:"2px",background:"black",color:"white"}}>Editor</Text>
+            {/* <Text style={{textAlign:"center",padding:"2px",background:"black",color:"white"}}>Editor</Text> */}
               <AceEditor
                 mode="sql"
                 theme="monokai"

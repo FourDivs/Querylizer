@@ -22,4 +22,5 @@ html {
 .bi-diagram{
   border: .07rem solid #000000 !important;
   border-radius: 0% !important;
+  height: 90vh !important;
 }

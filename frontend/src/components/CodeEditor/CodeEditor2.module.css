@@ -1,0 +1,13 @@
+.close_toggle_button{
+    border: "none";
+    border-radius: "0 20px 20px 0" !important;
+    font-size: "10px" !important;
+    background-color: "#000" !important;
+    color: "red" !important;
+    position: "absolute" !important;
+    top: "0" !important;
+    left: "600px" !important;
+    height: "200px" !important;
+    width: "50px" !important;
+    writing-mode: vertical-rl !important;
+}

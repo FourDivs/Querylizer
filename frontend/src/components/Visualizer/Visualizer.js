@@ -3,7 +3,7 @@ import { Div, Button, Input, Label, Text } from "atomize";
 import { cloneElement, Fragment, useState } from "react";
 import { Row, Col, Container } from "react-bootstrap";
 import axios from "axios";
-import CodeEditor from "../CodeEditor/CodeEditor";
+import CodeEditor2 from "../CodeEditor/CodeEditor2";
 import {
   FormControl,
   MenuItem,
@@ -458,7 +458,7 @@ const Visualizer = () => {
 
         <Row>
           <Col>
-            <CodeEditor value={value} />
+            <CodeEditor2 value={value} />
           </Col>
 
           <Col style={{ paddingLeft: "0px" }}>
