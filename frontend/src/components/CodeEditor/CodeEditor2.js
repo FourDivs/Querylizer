@@ -26,7 +26,7 @@ const CodeEditor2 = () => {
                 <span style = {{fontSize: "23px", color: "white", writingMode: "vertical-rl"}}>Code Editor</span>
             </button>
         </OffCanvasBody>
-        <OffCanvasMenu width = {600} style={{ fontSize: "10px", color: "red", position: "absolute", top: "-230px" }}>
+        <OffCanvasMenu width = {600} style={{ fontSize: "10px", color: "red", position: "absolute", top: "-230px" ,zIndex:"100"}}>
             <CodeEditor />
             <button style={{ border: "none", borderRadius: "0 20px 20px 0", backgroundColor: "#000", position: "absolute", top: "0", left: "600px", height: "200px", width: "50px" }} onClick={handleClick}> 
                 <DoubleArrowIcon style = {{color: "white", transform: "rotate(180deg)"}} /> &nbsp;

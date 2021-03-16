@@ -1,9 +1,10 @@
 import Diagram, { createSchema, useSchema } from "beautiful-react-diagrams";
-import { Div, Button, Input, Label, Text } from "atomize";
-import { cloneElement, Fragment, useState } from "react";
+import { Div, Icon, Button, Input, Label, Text,Modal } from "atomize";
+import { cloneElement, Fragment, useState,createRef} from "react";
 import { Row, Col, Container } from "react-bootstrap";
 import axios from "axios";
 import CodeEditor2 from "../CodeEditor/CodeEditor2";
+import { useScreenshot } from 'use-react-screenshot'
 import {
   FormControl,
   MenuItem,
@@ -20,6 +21,8 @@ import CancelIcon from '@material-ui/icons/Cancel';
 import Panel from "../Panel/Panel"
 import Navbar from "../Navbar/Navbar";
 import classes from "./Visualizer.module.css";
+import WallpaperIcon from '@material-ui/icons/Wallpaper';
+
 //Row Data of Each Node
 
 const rowData = {};
@@ -342,14 +345,25 @@ const Visualizer = () => {
   const [schema, { onChange, addNode, removeNode }] = useSchema(initialSchema);
   
   //for column
-  const [x_coordinate, setxCoordinate] = useState(1200);
-  const [y_coordinate, setyCoordinate] = useState(5);
+  const [x_coordinate, setxCoordinate] = useState(1100);
+  const [y_coordinate, setyCoordinate] = useState(15);
   const [colCount, setColCount] = useState(1);
 
   //for table
   const [t_x_coordinate, setTablexCoordinate] = useState(100);
-  const [t_y_coordinate, setTableyCoordinate] = useState(3);  
+  const [t_y_coordinate, setTableyCoordinate] = useState(10);  
   const [tableCount, setTableCount] = useState(1);
+
+  //screenshot
+  const ref = createRef(null)
+  const [image, takeScreenshot] = useScreenshot()
+  const getImage = () => {
+    takeScreenshot(ref.current)
+    setOpen(true);
+  }
+  const [isOpen, setOpen] = useState(false);
+  const [onClose, setClose] = useState(false);
+
 
   const deleteRowNodeFromSchema = (id) => {
     const nodeToRemove = schema.nodes.find((node) => node.id === id);
@@ -422,6 +436,16 @@ const Visualizer = () => {
     addNode(nextNode);
   };
 
+  const handleSave = () => {
+    const screenCaptureSource = image;
+    const downloadLink = document.createElement('a');
+    const fileName = 'daigram_screenshot.png';
+
+    downloadLink.href = screenCaptureSource;
+    downloadLink.download = fileName;
+    downloadLink.click();
+  };
+
   const handleSubmit = async () => {
     console.log("Handle submit called");
     
@@ -452,13 +476,20 @@ const Visualizer = () => {
   return (
     <Fragment>
       <Navbar />
+      
       <div style={{ height: "22.5rem", width: "100%", textAlign: 'center' }}>
-
-        <Diagram schema={schema} onChange={onChange} style={{background:"#121212",height:"120%"}}/>
-
+        
+        <div onClick={getImage} style={{top:"12%",left:"97%",zIndex:"1",position:"absolute"}}>
+          <WallpaperIcon style={{color:"#8352ff"}}/>
+        </div>
+        <div ref={ref} >
+          <Diagram schema={schema} onChange={onChange}/>
+        </div>
         <Row>
           <Col>
-            <CodeEditor2 value={value} />
+            <div style={{zIndex:"1"}}>
+              <CodeEditor2 value={value} />
+            </div>
           </Col>
 
           <Col style={{ paddingLeft: "0px" }}>
@@ -480,8 +511,26 @@ const Visualizer = () => {
               <Panel actionName="Generate Code" actionFunction={handleSubmit} />
               <Panel actionName="Save Code" actionFunction={addNewNode} />
             </Row>
+            
           </Col>
         </Row>
+        <Modal isOpen={isOpen} onClose={onClose} rounded="0" maxW="100vw" m="0" h="100vh" >
+            <Icon
+              name="Cross"
+              pos="absolute"
+              top="1rem"
+              right="1rem"
+              size="30px"
+              onClick={() => setOpen(false)}
+              cursor="pointer"
+            />
+            <div style={{ marginTop:"0px"}}>
+              <img width="auto" height="auto" src={image} alt={'Screenshot'} />
+            
+              <br />
+              <Button onClick={handleSave} style={{marginTop:"20px",marginLeft:"auto",marginRight:"auto", fontFamily: "poppins", height:"55px",width:"300px", fontWeight: "600", background: "linear-gradient(to top,#493295, #121212)" }}>download</Button>
+            </div>
+        </Modal>
       </div>
     </Fragment>
   );
