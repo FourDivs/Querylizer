@@ -1,10 +1,15 @@
 import Diagram, { createSchema, useSchema } from "beautiful-react-diagrams";
 import { Div, Button, Input, Label, Text } from "atomize";
+import MUIButton from '@material-ui/core/Button';
 import { cloneElement, Fragment, useState,createRef} from "react";
 import { Row, Col, Container } from "react-bootstrap";
 import axios from "axios";
 import CodeEditor2 from "../CodeEditor/CodeEditor2";
-import { useScreenshot } from 'use-react-screenshot'
+import { useScreenshot } from 'use-react-screenshot';
+import AddBoxIcon from '@material-ui/icons/AddBox';
+import AddToPhotosIcon from '@material-ui/icons/AddToPhotos';
+import CodeIcon from '@material-ui/icons/Code';
+import SaveIcon from '@material-ui/icons/Save';
 import {
   FormControl,
   MenuItem,
@@ -16,6 +21,7 @@ import {
   DialogContent,
   withStyles,
   Slider,
+  Typography,
 } from "@material-ui/core";
 import CancelIcon from '@material-ui/icons/Cancel';
 import Panel from "../Panel/Panel"
@@ -482,7 +488,8 @@ const Visualizer = () => {
           <Col>
             <CodeEditor2 value={value} />
           </Col>
-          <Col style={{ paddingLeft: "0px" }}>
+          
+          {/* <Col style={{ paddingLeft: "0px" }}>
             <Text style={{ textAlign: "center", padding: "2px", background: "black", color: "white"}}>
               Features
             </Text>
@@ -494,8 +501,12 @@ const Visualizer = () => {
               <Panel actionName="Generate Code" actionFunction={handleSubmit} />
               <Panel actionName="Save Code" actionFunction={addNewNode} />
             </Row>
-          </Col>
+          </Col> */}
         </Row>
+        <MUIButton onClick = {addTableNode} startIcon={<AddBoxIcon />} variant="contained" style = {{backgroundColor: "#4cd137", color: '#fff' , top:"69%",right:"3%",zIndex:"1",position:"absolute"}}> <Typography style = {{fontFamily: 'Poppins', fontWeight: "600"}}>Add Table </Typography></MUIButton>
+        <MUIButton onClick = {addNewNode} startIcon={<AddToPhotosIcon />} variant="contained" style = {{backgroundColor: "#7158e2", color: '#fff' , top:"76%",right:"3%",zIndex:"1",position:"absolute"}}> <Typography style = {{fontFamily: 'Poppins', fontWeight: "600"}}>Add Field </Typography></MUIButton>
+        <MUIButton onClick = {handleSubmit} startIcon={<CodeIcon />} variant="contained" style = {{backgroundColor: "#fbc531", color: '#fff' , top:"83%",right:"3%",zIndex:"1",position:"absolute"}}> <Typography style = {{fontFamily: 'Poppins', fontWeight: "600"}}>Generate Code </Typography></MUIButton>
+        <MUIButton onClick = {addNewNode} startIcon={<SaveIcon />} variant="contained" style = {{backgroundColor: "#ff4d4d", color: '#fff' , top:"90%",right:"3%",zIndex:"1",position:"absolute"}}> <Typography style = {{fontFamily: 'Poppins', fontWeight: "600"}}>Save Table </Typography></MUIButton>
       </div>
     </Fragment>
   );
