@@ -5,6 +5,11 @@
 body,
 html {
   font-family: "Poppins", sans-serif;
+  background:#161616;
+}
+
+#root{
+  background:#161616;
 }
 
 .bi {
@@ -20,7 +25,7 @@ html {
 }
 
 .bi-diagram{
-  border: .07rem solid #000000 !important;
+  border: .07rem solid #161616 !important;
   border-radius: 0% !important;
   height: 90vh !important;
 }

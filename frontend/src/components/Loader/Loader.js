@@ -3,7 +3,7 @@ import { BoxesLoader } from "react-awesome-loaders";
 
 const Loader = () => {
     return (
-        <div style={{display:"flex", justifyContent:"center",height:"100vh",alignItems:"center"}}>
+        <div style={{display:"flex", justifyContent:"center",height:"100vh",alignItems:"center",backgroundColor:"#fff"}}>
             <BoxesLoader
               boxColor={"#121212"}
               style={{ marginBottom: "20px" }}

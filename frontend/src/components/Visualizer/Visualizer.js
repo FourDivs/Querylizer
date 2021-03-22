@@ -24,7 +24,6 @@ import {
   Typography,
 } from "@material-ui/core";
 import CancelIcon from '@material-ui/icons/Cancel';
-import Panel from "../Panel/Panel"
 import Navbar from "../Navbar/Navbar";
 import classes from "./Visualizer.module.css";
 import WallpaperIcon from '@material-ui/icons/Wallpaper';
@@ -477,7 +476,7 @@ const Visualizer = () => {
     <Fragment>
       <Navbar />
       
-      <div style={{ height: "22.5rem", width: "100%", textAlign: 'center' }}>
+      <div style={{ height: "22.5rem", width: "99%", textAlign: 'center' }}>
         <div onClick={handleImageSave} style={{top:"12%",left:"97%",zIndex:"1",position:"absolute"}}>
           <WallpaperIcon style={{color:"#8352ff"}}/>
         </div>
@@ -488,25 +487,11 @@ const Visualizer = () => {
           <Col>
             <CodeEditor2 value={value} />
           </Col>
-          
-          {/* <Col style={{ paddingLeft: "0px" }}>
-            <Text style={{ textAlign: "center", padding: "2px", background: "black", color: "white"}}>
-              Features
-            </Text>
-            <Row className="justify-content-md-center">
-              <Panel actionName="Add Table" actionFunction={addTableNode} />
-              <Panel actionName="Add Field" actionFunction={addNewNode} />
-            </Row>
-            <Row className="justify-content-md-center">
-              <Panel actionName="Generate Code" actionFunction={handleSubmit} />
-              <Panel actionName="Save Code" actionFunction={addNewNode} />
-            </Row>
-          </Col> */}
         </Row>
-        <MUIButton onClick = {addTableNode} startIcon={<AddBoxIcon />} variant="contained" style = {{backgroundColor: "#4cd137", color: '#fff' , top:"69%",right:"3%",zIndex:"1",position:"absolute"}}> <Typography style = {{fontFamily: 'Poppins', fontWeight: "600"}}>Add Table </Typography></MUIButton>
-        <MUIButton onClick = {addNewNode} startIcon={<AddToPhotosIcon />} variant="contained" style = {{backgroundColor: "#7158e2", color: '#fff' , top:"76%",right:"3%",zIndex:"1",position:"absolute"}}> <Typography style = {{fontFamily: 'Poppins', fontWeight: "600"}}>Add Field </Typography></MUIButton>
-        <MUIButton onClick = {handleSubmit} startIcon={<CodeIcon />} variant="contained" style = {{backgroundColor: "#fbc531", color: '#fff' , top:"83%",right:"3%",zIndex:"1",position:"absolute"}}> <Typography style = {{fontFamily: 'Poppins', fontWeight: "600"}}>Generate Code </Typography></MUIButton>
-        <MUIButton onClick = {addNewNode} startIcon={<SaveIcon />} variant="contained" style = {{backgroundColor: "#ff4d4d", color: '#fff' , top:"90%",right:"3%",zIndex:"1",position:"absolute"}}> <Typography style = {{fontFamily: 'Poppins', fontWeight: "600"}}>Save Table </Typography></MUIButton>
+        <MUIButton onClick = {addTableNode} startIcon={<AddBoxIcon />} variant="contained" style = {{backgroundColor: "#4cd137", color: '#fff' , top:"69%",right:"1%",zIndex:"1",position:"absolute"}}> <Typography style = {{fontFamily: 'Poppins', fontWeight: "600"}}>Add Table </Typography></MUIButton>
+        <MUIButton onClick = {addNewNode} startIcon={<AddToPhotosIcon />} variant="contained" style = {{backgroundColor: "#7158e2", color: '#fff' , top:"76%",right:"1%",zIndex:"1",position:"absolute"}}> <Typography style = {{fontFamily: 'Poppins', fontWeight: "600"}}>Add Field </Typography></MUIButton>
+        <MUIButton onClick = {handleSubmit} startIcon={<CodeIcon />} variant="contained" style = {{backgroundColor: "#fbc531", color: '#fff' , top:"83%",right:"1%",zIndex:"1",position:"absolute"}}> <Typography style = {{fontFamily: 'Poppins', fontWeight: "600"}}>Generate Code </Typography></MUIButton>
+        <MUIButton onClick = {addNewNode} startIcon={<SaveIcon />} variant="contained" style = {{backgroundColor: "#ff4d4d", color: '#fff' , top:"90%",right:"1%",zIndex:"1",position:"absolute"}}> <Typography style = {{fontFamily: 'Poppins', fontWeight: "600"}}>Save Table </Typography></MUIButton>
       </div>
     </Fragment>
   );
