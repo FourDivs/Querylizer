@@ -1,4 +1,4 @@
-import React, { Fragment,useContext,useState } from "react";
+import React, { Fragment,useState } from "react";
 import AppBar from '@material-ui/core/AppBar';
 import { Toolbar, Typography, Popover } from '@material-ui/core';
 import logo from '../../assets/NavQuery.png'
@@ -6,15 +6,49 @@ import logo from '../../assets/NavQuery.png'
 import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'; 
 import VerifiedUserIcon from '@material-ui/icons/VerifiedUser';
-import { UserContext } from "../../context/UserContext";
+import AssignmentLateIcon from '@material-ui/icons/AssignmentLate';
+import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
 import Information from './Information'
+
+//REDUX
+import {useSelector, useDispatch} from "react-redux"
+import { userSignIn, userLogout } from "../../actions";
+
+//firebase 
+import firebase from "firebase/app";
+import "firebase/auth"
+var provider = new firebase.auth.GoogleAuthProvider();
 
 
 const Navbar = (props) => {
 
-    const context = useContext(UserContext);
+    const user = useSelector((state) => state.user);
+    const dispatch = useDispatch();
+
     const [anchorEl, setAnchorEl] = useState(null);
 
+    const handleLogin = () => {
+        firebase.auth()
+        .signInWithPopup(provider)
+        .then((result) => {
+          dispatch(userSignIn(result.user));
+        }).catch((error) => {
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          console.log(errorCode, errorMessage)
+        });
+      }
+    
+      const handleLogut = () => {
+        firebase.auth().signOut().then(() => {
+          console.log("logout")
+          dispatch(userLogout());
+        }).catch((error) => {
+          console.log("logout Error")  
+        });
+      }
+    
+    
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
@@ -36,7 +70,17 @@ const Navbar = (props) => {
                 </Typography>
                 
                 <div style={{ fontFamily: "poppins", marginLeft: "30%", fontWeight: "600", color: "white" }}>
-                    <VerifiedUserIcon style = {{color: "#7ed957"}}/> { context.user?.email ? ("Welcome User ! " + context.user.email) : "Welcome Guest !"}   
+                { user?.email ? (  
+                    <Fragment>
+                    <VerifiedUserIcon style = {{color: "#7ed957"}}/> 
+                    {`Welcome ${user.displayName}`}
+                    </Fragment>
+                    ) : 
+                    <Fragment>
+                        <AssignmentLateIcon style = {{color: "#ff5757"}}/> 
+                        {"  Please Login to save diagrams !"}
+                    </Fragment>
+                }   
                 </div>
                 <div  onClick={handleClick} style={{ fontFamily: "poppins", marginLeft: "auto", fontWeight: "600", color: "#F7D800" }}>
                     <InfoOutlinedIcon />
@@ -57,8 +101,9 @@ const Navbar = (props) => {
                 >
                     <Information/>
                 </Popover>
-                <div style={{ fontFamily: "poppins", marginLeft: "15px", fontWeight: "600", color: "white"}}>
-                    <ExitToAppIcon /> Logout
+                <div  style={{ fontFamily: "poppins", marginLeft: "15px", fontWeight: "600", color: "white"}}>
+                    {user ? <div onClick = {handleLogut}> Logout <ExitToAppIcon />  </div> : <div onClick = {handleLogin}> Login <MeetingRoomIcon /> </div> }
+                    
                 </div>
             </Toolbar>
             </AppBar>
