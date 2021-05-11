@@ -1,29 +1,33 @@
-import { useContext } from "react";
 import Container from "react-bootstrap/Container";
 import classes from "./Home.module.css";
 import logo from "../../assets/Query.png";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
-import { Button, Anchor } from "atomize";
+import { Button } from "atomize";
 import { Row, Col} from "react-bootstrap";
 import wallIamge from "../../assets/square_mid_light.svg"
+import { Link } from "react-router-dom";
 
+
+//REDUX
+import {useSelector, useDispatch} from "react-redux"
+import { userSignIn, userLogout } from "../../actions";
 
 //firebase 
-import { UserContext } from "../../context/UserContext";
 import firebase from "firebase/app";
 import "firebase/auth"
 var provider = new firebase.auth.GoogleAuthProvider();
 
 const Home = () => {
 
-  const context = useContext(UserContext)
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
 
   const handleLogin = () => {
     firebase.auth()
     .signInWithPopup(provider)
     .then((result) => {
-      context.setUser(result.user);
+      dispatch(userSignIn(result.user));
     }).catch((error) => {
       var errorCode = error.code;
       var errorMessage = error.message;
@@ -34,7 +38,7 @@ const Home = () => {
   const handleLogut = () => {
     firebase.auth().signOut().then(() => {
       console.log("logout")
-      context.setUser(null)
+      dispatch(userLogout());
     }).catch((error) => {
       console.log("logout Error")  
     });
@@ -97,23 +101,23 @@ const Home = () => {
         <br />
         <Row>
               <Col sm={{ size: 'auto', offset: 1 }} className = {classes.home_button_col}>
-                {context.user?.email ? (<Button onClick = {handleLogut} shadow="3" hoverShadow="4" m={{ r: "1rem" }} className = {classes.home_button}>
+                {user?.email ? (<Button onClick = {handleLogut} shadow="3" hoverShadow="4" m={{ r: "1rem" }} className = {classes.home_button}>
                   LOGOUT                    
                 </Button>) : (<Button onClick = {handleLogin} shadow="3" hoverShadow="4" m={{ r: "1rem" }} className = {classes.home_button}>
                   LOGIN                    
                 </Button>)}
-                <Anchor href="/visualizer">
+                <Link to="/visualizer">
                   <Button
                     shadow="3"
                     hoverShadow="4"
                     m={{ r: "1rem" }}
                     className = {classes.home_button}
                   >                   
-                    { context.user?.email ? "welcome back " + context.user.email : "Continue as a Guest"}   
+                    { user?.email ? "welcome back " + user.email : "Continue as a Guest"}   
                   </Button>
-                </Anchor>
+                </Link>
                     
-                <Anchor href="/aboutus" className = {classes.home_button_link}>                      
+                <Link to="/aboutus" className = {classes.home_button_link}>                      
                   <Button
                     shadow="3"
                     hoverShadow="4"
@@ -122,7 +126,7 @@ const Home = () => {
                     // onClick={addNewNode}
                   >ABOUT US
                   </Button>
-                </Anchor>
+                </Link>
               </Col>
         </Row>
         <br />

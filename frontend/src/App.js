@@ -1,6 +1,5 @@
-import { useState, Suspense, lazy } from "react";
+import {  Suspense, lazy } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { UserContext } from "./context/UserContext";
 import Loader from "./components/Loader/Loader";
 
 //firebase setup and initialzation
@@ -28,13 +27,11 @@ const  AboutUs = lazy(() => {
 });
 
 
-const App = () => {
 
-  const [user, setUser] = useState(null);
+const App = () => {
 
   return (
     <Router>
-      <UserContext.Provider value = {{user, setUser}}>
         <Suspense fallback={<Loader/>}>
           <Switch>
             <Route exact path="/" component={Home} />
@@ -43,7 +40,6 @@ const App = () => {
             {/* TODO: <Route exact path="*" component={PageNotFound} /> */}
           </Switch>
         </Suspense>
-      </UserContext.Provider>
     </Router>
   );
 }

@@ -1,5 +1,5 @@
 import Diagram, { createSchema, useSchema } from "beautiful-react-diagrams";
-import { Div, Button, Input, Label, Text } from "atomize";
+import { Div, Button, Input, Label } from "atomize";
 import MUIButton from '@material-ui/core/Button';
 import { cloneElement, Fragment, useState,createRef} from "react";
 import { Row, Col, Container } from "react-bootstrap";
