@@ -4,7 +4,7 @@ import MUIButton from '@material-ui/core/Button';
 import { cloneElement, Fragment, useState,createRef} from "react";
 import { Row, Col, Container } from "react-bootstrap";
 import axios from "axios";
-import CodeEditor2 from "../CodeEditor/CodeEditor2";
+import CodeEditorPanel from "../CodeEditor/CodeEditorPanel";
 import { useScreenshot } from 'use-react-screenshot';
 import AddBoxIcon from '@material-ui/icons/AddBox';
 import AddToPhotosIcon from '@material-ui/icons/AddToPhotos';
@@ -27,6 +27,13 @@ import CancelIcon from '@material-ui/icons/Cancel';
 import Navbar from "../Navbar/Navbar";
 import classes from "./Visualizer.module.css";
 import WallpaperIcon from '@material-ui/icons/Wallpaper';
+import WifiLoader from "../Loader/WifiLoader";
+
+
+//Redux
+import {useSelector, useDispatch} from "react-redux"
+import { codeValue,toggleCodeEditor,codeGenerateLoader } from "../../actions";
+
 
 //Row Data of Each Node
 
@@ -344,9 +351,13 @@ const initialSchema = createSchema({
 
 const Visualizer = () => {
   // create diagrams schema
-  const [value, setValue] = useState(
-    "CLICK ON GENERATE CODE BUTTON TO GET CODE"
-  );
+  // const [value, setValue] = useState(
+  //   "CLICK ON GENERATE CODE BUTTON TO GET CODE"
+  // );
+
+  const codeEditorState = useSelector((store) => store.codeEditor);
+  const dispatch = useDispatch();
+
   const [schema, { onChange, addNode, removeNode }] = useSchema(initialSchema);
   
   //for column
@@ -461,13 +472,17 @@ const Visualizer = () => {
       },
     };
 
+    dispatch(codeGenerateLoader());
     await axios
       .request(options)
       .then(function (response) {
         console.log("compile: ", response.data);
-        setValue(response.data["node-1"]);
+        dispatch(codeValue(response.data["node-1"]));
+        dispatch(codeGenerateLoader());
+        dispatch(toggleCodeEditor());
       })
       .catch(function (error) {
+        dispatch(codeGenerateLoader());
         console.error(error);
       });
   };
@@ -475,7 +490,7 @@ const Visualizer = () => {
   return (
     <Fragment>
       <Navbar />
-      
+      {codeEditorState.codeGenerateLoader &&  <WifiLoader />}
       <div style={{ height: "22.5rem", width: "99%", textAlign: 'center' }}>
         <div onClick={handleImageSave} style={{top:"12%",left:"97%",zIndex:"1",position:"absolute"}}>
           <WallpaperIcon style={{color:"#8352ff"}}/>
@@ -485,7 +500,7 @@ const Visualizer = () => {
         </div>
         <Row>
           <Col>
-            <CodeEditor2 value={value} />
+            <CodeEditorPanel value={codeEditorState.codeValue} />
           </Col>
         </Row>
         <MUIButton onClick = {addTableNode} startIcon={<AddBoxIcon />} variant="contained" style = {{backgroundColor: "#4cd137", color: '#fff' , top:"69%",right:"1%",zIndex:"1",position:"absolute"}}> <Typography style = {{fontFamily: 'Poppins', fontWeight: "600"}}>Add Table </Typography></MUIButton>

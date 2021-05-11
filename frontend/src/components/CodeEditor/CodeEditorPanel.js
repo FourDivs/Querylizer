@@ -1,20 +1,25 @@
-import React, { useState } from "react";
 import { OffCanvas, OffCanvasMenu, OffCanvasBody } from "react-offcanvas";
 import CodeEditor from "./CodeEditor";
 import DoubleArrowIcon from '@material-ui/icons/DoubleArrow';
 
+//Redux
+import {useSelector, useDispatch} from "react-redux"
+import { toggleCodeEditor } from "../../actions";
 
-const CodeEditor2 = (props) => {
+const CodeEditorPanel = (props) => {
 
-    const [isMenuOpened, setIsMenuOpened] = useState(false);
-    const handleClick = () => setIsMenuOpened((prevToogle) => (!prevToogle));
+    const codeEditorState = useSelector((store) => store.codeEditor);
+    const dispatch = useDispatch();
+    const handleClick = () => {
+        dispatch(toggleCodeEditor());
+    };
     
     return (
         <OffCanvas
         width={600}
         transitionDuration={300}
         effect={"parallax"}
-        isMenuOpened={isMenuOpened}
+        isMenuOpened={codeEditorState.toggleEditor}
         position={"left"}
     >
         <OffCanvasBody width = {900} style={{ fontSize: "30px", position: "absolute", left: "0",top: "0" }}  >
@@ -34,4 +39,4 @@ const CodeEditor2 = (props) => {
     );
 }
 
-export default CodeEditor2;
+export default CodeEditorPanel;

@@ -5,13 +5,12 @@
 body,
 html {
   font-family: "Poppins", sans-serif;
-  background:#161616;
+  background: #161616;
 }
 
-#root{
-  background:#161616;
+#root {
+  height: 100vh;
 }
-
 .bi {
   background: #161616 !important;
 }
@@ -24,8 +23,9 @@ html {
   background: #ffb91d !important;
 }
 
-.bi-diagram{
-  border: .07rem solid #161616 !important;
+.bi-diagram {
+  border: 0.07rem solid #161616 !important;
   border-radius: 0% !important;
-  height: 90vh !important;
+  height: 91vh !important;
+  width: 100vw !important;
 }

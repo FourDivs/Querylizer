@@ -5,7 +5,7 @@ import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import { Button } from "atomize";
 import { Row, Col} from "react-bootstrap";
-import wallIamge from "../../assets/square_mid_light.svg"
+//import wallIamge from "../../assets/square_mid_light.svg"
 import { Link } from "react-router-dom";
 
 
@@ -20,7 +20,7 @@ var provider = new firebase.auth.GoogleAuthProvider();
 
 const Home = () => {
 
-  const user = useSelector((state) => state.user);
+  const user = useSelector((store) => store.user);
   const dispatch = useDispatch();
 
   const handleLogin = () => {
@@ -56,7 +56,8 @@ const Home = () => {
 
   return (
     
-    <div style = {{backgroundImage: `url(${wallIamge})`}}>
+    // <div style = {{backgroundImage: `url(${wallIamge})`}}>
+    <div>  
       <Navbar>
         <div className = {classes.home__navbar__brand}>
           <img src={logo} className = {classes.home__navbar__brand__logo} alt="Querylizer" />
@@ -102,9 +103,9 @@ const Home = () => {
         <Row>
               <Col sm={{ size: 'auto', offset: 1 }} className = {classes.home_button_col}>
                 {user?.email ? (<Button onClick = {handleLogut} shadow="3" hoverShadow="4" m={{ r: "1rem" }} className = {classes.home_button}>
-                  LOGOUT                    
+                  Logout                    
                 </Button>) : (<Button onClick = {handleLogin} shadow="3" hoverShadow="4" m={{ r: "1rem" }} className = {classes.home_button}>
-                  LOGIN                    
+                  Login                   
                 </Button>)}
                 <Link to="/visualizer">
                   <Button
@@ -124,7 +125,7 @@ const Home = () => {
                     m={{ r: "1rem" }}
                     className = {classes.home_button}
                     // onClick={addNewNode}
-                  >ABOUT US
+                  >About Us
                   </Button>
                 </Link>
               </Col>
@@ -133,14 +134,6 @@ const Home = () => {
         <h2 className = {classes.home_h2_last_text}>
           Easily convert your Database Diagram to code. Hassle Free.
         </h2>
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
         <br />
         <br />
       </Container>
