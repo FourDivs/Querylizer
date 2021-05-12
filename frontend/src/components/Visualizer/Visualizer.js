@@ -487,6 +487,20 @@ const Visualizer = () => {
       });
   };
 
+  const clearDiagram =()=>{
+    rowData.data = [];
+    tableData.data =[];
+    schema.nodes.splice(0,schema.nodes.length);
+    schema.links.splice(0,schema.links.length);
+    setTableCount(1);
+    setColCount(1);
+    setxCoordinate(1100);
+    setyCoordinate(15);
+    setTablexCoordinate(100);
+    setTableyCoordinate(10);
+    onChange(schema);
+  }
+  
   return (
     <Fragment>
       <Navbar />
@@ -506,7 +520,7 @@ const Visualizer = () => {
         <MUIButton onClick = {addTableNode} startIcon={<AddBoxIcon />} variant="contained" style = {{backgroundColor: "#4cd137", color: '#fff' , top:"69%",right:"1%",zIndex:"1",position:"absolute"}}> <Typography style = {{fontFamily: 'Poppins', fontWeight: "600"}}>Add Table </Typography></MUIButton>
         <MUIButton onClick = {addNewNode} startIcon={<AddToPhotosIcon />} variant="contained" style = {{backgroundColor: "#7158e2", color: '#fff' , top:"76%",right:"1%",zIndex:"1",position:"absolute"}}> <Typography style = {{fontFamily: 'Poppins', fontWeight: "600"}}>Add Field </Typography></MUIButton>
         <MUIButton onClick = {handleSubmit} startIcon={<CodeIcon />} variant="contained" style = {{backgroundColor: "#fbc531", color: '#fff' , top:"83%",right:"1%",zIndex:"1",position:"absolute"}}> <Typography style = {{fontFamily: 'Poppins', fontWeight: "600"}}>Generate Code </Typography></MUIButton>
-        <MUIButton onClick = {addNewNode} startIcon={<SaveIcon />} variant="contained" style = {{backgroundColor: "#ff4d4d", color: '#fff' , top:"90%",right:"1%",zIndex:"1",position:"absolute"}}> <Typography style = {{fontFamily: 'Poppins', fontWeight: "600"}}>Save Table </Typography></MUIButton>
+        <MUIButton onClick = {clearDiagram} startIcon={<SaveIcon />} variant="contained" style = {{backgroundColor: "#ff4d4d", color: '#fff' , top:"90%",right:"1%",zIndex:"1",position:"absolute"}}> <Typography style = {{fontFamily: 'Poppins', fontWeight: "600"}}>Clear Screen</Typography></MUIButton>
       </div>
     </Fragment>
   );
