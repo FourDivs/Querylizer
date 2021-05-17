@@ -17,14 +17,10 @@ def CreateTableQuery_Function (newData):
         else:
             NodeList[node["id"]] = node["inputs"][0]["id"]
 
-    #print(NodeList)
-    #print(TableList)
-
     LinksInfo = {}
     for link in LinkData:
         LinksInfo[link["input"]] = link["output"]
 
-    #print(LinksInfo)
 
     #TableNames = {"node-1" : table["tableName"]}
     TableData = newData["tableData"]["data"]
@@ -32,7 +28,6 @@ def CreateTableQuery_Function (newData):
     for info in TableData:
         TableNames[info["id"]] = info["table_name"]
 
-    #print(TableNames)
 
     TableColData = table["data"]
 
@@ -45,7 +40,6 @@ def CreateTableQuery_Function (newData):
     for NameId in TableNames.keys():
         FinalTableData[NameId]["TableName"] = TableNames[NameId]
 
-    #print(FinalTableData)
 
     for Column in TableColData:
         NodeId = Column["id"]
@@ -71,8 +65,6 @@ def CreateTableQuery_Function (newData):
             FinalTableData[TableId]["ColumnInfo"] = []
             FinalTableData[TableId]["ColumnInfo"].append(ColData)
         
-        #print(FinalTableData)
-
     #-----Preprocessing Done-----
 
     CreateTableQuery = {}
