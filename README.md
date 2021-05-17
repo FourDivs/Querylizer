@@ -19,7 +19,7 @@
 
 ## Want to Contribute  🙋‍♂️?
 
-Awesome! If you want to contribute to this project, you're always welcome! See  [Contributing Guidelines]().
+Awesome! If you want to contribute to this project, you're always welcome! See  [Contributing Guidelines](https://github.com/kothariji/Querylizer/blob/master/CONTRIBUTING.md).
 
 ### Creators :zap::dizzy:
 <table>
