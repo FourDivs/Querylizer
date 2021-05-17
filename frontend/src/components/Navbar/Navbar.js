@@ -2,6 +2,8 @@ import React, { Fragment,useState } from "react";
 import AppBar from '@material-ui/core/AppBar';
 import { Toolbar, Typography, Popover } from '@material-ui/core';
 import logo from '../../assets/NavQuery.png'
+import { Link } from "react-router-dom";
+
 // import PersonIcon from '@material-ui/icons/Person';
 import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'; 
@@ -64,11 +66,11 @@ const Navbar = (props) => {
         <Fragment>
             <AppBar position="static" style={{ backgroundColor: "#151515"}}>
             <Toolbar>
-                <img src={logo} style={{ maxWidth: "35px", maxHeight: "35px" }} alt = 'SyntaxMeets'/>
-                <Typography variant="h5" style={{ color: "white", fontFamily: "poppins"}}>
-                    &nbsp;<span style={{ "fontWeight": "700"}}>Query</span>lizer
-                </Typography>
-                
+                    <img src={logo} style={{ maxWidth: "35px", maxHeight: "35px" }} alt = 'SyntaxMeets'/>
+                    <Typography variant="h5" style={{ color: "white", fontFamily: "poppins"}}>
+                        &nbsp;<Link to="/" style={{color:"#fff"}}><span style={{ "fontWeight": "700"}}>
+                            Query</span>lizer</Link>
+                    </Typography>
                 <div style={{ fontFamily: "poppins", marginLeft: "30%", fontWeight: "600", color: "white" }}>
                 { user?.email ? (  
                     <Fragment>

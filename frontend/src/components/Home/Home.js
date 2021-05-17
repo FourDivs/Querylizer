@@ -60,19 +60,24 @@ const Home = () => {
     <div>  
       <Navbar>
         <div className = {classes.home__navbar__brand}>
-          <img src={logo} className = {classes.home__navbar__brand__logo} alt="Querylizer" />
+          <Link to="/" style={{color:"#000"}}><img src={logo} className = {classes.home__navbar__brand__logo} alt="Querylizer" />
           <span style={{ fontWeight: "800" }}>Query</span>lizer
+          </Link>
         </div>
         <div style={{ fontSize: "1.7rem", paddingTop: "10px", paddingRight: "30px"}} className="ml-auto">
           <Nav>
             <Nav.Link href="#home" className = {classes.home__navbar__logo}>
               <i className= {"far fa-envelope " + classes.home__navbar__icons}></i>
             </Nav.Link>
-            <Nav.Link href="#features">
+            <Nav.Link href="https://github.com/kothariji/Querylizer">
               <i className = {"fab fa-github " + classes.home__navbar__icons}></i>
             </Nav.Link>
-            <Nav.Link href="/visualizer">
-              <i className= {"fas fa-sign-in-alt " + classes.home__navbar__icons}></i>
+            <Nav.Link>              
+              {user?.email ? (<span onClick = {handleLogut}>
+                <i className= {"fas fa-sign-out-alt " + classes.home__navbar__icons}></i>                
+                </span>) : (<span onClick = {handleLogin}>
+                <i className= {"fas fa-sign-in-alt " + classes.home__navbar__icons}></i>                 
+                </span>)}
             </Nav.Link>
           </Nav>
         </div>

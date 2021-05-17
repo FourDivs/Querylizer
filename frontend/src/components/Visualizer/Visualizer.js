@@ -122,10 +122,10 @@ const ModalSize = ({ isOpen, onClose, nodeId }) => {
 
   return (
     <Dialog open={isOpen} onClose={onClose} rounded="md">
-      <DialogContent style={{ width: "600px" }}>
+      <DialogContent style={{ width: "600px"}}>
         <Row p={{ l: "0.5rem", t: "0.25rem" }} m={{ b: "2rem" }}>
           <Col>
-            <Label>Column Name:</Label>
+            <Label style={{fontSize:"16px",fontWeight:"500"}}>Column Name:</Label>
             <Input
               placeholder="Name"
               value={colName}
@@ -134,7 +134,7 @@ const ModalSize = ({ isOpen, onClose, nodeId }) => {
             />
           </Col>
           <Col>
-            <Label>DataType:</Label>
+            <Label style={{fontSize:"16px",fontWeight:"500"}}>DataType:</Label>
             <FormControl style={{ width: "100%", fontSize: "15px" }}>
               <Select
                 value={dataType}
@@ -156,8 +156,8 @@ const ModalSize = ({ isOpen, onClose, nodeId }) => {
             </FormControl>
           </Col>
         </Row>
-        <Row>
-          <Label>Max Length:</Label>
+        <Row style={{padding:"14px"}}>
+          <Label style={{fontSize:"16px",fontWeight:"500"}}>Max Length:</Label>
           <Container>
             <PrettoSlider
               disabled={disable}
@@ -169,9 +169,9 @@ const ModalSize = ({ isOpen, onClose, nodeId }) => {
           </Container>
         </Row>
 
-        <Row p={{ l: "1rem", t: "0.25rem" }} m={{ b: "2rem" }}>
+        <Row p={{ l: "1rem", t: "0.25rem" }} m={{ b: "2rem" }} style={{paddingLeft:"14px"}}>
           <FormControl>
-            <Label>Select Properties:</Label>
+            <Label style={{fontSize:"16px",fontWeight:"500"}}>Select Properties:</Label>
             <FormGroup>
               <FormControlLabel
                 control={
@@ -239,9 +239,10 @@ const TableModal = ({ isOpen, onClose,nodeId }) => {
   return (
     <Dialog open={isOpen} onClose={onClose} rounded="md">
       <DialogContent style={{ width: "600px" }}>
-        <Row p={{ l: "0.5rem", t: "0.25rem" }} m={{ b: "2rem" }}>
+        <Row p={{ l: "0.5rem", t: "0.25rem" }} m={{ b: "2rem" }} 
+              style={{paddingBottom:"7px"}}>
           <Col>
-            <Label>Table Name:</Label>
+            <Label style={{fontSize:"20px",fontWeight:"600",paddingBottom:"4px"}}>Table Name:</Label>
             <Input
               placeholder="Enter Table Name"
               value={Table_Name}
@@ -251,7 +252,7 @@ const TableModal = ({ isOpen, onClose,nodeId }) => {
           </Col>
         </Row>
 
-        <Div d="flex" justify="flex-end">
+        <Div d="flex" justify="flex-end" style={{paddingBottom:"3px"}}>
           <Button
             onClick={onClose}
             bg="gray200"
