@@ -30,7 +30,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://querylizer.herokuapp.com/']
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
@@ -141,6 +141,5 @@ CORS_ORIGIN_WHITELIST = [
     "https://querylizer.vercel.app",
     "https://querylizer-kothariji.vercel.app",
     "https://querylizer.netlify.app",
-
 
 ]
