@@ -1,6 +1,6 @@
 # Contributing to Querylizer
 
-We love your input!😇
+We love your input!😇<br>
 We want to make contributing to this project as easy and transparent as possible, whether it's:
 -   Reporting a bug 🐞
 -   Discussing the current state of the code 🧑‍💻
@@ -19,7 +19,7 @@ For Contribution we strictly follow [GitHub Flow](https://guides.github.com/intr
 ### Setting Up the Project
 This is important and first step for contributing to project 😊
 -  [Fork](https://docs.github.com/en/github/getting-started-with-github/fork-a-repo#fork-an-example-repository) the Repository
-- Clone Your Forked copy -
+- Clone Your Forked copy -<br>
   Open up the GitBash/Command Line/Terminal and type in
   `git clone https://github.com/[YOUR-USERNAME]/Querylizer.git`
 
