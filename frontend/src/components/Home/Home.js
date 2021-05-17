@@ -57,10 +57,10 @@ const Home = () => {
   return (
     
     // <div style = {{backgroundImage: `url(${wallIamge})`}}>
-    <div>  
+    <div className = {classes.home}>  
       <Navbar>
         <div className = {classes.home__navbar__brand}>
-          <Link to="/" style={{color:"#000"}}><img src={logo} className = {classes.home__navbar__brand__logo} alt="Querylizer" />
+          <Link to="/" style={{color:"#000", textDecoration: 'none'}}><img src={logo} className = {classes.home__navbar__brand__logo} alt="Querylizer" />
           <span style={{ fontWeight: "800" }}>Query</span>lizer
           </Link>
         </div>
@@ -92,7 +92,7 @@ const Home = () => {
             Create Stunning 🚩 Blazing ⚡ Interactive 🧠{" "}
             <span className={classes.home_span_gradient}>
               <br/>
-              <br/>
+    
               Database Diagrams{" "}
             </span>
             🚀
@@ -108,36 +108,37 @@ const Home = () => {
         <Row>
               <Col sm={{ size: 'auto', offset: 1 }} className = {classes.home_button_col}>
                 {user?.email ? (<Button onClick = {handleLogut} shadow="3" hoverShadow="4" m={{ r: "1rem" }} className = {classes.home_button}>
-                  Logout                    
+                  Logout &nbsp; <i className= {"fas fa-sign-out-alt "}></i>                
                 </Button>) : (<Button onClick = {handleLogin} shadow="3" hoverShadow="4" m={{ r: "1rem" }} className = {classes.home_button}>
-                  Login                   
+                  Login &nbsp; <i className= {"fas fa-sign-in-alt "}></i>                   
                 </Button>)}
-                <Link to="/visualizer">
+                <Link to="/visualizer" style = {{textDecoration: 'none'}}>
                   <Button
                     shadow="3"
                     hoverShadow="4"
                     m={{ r: "1rem" }}
                     className = {classes.home_button}
                   >                   
-                    { user?.email ? "welcome back " + user.email : "Continue as a Guest"}   
+                    { user?.email ? `Welcome ${user.displayName} `: "Continue as a Guest "}   
+                    &nbsp;<i className= {"fas fa-user"}></i>
                   </Button>
                 </Link>
                     
-                <Link to="/aboutus" className = {classes.home_button_link}>                      
+                <Link to="/aboutus" style = {{textDecoration: 'none'}}>                      
                   <Button
                     shadow="3"
                     hoverShadow="4"
                     m={{ r: "1rem" }}
                     className = {classes.home_button}
                     // onClick={addNewNode}
-                  >About Us
+                  >About Us &nbsp; <i className={"fas fa-info-circle"}></i>
                   </Button>
                 </Link>
               </Col>
         </Row>
         <br />
         <h2 className = {classes.home_h2_last_text}>
-          Easily convert your Database Diagram to code. Hassle Free.
+          Easily convert your Database Diagram to code 👩‍💻 Hassle Free💡
         </h2>
         <br />
         <br />

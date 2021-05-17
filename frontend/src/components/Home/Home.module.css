@@ -1,9 +1,16 @@
 .home_span_gradient {
-  background: #f12711;
+  /* background: #f12711;
   background: -webkit-linear-gradient(to left, #f5af19, #f12711);
   background: linear-gradient(to left, #f5af19, #f12711);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  -webkit-animation: hue 10s infinite linear; */
+  font-size: 4vw;
+  background: #8a2387;
+  background: -webkit-linear-gradient(to right, #f27121, #e94057, #8a2387);
+  background: linear-gradient(to right, #f27121, #e94057, #8a2387);
+  -webkit-background-clip: text;
+  color: transparent;
 }
 
 .home__navbar__brand {
@@ -27,6 +34,7 @@
   font-size: 40px;
   font-weight: 700;
   font-family: "Poppins";
+  line-height: 1.5;
 }
 
 .home_h2_text {

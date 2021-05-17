@@ -68,7 +68,7 @@ const Navbar = (props) => {
             <Toolbar>
                     <img src={logo} style={{ maxWidth: "35px", maxHeight: "35px" }} alt = 'SyntaxMeets'/>
                     <Typography variant="h5" style={{ color: "white", fontFamily: "poppins"}}>
-                        &nbsp;<Link to="/" style={{color:"#fff"}}><span style={{ "fontWeight": "700"}}>
+                        &nbsp;<Link to="/" style={{color:"#fff", textDecoration: 'none'}}><span style={{ "fontWeight": "700"}}>
                             Query</span>lizer</Link>
                     </Typography>
                 <div style={{ fontFamily: "poppins", marginLeft: "30%", fontWeight: "600", color: "white" }}>
@@ -84,7 +84,7 @@ const Navbar = (props) => {
                     </Fragment>
                 }   
                 </div>
-                <div  onClick={handleClick} style={{ fontFamily: "poppins", marginLeft: "auto", fontWeight: "600", color: "#F7D800" }}>
+                <div  onClick={handleClick} style={{ fontFamily: "poppins", marginLeft: "auto", fontWeight: "600", color: "#F7D800", cursor: 'pointer' }}>
                     <InfoOutlinedIcon />
                 </div>
                 <Popover
@@ -101,10 +101,10 @@ const Navbar = (props) => {
                     horizontal: 'center',
                     }}
                 >
-                    <Information/>
+                    <Information />
                 </Popover>
                 <div  style={{ fontFamily: "poppins", marginLeft: "15px", fontWeight: "600", color: "white"}}>
-                    {user ? <div onClick = {handleLogut}> Logout <ExitToAppIcon />  </div> : <div onClick = {handleLogin}> Login <MeetingRoomIcon /> </div> }
+                    {user ? <div onClick = {handleLogut} style = {{cursor: 'pointer'}}> Logout <ExitToAppIcon />  </div> : <div onClick = {handleLogin} style = {{cursor: 'pointer'}}> Login <MeetingRoomIcon /> </div> }
                     
                 </div>
             </Toolbar>
