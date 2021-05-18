@@ -28,8 +28,25 @@ This is important and first step for contributing to project 😊
 
 - Create a new branch -
   `git checkout -b [branch_name]`
- - ## Steps for setting up Frontend
   
+- ## Steps for setting up Frontend
+- If you don't have virtualenv already installed -
+  `pip install virtualenv`
+
+- Create a new environment -
+  `virtualenv querylizerenv`
+
+- Activate the environment -
+  - For Linux/Unix OS : `source querylizerenv/bin/activate`
+  - For Windows OS: `querylizerenv\Scripts\activate`
+
+- cd frontend/
+
+- Install all dependencies -
+  `npm install / yarn install`
+  
+- `npm start / yarn run start` - You're good to Go!!
+
 - ## Steps for setting up Backend
 - Note : Follow this steps only if you are contributing to Backend of Project if     not then move on to [Steps for setting up Frontend](#user-content-steps-for-setting-up-frontend)
 - If you don't have virtualenv already installed -
