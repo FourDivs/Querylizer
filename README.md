@@ -17,6 +17,9 @@
  
   ![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg) ![forthebadge](https://forthebadge.com/images/badges/for-you.svg)
 
+## Want to get Familiar with Project 🤗?
+Watch Video [here](https://drive.google.com/file/d/1DFquCLAD2fAB_OMHIvd3_6KG9QDoJSIw/view?usp=sharing)
+
 ## Want to Contribute  🙋‍♂️?
 
 Awesome! If you want to contribute to this project, you're always welcome! See  [Contributing Guidelines](https://github.com/kothariji/Querylizer/blob/master/CONTRIBUTING.md).
