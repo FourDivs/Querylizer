@@ -75,7 +75,6 @@ This is important and first step for contributing to project 😊
 
 - `python manage.py runserver` - You're good to Go!!
 
-- How to check changes done by you in Backend are going good for that connect backend to frontend follow this steps :  
 
 ## How To Start Contributing
 After [Setting Up Project](#user-content-setting-up-the-project) it's time to Contribute 🥰 
