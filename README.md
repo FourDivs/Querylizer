@@ -6,7 +6,7 @@
 
 ## Create Stunning 🚩 Blazing ⚡ Interactive 🧠Database Diagrams 🚀
 
-### Say Hi 👋 to the No Code Era.Easily convert your Beutiful Database Diagram to code. Hassle Free.
+### Say Hi 👋 to the No Code Era.Easily convert your Beautiful Database Diagram to code. Hassle Free.
 
 
 ![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)   ![Open Source? Yes!](https://badgen.net/badge/Open%20Source%20%3F/Yes%21/blue?icon=github)
