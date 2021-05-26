@@ -31,7 +31,8 @@ const MediaCard = (props) => {
         <CardMedia
           className={classes.media}
           image={props.image}
-          title="Contemplative Reptile"
+          title={props.name}
+          data-testid='image-test'
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
