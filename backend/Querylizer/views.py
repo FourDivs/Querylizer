@@ -15,8 +15,6 @@ def createTable(request):
     if request.method == 'POST':
         newdata = json.loads(request.body)
         data = CreateTableQuery_Function(newdata)
-        print("hello ", data)
         return JsonResponse(data, safe=False)
     else:
-        print("Error")
         return JsonResponse({"error": "Invalid Request Type, recieved GET instead of POST"}, safe=False)
