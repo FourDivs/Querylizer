@@ -118,3 +118,30 @@ def CreateTableQuery_Function (newData):
         FinalQuery = FinalQuery + CreateTableQuery[SingleQuery] + " \n "
 
     return {"node-1" : FinalQuery}
+
+
+def InsertQuery_Function(newData):
+    
+    table_name = newData["table_name"]
+    column_names = newData["column_names"]["names"]
+    column_values = newData["column_values"]["values"]    
+
+    query = "Insert Into "
+    query = query + table_name
+    query = query + " ( "
+
+    for name in column_names:
+        query = query + name
+        if(name != column_names[-1]):
+            query=query+', '
+
+    query = query + " ) Values ( "
+    
+    for value in column_values:
+        query = query + "'" + value+ "'"
+        if(value != column_values[-1]):
+            query=query+', '
+
+    query = query + " );"
+
+    return {"node-1" : query}

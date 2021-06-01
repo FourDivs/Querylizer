@@ -344,11 +344,11 @@ const Field = (props) => {
   );
 };
 
-
 const initialSchema = createSchema({
   nodes: [],
   links: [],
 });
+
 
 const Visualizer = () => {
   // create diagrams schema
@@ -374,6 +374,10 @@ const Visualizer = () => {
   //screenshot
   const ref = createRef(null)
   const [image, takeScreenshot] = useScreenshot()
+
+  //Insert
+  const [showModal, setState] = useState(false);
+
 
   const deleteRowNodeFromSchema = (id) => {
     const nodeToRemove = schema.nodes.find((node) => node.id === id);
@@ -459,7 +463,12 @@ const Visualizer = () => {
 
   const handleSubmit = async () => {
     console.log("Handle submit called");
-    
+	const data= {
+        schema: schema,
+        rowData: rowData,
+        tableData: tableData
+      }
+    console.log(JSON.stringify(data))
     let options = {
       method: "POST",
       url: process.env.REACT_APP_BANCKEND_API + "createTable/",
@@ -501,6 +510,141 @@ const Visualizer = () => {
     setTableyCoordinate(10);
     onChange(schema);
   }
+
+  const InsertVal = ({isOpen, onClose}) =>{    
+
+    const [Table_Name, setTableName] = useState("");
+    const [columnNames, setColumnNames] = useState({names:[]})
+    const [columnValues, setColumnValues] = useState({values:[]})
+
+    const addColumn=()=>{
+      setColumnValues({values:[...columnValues.values,' ']});
+      setColumnNames({names:[...columnNames.names,' ']});
+      console.log({columnNames,columnValues})
+    }
+
+    const handleName = (e,index) =>{
+      columnNames.names[index]=e.target.value;
+      setColumnNames({names: columnNames.names})
+    }
+
+    const handleValues = (e,index) =>{
+      columnValues.values[index]=e.target.value;
+      setColumnValues({values: columnValues.values})
+    }
+
+    const handleRemove = (e,index) =>{
+      columnNames.names.splice(index,1)
+      columnValues.values.splice(index,1)
+
+      setColumnNames({names: columnNames.names})
+      setColumnValues({values: columnValues.values})
+    }
+
+    const handleInsertSubmit = async () => {
+      onClose()
+      console.log("Handle submit called");
+      const data= {
+          table_name:Table_Name,
+          column_names: columnNames,
+          column_values: columnValues,
+      }
+      console.log(JSON.stringify(data))
+      let options = {
+        method: "POST",
+        url: process.env.REACT_APP_BANCKEND_API + "insertValue/",
+        headers: {
+          "content-type": "application/json",
+        },
+        data: {
+          table_name:Table_Name,
+          column_names: columnNames,
+          column_values: columnValues,
+        },
+      };
+  
+      dispatch(codeGenerateLoader());
+      await axios
+        .request(options)
+        .then(function (response) {
+          console.log("compile: ", response.data);
+          dispatch(codeValue(response.data["node-1"]));
+          dispatch(codeGenerateLoader());
+          dispatch(toggleCodeEditor());
+        })
+        .catch(function (error) {
+          dispatch(codeGenerateLoader());
+          console.error(error);
+        });
+    };
+  
+    return (
+      <Dialog open={isOpen} onClose={onClose} rounded="md">
+        <DialogContent style={{ width: "600px" }}>
+          <Row p={{ l: "0.5rem", t: "0.25rem" }} m={{ b: "2rem" }} 
+                style={{paddingBottom:"7px"}}>
+            <Col>
+              <Label style={{fontSize:"20px",fontWeight:"600",paddingBottom:"4px"}}>Table Name:</Label>
+              <Input
+                placeholder="Enter Table Name"
+                value={Table_Name}
+                onChange={(e)=> setTableName(e.target.value)}
+                h="3rem"
+              />
+
+              <Label style={{fontSize:"20px",fontWeight:"600",paddingBottom:"2px",paddingTop:"15px"}}>Column Data:</Label>
+            </Col>
+          </Row>
+  
+          {
+            columnValues.values.map((value,index) =>{
+              return (
+                <Row key={index}>
+                  <Col xs="5" style={{paddingBottom:"5px"}}>
+                    <Input
+                      placeholder="Enter Column Name"
+                      onChange={(e)=>handleName(e,index)}
+                      h="3rem"
+                    />
+                  </Col>
+                  <Col xs="5" style={{paddingBottom:"5px"}}>
+                    <Input
+                      placeholder="Enter Value"
+                      onChange={(e)=>handleValues(e,index)}
+                      h="3rem"
+                    />
+                  </Col>
+                  <Col xs="1">
+                    <Button onClick={()=>handleRemove(index)} style={{ background: "#9D4EDD",height:"85%"}}> <DeleteIcon /></Button>
+                  </Col>
+                </Row>
+              )
+            })
+          }
+          <Div d="flex"style={{paddingBottom:"3px",paddingTop:"8px"}}>
+            <Button onClick={addColumn} style={{ background: "#9D4EDD" }}>
+              Add Column
+            </Button>
+          </Div>
+  
+          <Div d="flex" justify="flex-end" style={{paddingBottom:"3px",paddingTop:"10px"}}>
+            <Button
+              onClick={onClose}
+              bg="gray200"
+              textColor="medium"
+              m={{ r: "1rem" }}
+            >
+              Close
+            </Button>
+            <Button onClick={handleInsertSubmit} style={{ background: "#9D4EDD" }}>
+              OK
+            </Button>
+          </Div>
+        </DialogContent>
+      </Dialog>
+    );
+  }
+  
   
   return (
     <Fragment>
@@ -518,11 +662,15 @@ const Visualizer = () => {
             <CodeEditorPanel value={codeEditorState.codeValue} />
           </Col>
         </Row>
+        <MUIButton onClick = {()=>setState(true)} startIcon={<CodeIcon />} variant="contained" style = {{backgroundColor: "#db07f5", color: '#fff' , top:"62%",right:"1%",zIndex:"1",position:"absolute"}}> <Typography style = {{fontFamily: 'Poppins', fontWeight: "600"}}>Insert Value </Typography></MUIButton>
         <MUIButton onClick = {addTableNode} startIcon={<AddBoxIcon />} variant="contained" style = {{backgroundColor: "#4cd137", color: '#fff' , top:"69%",right:"1%",zIndex:"1",position:"absolute"}}> <Typography style = {{fontFamily: 'Poppins', fontWeight: "600"}}>Add Table </Typography></MUIButton>
         <MUIButton onClick = {addNewNode} startIcon={<AddToPhotosIcon />} variant="contained" style = {{backgroundColor: "#7158e2", color: '#fff' , top:"76%",right:"1%",zIndex:"1",position:"absolute"}}> <Typography style = {{fontFamily: 'Poppins', fontWeight: "600"}}>Add Field </Typography></MUIButton>
         <MUIButton onClick = {handleSubmit} startIcon={<CodeIcon />} variant="contained" style = {{backgroundColor: "#fbc531", color: '#fff' , top:"83%",right:"1%",zIndex:"1",position:"absolute"}}> <Typography style = {{fontFamily: 'Poppins', fontWeight: "600"}}>Generate Code </Typography></MUIButton>
         <MUIButton onClick = {clearDiagram} startIcon={<DeleteIcon />} variant="contained" style = {{backgroundColor: "#ff4d4d", color: '#fff' , top:"90%",right:"1%",zIndex:"1",position:"absolute"}}> <Typography style = {{fontFamily: 'Poppins', fontWeight: "600"}}>Clear Screen</Typography></MUIButton>
       </div>
+
+      <InsertVal isOpen={showModal} onClose={() => setState(false)} />
+
     </Fragment>
   );
 };
