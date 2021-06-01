@@ -138,7 +138,12 @@ def InsertQuery_Function(newData):
     query = query + " ) Values ( "
     
     for value in column_values:
-        query = query + "'" + value+ "'"
+        if '/' in value and value.replace('/', '', 2).isdigit():
+            query = query + "TO_DATE('"+value+"', 'YYYY/MM/DD')"
+        elif value.isnumeric() or value.replace('.', '', 1).isdigit():
+            query = query + value
+        else:
+            query = query + "'" + value+ "'"
         if(value != column_values[-1]):
             query=query+', '
 

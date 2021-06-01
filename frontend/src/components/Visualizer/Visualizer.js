@@ -463,12 +463,7 @@ const Visualizer = () => {
 
   const handleSubmit = async () => {
     console.log("Handle submit called");
-	const data= {
-        schema: schema,
-        rowData: rowData,
-        tableData: tableData
-      }
-    console.log(JSON.stringify(data))
+    
     let options = {
       method: "POST",
       url: process.env.REACT_APP_BANCKEND_API + "createTable/",
@@ -544,15 +539,9 @@ const Visualizer = () => {
     const handleInsertSubmit = async () => {
       onClose()
       console.log("Handle submit called");
-      const data= {
-          table_name:Table_Name,
-          column_names: columnNames,
-          column_values: columnValues,
-      }
-      console.log(JSON.stringify(data))
       let options = {
         method: "POST",
-        url: process.env.REACT_APP_BANCKEND_API + "insertValue/",
+        url: process.env.REACT_APP_BANCKEND_API_LOCAL + "insertValue/",
         headers: {
           "content-type": "application/json",
         },
@@ -592,7 +581,11 @@ const Visualizer = () => {
                 h="3rem"
               />
 
-              <Label style={{fontSize:"20px",fontWeight:"600",paddingBottom:"2px",paddingTop:"15px"}}>Column Data:</Label>
+              <Label 
+                style={{fontSize:"20px",fontWeight:"600",paddingBottom:"2px",paddingTop:"15px"}}
+              >
+                Column Data : <span style={{color:"gray",fontSize:"15px"}}> &nbsp; (Date format : YYYY/MM/DD)</span>
+              </Label>
             </Col>
           </Row>
   
