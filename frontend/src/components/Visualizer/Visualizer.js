@@ -541,7 +541,7 @@ const Visualizer = () => {
       console.log("Handle submit called");
       let options = {
         method: "POST",
-        url: process.env.REACT_APP_BANCKEND_API_LOCAL + "insertValue/",
+        url: process.env.REACT_APP_BANCKEND_API + "insertValue/",
         headers: {
           "content-type": "application/json",
         },
