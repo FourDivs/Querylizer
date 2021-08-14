@@ -1,5 +1,5 @@
 .aboutus {
-  background: "#000a29";
+  background: '#000a29';
   width: 100%;
   height: 100%;
 }
@@ -7,7 +7,7 @@
 .cards {
   margin-left: auto;
   margin-right: auto;
-  background-color: "#000a29";
+  background-color: '#000a29';
   width: 90%;
   padding-bottom: 5%;
   display: flex;

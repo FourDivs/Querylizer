@@ -17,7 +17,7 @@
   font-size: 35px;
   padding-top: 10px;
   padding-left: 30px;
-  font-family: "Poppins";
+  font-family: 'Poppins';
 }
 
 .home__navbar__brand__logo {
@@ -33,19 +33,19 @@
 .home_h1_text {
   font-size: 40px;
   font-weight: 700;
-  font-family: "Poppins";
+  font-family: 'Poppins';
   line-height: 1.5;
 }
 
 .home_h2_text {
   font-size: 35px;
-  font-family: "Poppins";
+  font-family: 'Poppins';
 }
 
 .home_h2_last_text {
   font-size: 35px;
   font-weight: 300;
-  font-family: "Poppins";
+  font-family: 'Poppins';
 }
 
 .home_button_col {
