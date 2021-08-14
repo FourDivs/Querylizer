@@ -21,7 +21,7 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 var provider = new firebase.auth.GoogleAuthProvider();
 
-const Navbar = (props) => {
+const Navbar = () => {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
@@ -49,7 +49,7 @@ const Navbar = (props) => {
         console.log('logout');
         dispatch(userLogout());
       })
-      .catch((error) => {
+      .catch(() => {
         console.log('logout Error');
       });
   };

@@ -43,7 +43,7 @@ const Home = () => {
         console.log('logout');
         dispatch(userLogout());
       })
-      .catch((error) => {
+      .catch(() => {
         console.log('logout Error');
       });
   };

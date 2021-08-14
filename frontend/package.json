@@ -31,7 +31,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "eslint": "eslint --ext .js ./src"
   },
   "eslintConfig": {
     "extends": [
@@ -52,6 +53,8 @@
     ]
   },
   "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-plugin-react": "^7.24.0",
     "react-test-renderer": "^17.0.2"
   }
 }
