@@ -33,6 +33,9 @@ import WifiLoader from '../Loader/WifiLoader';
 import { useSelector, useDispatch } from 'react-redux';
 import { codeValue, toggleCodeEditor, codeGenerateLoader } from '../../actions';
 
+//svgs
+import { ReactComponent as ScreenshotIcon } from '../../assets/icons/screenshot.svg'
+
 //Row Data of Each Node
 
 const rowData = {};
@@ -598,8 +601,8 @@ const Visualizer = () => {
       <Navbar />
       {codeEditorState.codeGenerateLoader && <WifiLoader />}
       <div style={{ height: '22.5rem', width: '99%', textAlign: 'center' }}>
-        <div onClick={handleImageSave} style={{ top: '12%', left: '97%', zIndex: '1', position: 'absolute' }}>
-          <WallpaperIcon style={{ color: '#8352ff' }} />
+        <div onClick={handleImageSave} style={{ top: '10%', left: '97%', zIndex: '1', position: 'absolute' }}>
+          <ScreenshotIcon style={{ height: '30px', fill: '#8352ff' }} />
         </div>
         <div ref={ref}>
           <Diagram schema={schema} onChange={onChange} />
