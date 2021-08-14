@@ -6,9 +6,6 @@ import reportWebVitals from './reportWebVitals';
 import 'beautiful-react-diagrams/styles.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import { Provider as StyletronProvider, DebugEngine } from 'styletron-react';
-import { Client as Styletron } from 'styletron-engine-atomic';
-
 //REDUX
 import { createStore } from 'redux';
 import allReducers from './reducers';
@@ -16,14 +13,10 @@ import { Provider } from 'react-redux';
 
 let store = createStore(allReducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
-const debug = process.env.NODE_ENV === 'production' ? void 0 : new DebugEngine();
-const engine = new Styletron();
 
 ReactDOM.render(
   <Provider store={store}>
-    <StyletronProvider value={engine} debug={debug} debugAfterHydration>
-      <App />
-    </StyletronProvider>
+    <App />
   </Provider>,
   document.getElementById('root'),
 );
