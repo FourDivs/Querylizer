@@ -6,10 +6,6 @@ import { Row, Col, Container } from 'react-bootstrap';
 import axios from 'axios';
 import CodeEditorPanel from '../CodeEditor/CodeEditorPanel';
 import { useScreenshot } from 'use-react-screenshot';
-import AddBoxIcon from '@material-ui/icons/AddBox';
-import AddToPhotosIcon from '@material-ui/icons/AddToPhotos';
-import CodeIcon from '@material-ui/icons/Code';
-import DeleteIcon from '@material-ui/icons/Delete';
 import {
   FormControl,
   MenuItem,
@@ -26,7 +22,6 @@ import {
 import CancelIcon from '@material-ui/icons/Cancel';
 import Navbar from '../Navbar/Navbar';
 import classes from './Visualizer.module.css';
-import WallpaperIcon from '@material-ui/icons/Wallpaper';
 import WifiLoader from '../Loader/WifiLoader';
 
 //Redux
@@ -34,7 +29,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import { codeValue, toggleCodeEditor, codeGenerateLoader } from '../../actions';
 
 //svgs
-import { ReactComponent as ScreenshotIcon } from '../../assets/icons/screenshot.svg'
+import { ReactComponent as ScreenshotIcon } from '../../assets/icons/screenshot.svg';
+import { ReactComponent as AddBoxIcon } from '../../assets/icons/add-box.svg';
+import { ReactComponent as AddToPhotosIcon } from '../../assets/icons/add-to-photos.svg';
+import { ReactComponent as CodeIcon } from '../../assets/icons/code.svg';
+import { ReactComponent as DeleteIcon } from '../../assets/icons/dustbin.svg';
 
 //Row Data of Each Node
 

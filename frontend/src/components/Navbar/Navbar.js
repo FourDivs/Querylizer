@@ -4,7 +4,7 @@ import { Toolbar, Typography, Popover } from '@material-ui/core';
 import logo from '../../assets/NavQuery.png';
 import { Link } from 'react-router-dom';
 
-// import PersonIcon from '@material-ui/icons/Person';
+
 import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import VerifiedUserIcon from '@material-ui/icons/VerifiedUser';
