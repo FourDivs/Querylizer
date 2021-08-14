@@ -1,5 +1,5 @@
 import Diagram, { createSchema, useSchema } from 'beautiful-react-diagrams';
-import { Div, Button, Input, Label } from 'atomize';
+import { Button, Input } from '@material-ui/core';
 import MUIButton from '@material-ui/core/Button';
 import { cloneElement, Fragment, useState, createRef } from 'react';
 import { Row, Col, Container } from 'react-bootstrap';
@@ -122,11 +122,11 @@ const ModalSize = ({ isOpen, onClose, nodeId }) => {
       <DialogContent style={{ width: '600px' }}>
         <Row p={{ l: '0.5rem', t: '0.25rem' }} m={{ b: '2rem' }}>
           <Col>
-            <Label style={{ fontSize: '16px', fontWeight: '500' }}>Column Name:</Label>
+            <label style={{ fontSize: '16px', fontWeight: '500' }}>Column Name:</label>
             <Input placeholder="Name" value={colName} onChange={handleColName} h="3rem" />
           </Col>
           <Col>
-            <Label style={{ fontSize: '16px', fontWeight: '500' }}>DataType:</Label>
+            <label style={{ fontSize: '16px', fontWeight: '500' }}>DataType:</label>
             <FormControl style={{ width: '100%', fontSize: '15px' }}>
               <Select
                 value={dataType}
@@ -149,7 +149,7 @@ const ModalSize = ({ isOpen, onClose, nodeId }) => {
           </Col>
         </Row>
         <Row style={{ padding: '14px' }}>
-          <Label style={{ fontSize: '16px', fontWeight: '500' }}>Max Length:</Label>
+          <label style={{ fontSize: '16px', fontWeight: '500' }}>Max Length:</label>
           <Container>
             <PrettoSlider
               disabled={disable}
@@ -163,7 +163,7 @@ const ModalSize = ({ isOpen, onClose, nodeId }) => {
 
         <Row p={{ l: '1rem', t: '0.25rem' }} m={{ b: '2rem' }} style={{ paddingLeft: '14px' }}>
           <FormControl>
-            <Label style={{ fontSize: '16px', fontWeight: '500' }}>Select Properties:</Label>
+            <label style={{ fontSize: '16px', fontWeight: '500' }}>Select Properties:</label>
             <FormGroup>
               <FormControlLabel
                 control={<Checkbox checked={primary} onChange={handleCheckbox} name="primary" />}
@@ -181,14 +181,14 @@ const ModalSize = ({ isOpen, onClose, nodeId }) => {
           </FormControl>
         </Row>
 
-        <Div d="flex" justify="flex-end">
+        <div d="flex" justify="flex-end">
           <Button onClick={onClose} bg="gray200" textColor="medium" m={{ r: '1rem' }}>
             Close
           </Button>
           <Button onClick={onClose} style={{ background: '#9D4EDD' }}>
             OK
           </Button>
-        </Div>
+        </div>
       </DialogContent>
     </Dialog>
   );
@@ -210,19 +210,19 @@ const TableModal = ({ isOpen, onClose, nodeId }) => {
       <DialogContent style={{ width: '600px' }}>
         <Row p={{ l: '0.5rem', t: '0.25rem' }} m={{ b: '2rem' }} style={{ paddingBottom: '7px' }}>
           <Col>
-            <Label style={{ fontSize: '20px', fontWeight: '600', paddingBottom: '4px' }}>Table Name:</Label>
+            <label style={{ fontSize: '20px', fontWeight: '600', paddingBottom: '4px' }}>Table Name:</label>
             <Input placeholder="Enter Table Name" value={Table_Name} onChange={handleTableName} h="3rem" />
           </Col>
         </Row>
 
-        <Div d="flex" justify="flex-end" style={{ paddingBottom: '3px' }}>
+        <div d="flex" justify="flex-end" style={{ paddingBottom: '3px' }}>
           <Button onClick={onClose} bg="gray200" textColor="medium" m={{ r: '1rem' }}>
             Close
           </Button>
           <Button onClick={onClose} style={{ background: '#9D4EDD' }}>
             OK
           </Button>
-        </Div>
+        </div>
       </DialogContent>
     </Dialog>
   );
@@ -541,7 +541,7 @@ const Visualizer = () => {
         <DialogContent style={{ width: '600px' }}>
           <Row p={{ l: '0.5rem', t: '0.25rem' }} m={{ b: '2rem' }} style={{ paddingBottom: '7px' }}>
             <Col>
-              <Label style={{ fontSize: '20px', fontWeight: '600', paddingBottom: '4px' }}>Table Name:</Label>
+              <label style={{ fontSize: '20px', fontWeight: '600', paddingBottom: '4px' }}>Table Name:</label>
               <Input
                 placeholder="Enter Table Name"
                 value={Table_Name}
@@ -549,10 +549,10 @@ const Visualizer = () => {
                 h="3rem"
               />
 
-              <Label style={{ fontSize: '20px', fontWeight: '600', paddingBottom: '2px', paddingTop: '15px' }}>
+              <label style={{ fontSize: '20px', fontWeight: '600', paddingBottom: '2px', paddingTop: '15px' }}>
                 Column Data :{' '}
                 <span style={{ color: 'gray', fontSize: '15px' }}> &nbsp; (Date format : YYYY/MM/DD)</span>
-              </Label>
+              </label>
             </Col>
           </Row>
 
@@ -574,20 +574,20 @@ const Visualizer = () => {
               </Row>
             );
           })}
-          <Div d="flex" style={{ paddingBottom: '3px', paddingTop: '8px' }}>
+          <div d="flex" style={{ paddingBottom: '3px', paddingTop: '8px' }}>
             <Button onClick={addColumn} style={{ background: '#9D4EDD' }}>
               Add Column
             </Button>
-          </Div>
+          </div>
 
-          <Div d="flex" justify="flex-end" style={{ paddingBottom: '3px', paddingTop: '10px' }}>
+          <div d="flex" justify="flex-end" style={{ paddingBottom: '3px', paddingTop: '10px' }}>
             <Button onClick={onClose} bg="gray200" textColor="medium" m={{ r: '1rem' }}>
               Close
             </Button>
             <Button onClick={handleInsertSubmit} style={{ background: '#9D4EDD' }}>
               OK
             </Button>
-          </Div>
+          </div>
         </DialogContent>
       </Dialog>
     );

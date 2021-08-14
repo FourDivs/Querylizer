@@ -3,7 +3,7 @@ import classes from './Home.module.css';
 import logo from '../../assets/Query.png';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
-import { Button } from 'atomize';
+import { Button } from 'react-bootstrap';
 import { Row, Col } from 'react-bootstrap';
 //import wallIamge from "../../assets/square_mid_light.svg"
 import { Link } from 'react-router-dom';
@@ -146,7 +146,7 @@ const Home = () => {
                 hoverShadow="4"
                 m={{ r: '1rem' }}
                 className={classes.home_button}
-                // onClick={addNewNode}
+              // onClick={addNewNode}
               >
                 About Us &nbsp; <i className={'fas fa-info-circle'}></i>
               </Button>
