@@ -22,11 +22,7 @@
   background: linear-gradient(145deg, #1e1e1e, #232323);
   box-shadow: 8px 8px 16px #0d0d0d, -4px -4px 4px #353535;
   background: #d3cce3; /* fallback for old browsers */
-  background: -webkit-linear-gradient(
-    to right,
-    #e9e4f0,
-    #d3cce3
-  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(to right, #e9e4f0, #d3cce3); /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(
     to right,
     #e9e4f0,
@@ -40,7 +36,7 @@
   padding-top: 5px;
   color: white;
   font-weight: 600;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 .table_panel {

@@ -3,7 +3,7 @@
 Please include a summary of the change and which issue is fixed.
 Fixes # (issue)
 
-## List any dependencies that are required for this change 
+## List any dependencies that are required for this change
 
 ## Type of change
 
@@ -15,9 +15,12 @@ Fixes # (issue)
 ## How Has This Been Tested?
 
 ## UI /UX changes
-   Attach gif or screenshot for changes.
-   - Before :
-    - After :
+
+Attach gif or screenshot for changes.
+
+- Before :
+- After :
+
 ## Checklist:
 
 - [ ] My code follows the style guidelines of this project
@@ -27,5 +30,3 @@ Fixes # (issue)
 - [ ] My changes generate no new warnings
 - [ ] I have added tests that prove my fix is effective or that my feature works
 - [ ] New and existing unit tests pass locally with my changes
-
-

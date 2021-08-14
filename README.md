@@ -1,5 +1,3 @@
-
-
 # Querylizer 📑
 
 ![Querylizer](https://github.com/kothariji/Querylizer/blob/main/Black%20Technology%20LinkedIn%20Banner.gif)
@@ -8,23 +6,22 @@
 
 ### Say Hi 👋 to the No Code Era.Easily convert your Beautiful Database Diagram to code. Hassle Free.
 
+![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat) ![Open Source? Yes!](https://badgen.net/badge/Open%20Source%20%3F/Yes%21/blue?icon=github)
 
-![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)   ![Open Source? Yes!](https://badgen.net/badge/Open%20Source%20%3F/Yes%21/blue?icon=github)
+![forthebadge](https://forthebadge.com/images/badges/made-with-javascript.svg) ![forthebadge](https://forthebadge.com/images/badges/made-with-python.svg)
 
-
- ![forthebadge](https://forthebadge.com/images/badges/made-with-javascript.svg) ![forthebadge](https://forthebadge.com/images/badges/made-with-python.svg)
- 
- 
-  ![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg) ![forthebadge](https://forthebadge.com/images/badges/for-you.svg)
+![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg) ![forthebadge](https://forthebadge.com/images/badges/for-you.svg)
 
 ## Want to get Familiar with Project 🤗?
+
 Watch Video [here](https://drive.google.com/file/d/1DFquCLAD2fAB_OMHIvd3_6KG9QDoJSIw/view?usp=sharing)
 
-## Want to Contribute  🙋‍♂️?
+## Want to Contribute 🙋‍♂️?
 
-Awesome! If you want to contribute to this project, you're always welcome! See  [Contributing Guidelines](https://github.com/kothariji/Querylizer/blob/master/CONTRIBUTING.md).
+Awesome! If you want to contribute to this project, you're always welcome! See [Contributing Guidelines](https://github.com/kothariji/Querylizer/blob/master/CONTRIBUTING.md).
 
 ### Creators :zap::dizzy:
+
 <table>
 		<tr>
 			<td align="center"><img src="https://i.imgur.com/iWdUqU7.jpg"  width=100px;"><br /><sub><b>Akash Salvi</b></sub><br/><a href="https://github.com/Akash-Salvi">🧘🔭👨‍🎓👽</a></td>
@@ -36,9 +33,11 @@ Awesome! If you want to contribute to this project, you're always welcome! See  
 </table>
 
 ### ❤️ Found this project useful?
-If you found this project useful, then please consider giving it a  ⭐  on Github and sharing it with your friends via social media. It really motivate us to do more.
+
+If you found this project useful, then please consider giving it a ⭐ on Github and sharing it with your friends via social media. It really motivate us to do more.
 
 ### License
+
 ```
 MIT License
 
@@ -62,6 +61,3 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
-
-  
-  
