@@ -19,7 +19,6 @@ import {
   Slider,
   Typography,
 } from '@material-ui/core';
-import CancelIcon from '@material-ui/icons/Cancel';
 import Navbar from '../Navbar/Navbar';
 import classes from './Visualizer.module.css';
 import WifiLoader from '../Loader/WifiLoader';
@@ -34,6 +33,7 @@ import { ReactComponent as AddBoxIcon } from '../../assets/icons/add-box.svg';
 import { ReactComponent as AddToPhotosIcon } from '../../assets/icons/add-to-photos.svg';
 import { ReactComponent as CodeIcon } from '../../assets/icons/code.svg';
 import { ReactComponent as DeleteIcon } from '../../assets/icons/dustbin.svg';
+import { ReactComponent as CancelIcon } from '../../assets/icons/cancel.svg';
 
 //Row Data of Each Node
 

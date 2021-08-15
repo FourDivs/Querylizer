@@ -1,4 +1,5 @@
 import { ReactComponent as BulletPoint } from '../../assets/icons/circle.svg';
+
 const Information = () => {
   return (
     <div style={{ padding: '10px' }}>
