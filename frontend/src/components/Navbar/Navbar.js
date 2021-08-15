@@ -3,16 +3,15 @@ import AppBar from '@material-ui/core/AppBar';
 import { Toolbar, Typography, Popover } from '@material-ui/core';
 import logo from '../../assets/NavQuery.png';
 import { Link } from 'react-router-dom';
-
-
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import VerifiedUserIcon from '@material-ui/icons/VerifiedUser';
-import AssignmentLateIcon from '@material-ui/icons/AssignmentLate';
-import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
 import Information from './Information';
+
 
 //SVGs
 import { ReactComponent as InfoOutlinedIcon } from '../../assets/icons/info-outlined.svg';
+import { ReactComponent as ExitToAppIcon } from '../../assets/icons/exit-to-app.svg';
+import { ReactComponent as VerifiedUserIcon } from '../../assets/icons/verified-user.svg';
+import { ReactComponent as AssignmentLateIcon } from '../../assets/icons/assignment-late.svg';
+import { ReactComponent as MeetingRoomIcon } from '../../assets/icons/meeting-room.svg';
 
 //REDUX
 import { useSelector, useDispatch } from 'react-redux';
@@ -81,12 +80,12 @@ const Navbar = () => {
           <div style={{ fontFamily: 'poppins', marginLeft: '30%', fontWeight: '600', color: 'white' }}>
             {user?.email ? (
               <Fragment>
-                <VerifiedUserIcon style={{ color: '#7ed957' }} />
+                <VerifiedUserIcon style={{ fill: '#7ed957', height: '25px' }} />
                 {`Welcome ${user.displayName}`}
               </Fragment>
             ) : (
               <Fragment>
-                <AssignmentLateIcon style={{ color: '#ff5757' }} />
+                <AssignmentLateIcon style={{ fill: '#ff5757', height: '25px' }} />
                 {'  Please Login to save diagrams !'}
               </Fragment>
             )}
@@ -123,12 +122,12 @@ const Navbar = () => {
             {user ? (
               <div onClick={handleLogut} style={{ cursor: 'pointer' }}>
                 {' '}
-                Logout <ExitToAppIcon />{' '}
+                Logout <ExitToAppIcon style={{ fill: '#fff', height: '25px' }} />{' '}
               </div>
             ) : (
               <div onClick={handleLogin} style={{ cursor: 'pointer' }}>
                 {' '}
-                Login <MeetingRoomIcon />{' '}
+                Login <MeetingRoomIcon style={{ fill: '#fff', height: '25px' }} />{' '}
               </div>
             )}
           </div>
