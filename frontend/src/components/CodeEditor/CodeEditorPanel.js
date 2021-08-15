@@ -38,7 +38,7 @@ const CodeEditorPanel = (props) => {
           }}
           onClick={handleClick}
         >
-          <DoubleArrowIcon style={{ color: 'white', marginLeft: '9px' }} /> &nbsp;
+          <DoubleArrowIcon style={{ fill: 'white', marginLeft: '7px', height: '30px' }} /> &nbsp;
           <span style={{ fontSize: '23px', color: 'white', writingMode: 'vertical-rl' }}>Code Editor</span>
         </button>
       </OffCanvasBody>
