@@ -1,17 +1,22 @@
 repos:
--   repo: https://github.com/pre-commit/mirrors-autopep8
+  - repo: https://github.com/pre-commit/mirrors-autopep8
     rev: 'v1.5.2'
     hooks:
-    -   id: autopep8
+      - id: autopep8
         exclude: |
-            (?x)(
-                .*/migrations/
-            )
--   repo: https://gitlab.com/pycqa/flake8
+          (?x)(
+              .*/migrations/
+          )
+  - repo: https://gitlab.com/pycqa/flake8
     rev: '3.8.2'
     hooks:
-    -   id: flake8
+      - id: flake8
         exclude: |
-            (?x)(
-                .*/migrations/
-            )
+          (?x)(
+              .*/migrations/
+          )
+
+  - repo: https://github.com/timothycrosley/isort
+    rev: 5.9.3
+    hooks:
+      - id: isort
