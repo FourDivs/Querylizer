@@ -1,8 +1,12 @@
-from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-from django.utils.decorators import method_decorator
 import json
-from .ExtraFunctions.helperFunctions import CreateTableQuery_Function, InsertQuery_Function
+
+from django.http import JsonResponse
+from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_exempt
+
+from .ExtraFunctions.helperFunctions import (
+    CreateTableQuery_Function, InsertQuery_Function)
+
 # Create your views here.
 
 # To turn off CSRF validation (not recommended in production)
