@@ -21,7 +21,7 @@ def CreateTableQuery_Function(newData):
     for link in LinkData:
         LinksInfo[link["input"]] = link["output"]
 
-    #TableNames = {"node-1" : table["tableName"]}
+    # TableNames = {"node-1" : table["tableName"]}
     TableData = newData["tableData"]["data"]
     TableNames = {}
     for info in TableData:
