@@ -6,11 +6,14 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
-import LinkedInIcon from '@material-ui/icons/LinkedIn';
-import GitHubIcon from '@material-ui/icons/GitHub';
-import EmailIcon from '@material-ui/icons/Email';
-import TwitterIcon from '@material-ui/icons/Twitter';
-import InstagramIcon from '@material-ui/icons/Instagram';
+
+//svgs
+import { ReactComponent as LinkedInIcon } from '../../../assets/icons/linkedin.svg';
+import { ReactComponent as GitHubIcon } from '../../../assets/icons/github.svg';
+import { ReactComponent as EmailIcon } from '../../../assets/icons/email.svg';
+import { ReactComponent as TwitterIcon } from '../../../assets/icons/twitter.svg';
+import { ReactComponent as InstagramIcon } from '../../../assets/icons/instagram.svg';
+
 
 const useStyles = makeStyles({
   root: {
@@ -19,6 +22,9 @@ const useStyles = makeStyles({
   media: {
     height: 280,
   },
+  icons:{
+    height:25,
+  }
 });
 
 const MediaCard = (props) => {
@@ -41,30 +47,35 @@ const MediaCard = (props) => {
         <div>
           &nbsp;&nbsp;&nbsp;&nbsp;
           <GitHubIcon
+            className={classes.icons}
             onClick={() => {
               window.open(props.github);
             }}
           />{' '}
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <TwitterIcon
+            className={classes.icons}
             onClick={() => {
               window.open(props.twitter);
             }}
           />{' '}
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <LinkedInIcon
+            className={classes.icons}
             onClick={() => {
               window.open(props.linkedin);
             }}
           />{' '}
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <EmailIcon
+            className={classes.icons}
             onClick={() => {
               window.open(props.gmail);
             }}
           />{' '}
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <InstagramIcon
+            className={classes.icons}
             onClick={() => {
               window.open(props.insta);
             }}

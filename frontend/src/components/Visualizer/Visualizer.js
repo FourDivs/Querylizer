@@ -6,10 +6,6 @@ import { Row, Col, Container } from 'react-bootstrap';
 import axios from 'axios';
 import CodeEditorPanel from '../CodeEditor/CodeEditorPanel';
 import { useScreenshot } from 'use-react-screenshot';
-import AddBoxIcon from '@material-ui/icons/AddBox';
-import AddToPhotosIcon from '@material-ui/icons/AddToPhotos';
-import CodeIcon from '@material-ui/icons/Code';
-import DeleteIcon from '@material-ui/icons/Delete';
 import {
   FormControl,
   MenuItem,
@@ -23,15 +19,21 @@ import {
   Slider,
   Typography,
 } from '@material-ui/core';
-import CancelIcon from '@material-ui/icons/Cancel';
 import Navbar from '../Navbar/Navbar';
 import classes from './Visualizer.module.css';
-import WallpaperIcon from '@material-ui/icons/Wallpaper';
 import WifiLoader from '../Loader/WifiLoader';
 
 //Redux
 import { useSelector, useDispatch } from 'react-redux';
 import { codeValue, toggleCodeEditor, codeGenerateLoader } from '../../actions';
+
+//svgs
+import { ReactComponent as ScreenshotIcon } from '../../assets/icons/screenshot.svg';
+import { ReactComponent as AddBoxIcon } from '../../assets/icons/add-box.svg';
+import { ReactComponent as AddToPhotosIcon } from '../../assets/icons/add-to-photos.svg';
+import { ReactComponent as CodeIcon } from '../../assets/icons/code.svg';
+import { ReactComponent as DeleteIcon } from '../../assets/icons/dustbin.svg';
+import { ReactComponent as CancelIcon } from '../../assets/icons/cancel.svg';
 
 //Row Data of Each Node
 
@@ -568,7 +570,7 @@ const Visualizer = () => {
                 <Col xs="1">
                   <Button onClick={() => handleRemove(index)} style={{ background: '#9D4EDD', height: '85%' }}>
                     {' '}
-                    <DeleteIcon />
+                    <DeleteIcon style={{ fill: '#fff', height: '25px' }} />
                   </Button>
                 </Col>
               </Row>
@@ -598,8 +600,8 @@ const Visualizer = () => {
       <Navbar />
       {codeEditorState.codeGenerateLoader && <WifiLoader />}
       <div style={{ height: '22.5rem', width: '99%', textAlign: 'center' }}>
-        <div onClick={handleImageSave} style={{ top: '12%', left: '97%', zIndex: '1', position: 'absolute' }}>
-          <WallpaperIcon style={{ color: '#8352ff' }} />
+        <div onClick={handleImageSave} style={{ top: '10%', left: '97%', zIndex: '1', position: 'absolute' }}>
+          <ScreenshotIcon style={{ height: '30px', fill: '#8352ff' }} />
         </div>
         <div ref={ref}>
           <Diagram schema={schema} onChange={onChange} />
@@ -611,7 +613,7 @@ const Visualizer = () => {
         </Row>
         <MUIButton
           onClick={() => setState(true)}
-          startIcon={<CodeIcon />}
+          startIcon={<CodeIcon style={{ fill: '#fff', height: '25px' }} />}
           variant="contained"
           style={{
             backgroundColor: '#db07f5',
@@ -627,7 +629,7 @@ const Visualizer = () => {
         </MUIButton>
         <MUIButton
           onClick={addTableNode}
-          startIcon={<AddBoxIcon />}
+          startIcon={<AddBoxIcon style={{ fill: '#fff', height: '25px' }} />}
           variant="contained"
           style={{
             backgroundColor: '#4cd137',
@@ -643,7 +645,7 @@ const Visualizer = () => {
         </MUIButton>
         <MUIButton
           onClick={addNewNode}
-          startIcon={<AddToPhotosIcon />}
+          startIcon={<AddToPhotosIcon style={{ fill: '#fff', height: '25px' }} />}
           variant="contained"
           style={{
             backgroundColor: '#7158e2',
@@ -659,7 +661,7 @@ const Visualizer = () => {
         </MUIButton>
         <MUIButton
           onClick={handleSubmit}
-          startIcon={<CodeIcon />}
+          startIcon={<CodeIcon style={{ fill: '#fff', height: '25px' }} />}
           variant="contained"
           style={{
             backgroundColor: '#fbc531',
@@ -675,7 +677,7 @@ const Visualizer = () => {
         </MUIButton>
         <MUIButton
           onClick={clearDiagram}
-          startIcon={<DeleteIcon />}
+          startIcon={<DeleteIcon style={{ fill: '#fff', height: '25px' }} />}
           variant="contained"
           style={{
             backgroundColor: '#ff4d4d',

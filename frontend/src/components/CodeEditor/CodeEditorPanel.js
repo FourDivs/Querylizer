@@ -1,6 +1,9 @@
 import { OffCanvas, OffCanvasMenu, OffCanvasBody } from 'react-offcanvas';
 import CodeEditor from './CodeEditor';
-import DoubleArrowIcon from '@material-ui/icons/DoubleArrow';
+
+//svgs
+import { ReactComponent as DoubleArrowIcon } from '../../assets/icons/double-arrow.svg';
+
 
 //Redux
 import { useSelector, useDispatch } from 'react-redux';
@@ -35,7 +38,7 @@ const CodeEditorPanel = (props) => {
           }}
           onClick={handleClick}
         >
-          <DoubleArrowIcon style={{ color: 'white', marginLeft: '9px' }} /> &nbsp;
+          <DoubleArrowIcon style={{ fill: 'white', marginLeft: '7px', height: '30px' }} /> &nbsp;
           <span style={{ fontSize: '23px', color: 'white', writingMode: 'vertical-rl' }}>Code Editor</span>
         </button>
       </OffCanvasBody>
