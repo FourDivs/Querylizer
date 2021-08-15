@@ -1,4 +1,4 @@
-def CreateTableQuery_Function (newData):
+def CreateTableQuery_Function(newData):
 
     schema = newData["schema"]
     table = newData["rowData"]
@@ -6,14 +6,14 @@ def CreateTableQuery_Function (newData):
     NodeData = schema["nodes"]
     LinkData = schema["links"]
 
-    #format is id : output port number
-    NodeList = {} 
+    # format is id : output port number
+    NodeList = {}
     TableList = {}
 
     for node in NodeData:
         if "Table" in node["content"]:
             TableList[node["id"]] = node["outputs"][0]["id"]
-            
+
         else:
             NodeList[node["id"]] = node["inputs"][0]["id"]
 
@@ -21,13 +21,11 @@ def CreateTableQuery_Function (newData):
     for link in LinkData:
         LinksInfo[link["input"]] = link["output"]
 
-
     #TableNames = {"node-1" : table["tableName"]}
     TableData = newData["tableData"]["data"]
     TableNames = {}
     for info in TableData:
         TableNames[info["id"]] = info["table_name"]
-
 
     TableColData = table["data"]
 
@@ -40,7 +38,6 @@ def CreateTableQuery_Function (newData):
     for NameId in TableNames.keys():
         FinalTableData[NameId]["TableName"] = TableNames[NameId]
 
-
     for Column in TableColData:
         NodeId = Column["id"]
         portId = NodeList[NodeId]
@@ -50,7 +47,7 @@ def CreateTableQuery_Function (newData):
             if TableList[idKey] == TablePortId:
                 TableId = idKey
                 break
-        
+
         ColData = {}
         ColData["Name"] = Column["column_name"]
         ColData["DataType"] = Column["data_type"]
@@ -64,8 +61,8 @@ def CreateTableQuery_Function (newData):
         else:
             FinalTableData[TableId]["ColumnInfo"] = []
             FinalTableData[TableId]["ColumnInfo"].append(ColData)
-        
-    #-----Preprocessing Done-----
+
+    # -----Preprocessing Done-----
 
     CreateTableQuery = {}
 
@@ -80,23 +77,24 @@ def CreateTableQuery_Function (newData):
             colQuery = ""
             colQuery = colQuery + eachColumn["Name"] + " "
             colQuery = colQuery + eachColumn["DataType"] + " "
-            
+
             if eachColumn["MaxLength"] != 0:
-                colQuery = colQuery + "(" + str(eachColumn["MaxLength"]) + ")" + " "
-            
+                colQuery = colQuery + \
+                    "(" + str(eachColumn["MaxLength"]) + ")" + " "
+
             if eachColumn["NotNull"] == 1:
                 colQuery = colQuery + "NOT NULL "
-            
+
             if eachColumn["Primary"] == 1:
                 colQuery = colQuery + "PRIMARY KEY "
 
             if eachColumn["Unique"] == 1:
                 UniqueColList.append(eachColumn["Name"])
-            
+
             colQuery = colQuery + ", "
 
-            query  = query + colQuery
-        
+            query = query + colQuery
+
         if UniqueColList:
             uniQuery = ""
             uniQuery = uniQuery + "UNIQUE ( "
@@ -110,21 +108,21 @@ def CreateTableQuery_Function (newData):
         else:
             query = query[:-2]
             query = query + "\n ); "
-        
+
         CreateTableQuery[eachTable] = query
-    
+
     FinalQuery = ""
     for SingleQuery in CreateTableQuery.keys():
         FinalQuery = FinalQuery + CreateTableQuery[SingleQuery] + " \n "
 
-    return {"node-1" : FinalQuery}
+    return {"node-1": FinalQuery}
 
 
 def InsertQuery_Function(newData):
-    
+
     table_name = newData["table_name"]
     column_names = newData["column_names"]["names"]
-    column_values = newData["column_values"]["values"]    
+    column_values = newData["column_values"]["values"]
 
     query = "Insert Into "
     query = query + table_name
@@ -133,20 +131,20 @@ def InsertQuery_Function(newData):
     for name in column_names:
         query = query + name
         if(name != column_names[-1]):
-            query=query+', '
+            query = query+', '
 
     query = query + " ) Values ( "
-    
+
     for value in column_values:
         if '/' in value and value.replace('/', '', 2).isdigit():
             query = query + "TO_DATE('"+value+"', 'YYYY/MM/DD')"
         elif value.isnumeric() or value.replace('.', '', 1).isdigit():
             query = query + value
         else:
-            query = query + "'" + value+ "'"
+            query = query + "'" + value + "'"
         if(value != column_values[-1]):
-            query=query+', '
+            query = query+', '
 
     query = query + " );"
 
-    return {"node-1" : query}
+    return {"node-1": query}
