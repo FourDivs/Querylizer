@@ -5,7 +5,6 @@ import logo from '../../assets/NavQuery.png';
 import { Link } from 'react-router-dom';
 import Information from './Information';
 
-
 //SVGs
 import { ReactComponent as InfoOutlinedIcon } from '../../assets/icons/info-outlined.svg';
 import { ReactComponent as ExitToAppIcon } from '../../assets/icons/exit-to-app.svg';
@@ -70,14 +69,28 @@ const Navbar = () => {
     <Fragment>
       <AppBar position="static" style={{ backgroundColor: '#151515' }}>
         <Toolbar>
-          <img src={logo} style={{ maxWidth: '35px', maxHeight: '35px' }} alt="SyntaxMeets" />
-          <Typography variant="h5" style={{ color: 'white', fontFamily: 'poppins' }}>
+          <img
+            src={logo}
+            style={{ maxWidth: '35px', maxHeight: '35px' }}
+            alt="SyntaxMeets"
+          />
+          <Typography
+            variant="h5"
+            style={{ color: 'white', fontFamily: 'poppins' }}
+          >
             &nbsp;
             <Link to="/" style={{ color: '#fff', textDecoration: 'none' }}>
               <span style={{ fontWeight: '700' }}>Query</span>lizer
             </Link>
           </Typography>
-          <div style={{ fontFamily: 'poppins', marginLeft: '30%', fontWeight: '600', color: 'white' }}>
+          <div
+            style={{
+              fontFamily: 'poppins',
+              marginLeft: '30%',
+              fontWeight: '600',
+              color: 'white',
+            }}
+          >
             {user?.email ? (
               <Fragment>
                 <VerifiedUserIcon style={{ fill: '#7ed957', height: '25px' }} />
@@ -85,7 +98,9 @@ const Navbar = () => {
               </Fragment>
             ) : (
               <Fragment>
-                <AssignmentLateIcon style={{ fill: '#ff5757', height: '25px' }} />
+                <AssignmentLateIcon
+                  style={{ fill: '#ff5757', height: '25px' }}
+                />
                 {'  Please Login to save diagrams !'}
               </Fragment>
             )}
@@ -118,16 +133,27 @@ const Navbar = () => {
           >
             <Information />
           </Popover>
-          <div style={{ fontFamily: 'poppins', marginLeft: '15px', fontWeight: '600', color: 'white' }}>
+          <div
+            style={{
+              fontFamily: 'poppins',
+              marginLeft: '15px',
+              fontWeight: '600',
+              color: 'white',
+            }}
+          >
             {user ? (
               <div onClick={handleLogut} style={{ cursor: 'pointer' }}>
                 {' '}
-                Logout <ExitToAppIcon style={{ fill: '#fff', height: '25px' }} />{' '}
+                Logout{' '}
+                <ExitToAppIcon style={{ fill: '#fff', height: '25px' }} />{' '}
               </div>
             ) : (
               <div onClick={handleLogin} style={{ cursor: 'pointer' }}>
                 {' '}
-                Login <MeetingRoomIcon style={{ fill: '#fff', height: '25px' }} />{' '}
+                Login{' '}
+                <MeetingRoomIcon
+                  style={{ fill: '#fff', height: '25px' }}
+                />{' '}
               </div>
             )}
           </div>
