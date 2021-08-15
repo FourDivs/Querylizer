@@ -1,0 +1,35 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v3.4.0
+    hooks:
+      # See https://pre-commit.com/hooks.html for more hooks
+      - id: check-ast
+      - id: check-case-conflict
+      - id: check-merge-conflict
+      - id: end-of-file-fixer
+      - id: name-tests-test
+        args: ['--django']
+
+  - repo: https://github.com/pre-commit/mirrors-autopep8
+    rev: 'v1.5.2'
+    hooks:
+      - id: autopep8
+        exclude: |
+          (?x)(
+              .*/migrations/
+          )
+  - repo: https://gitlab.com/pycqa/flake8
+    rev: '3.8.2'
+    hooks:
+      - id: flake8
+        exclude: |
+          (?x)(
+              .*/migrations/
+          )
+
+  - repo: https://github.com/timothycrosley/isort
+    rev: 5.9.3
+    hooks:
+      - id: isort
+        args: [--filter-files]
+        files: \.py$

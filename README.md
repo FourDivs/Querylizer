@@ -26,10 +26,10 @@ Awesome! If you want to contribute to this project, you're always welcome! See [
 		<tr>
 			<td align="center"><img src="https://i.imgur.com/iWdUqU7.jpg"  width=100px;"><br /><sub><b>Akash Salvi</b></sub><br/><a href="https://github.com/Akash-Salvi">🧘🔭👨‍🎓👽</a></td>
 		   <td align="center"><img src="https://user-images.githubusercontent.com/60866749/118470917-c95db780-b724-11eb-8384-febbf67b9507.png"  width=100px;"><br /><sub><b>Anushka Deshpande</b></sub><br/><a href="https://github.com/anushka-deshpande">👩🏻‍💻🎯🌸✨</a></td>
-			<td align="center"><img src="https://user-images.githubusercontent.com/60866749/118471115-03c75480-b725-11eb-8314-7aa4fb39ac87.png"  width=100px;"><br /><sub><b>Prajakta Mane</b></sub><br/><a href="https://github.com/maneprajakta">👩‍💻☕🎼🦄</a></td>			
-		<td align="center"><img src="https://i.imgur.com/e2DMxRN.jpg"  width=100px;"><br /><sub><b>Dhruv Kothari</b></sub><br/><a href="https://github.com/kothariji">🧠👨‍💻🚀❤️</a></td>	
+			<td align="center"><img src="https://user-images.githubusercontent.com/60866749/118471115-03c75480-b725-11eb-8314-7aa4fb39ac87.png"  width=100px;"><br /><sub><b>Prajakta Mane</b></sub><br/><a href="https://github.com/maneprajakta">👩‍💻☕🎼🦄</a></td>
+		<td align="center"><img src="https://i.imgur.com/e2DMxRN.jpg"  width=100px;"><br /><sub><b>Dhruv Kothari</b></sub><br/><a href="https://github.com/kothariji">🧠👨‍💻🚀❤️</a></td>
 		</tr>
-		
+
 </table>
 
 ### ❤️ Found this project useful?
