@@ -14,7 +14,6 @@ import { ReactComponent as EmailIcon } from '../../../assets/icons/email.svg';
 import { ReactComponent as TwitterIcon } from '../../../assets/icons/twitter.svg';
 import { ReactComponent as InstagramIcon } from '../../../assets/icons/instagram.svg';
 
-
 const useStyles = makeStyles({
   root: {
     maxWidth: 345,
@@ -22,9 +21,9 @@ const useStyles = makeStyles({
   media: {
     height: 280,
   },
-  icons:{
-    height:25,
-  }
+  icons: {
+    height: 25,
+  },
 });
 
 const MediaCard = (props) => {
@@ -33,7 +32,12 @@ const MediaCard = (props) => {
   return (
     <Card className={classes.root}>
       <CardActionArea>
-        <CardMedia className={classes.media} image={props.image} title={props.name} data-testid="image-test" />
+        <CardMedia
+          className={classes.media}
+          image={props.image}
+          title={props.name}
+          data-testid="image-test"
+        />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
             {props.name}

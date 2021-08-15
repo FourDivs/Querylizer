@@ -31,7 +31,7 @@ describe('<MediaCard />', () => {
   test('Description Check', () => {
     render(<DataMediaCard />);
     const linkElement = screen.getByText(
-      'A 3rd Year CSE Undergrad👨‍🎓🚀| Competitive Programmer 🏆 | Web Developer👨‍💻 | Technical Writer ✍️',
+      'A 3rd Year CSE Undergrad👨‍🎓🚀| Competitive Programmer 🏆 | Web Developer👨‍💻 | Technical Writer ✍️'
     );
     expect(linkElement).toBeInTheDocument();
   });

@@ -2,7 +2,9 @@ import { WifiLoader } from 'react-awesome-loaders';
 const WifiLoaderComponent = () => {
   return (
     <>
-      <div style={{ position: 'absolute', left: '42%', top: '33%', zIndex: '1' }}>
+      <div
+        style={{ position: 'absolute', left: '42%', top: '33%', zIndex: '1' }}
+      >
         <WifiLoader
           background={'transparent'}
           desktopSize={'150px'}

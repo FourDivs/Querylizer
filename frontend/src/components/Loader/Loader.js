@@ -12,7 +12,12 @@ const Loader = () => {
         backgroundColor: '#fff',
       }}
     >
-      <BoxesLoader boxColor={'#121212'} style={{ marginBottom: '20px' }} desktopSize={'128px'} mobileSize={'80px'} />
+      <BoxesLoader
+        boxColor={'#121212'}
+        style={{ marginBottom: '20px' }}
+        desktopSize={'128px'}
+        mobileSize={'80px'}
+      />
     </div>
   );
 };

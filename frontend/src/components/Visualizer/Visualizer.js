@@ -124,11 +124,20 @@ const ModalSize = ({ isOpen, onClose, nodeId }) => {
       <DialogContent style={{ width: '600px' }}>
         <Row p={{ l: '0.5rem', t: '0.25rem' }} m={{ b: '2rem' }}>
           <Col>
-            <label style={{ fontSize: '16px', fontWeight: '500' }}>Column Name:</label>
-            <Input placeholder="Name" value={colName} onChange={handleColName} h="3rem" />
+            <label style={{ fontSize: '16px', fontWeight: '500' }}>
+              Column Name:
+            </label>
+            <Input
+              placeholder="Name"
+              value={colName}
+              onChange={handleColName}
+              h="3rem"
+            />
           </Col>
           <Col>
-            <label style={{ fontSize: '16px', fontWeight: '500' }}>DataType:</label>
+            <label style={{ fontSize: '16px', fontWeight: '500' }}>
+              DataType:
+            </label>
             <FormControl style={{ width: '100%', fontSize: '15px' }}>
               <Select
                 value={dataType}
@@ -151,7 +160,9 @@ const ModalSize = ({ isOpen, onClose, nodeId }) => {
           </Col>
         </Row>
         <Row style={{ padding: '14px' }}>
-          <label style={{ fontSize: '16px', fontWeight: '500' }}>Max Length:</label>
+          <label style={{ fontSize: '16px', fontWeight: '500' }}>
+            Max Length:
+          </label>
           <Container>
             <PrettoSlider
               disabled={disable}
@@ -163,20 +174,44 @@ const ModalSize = ({ isOpen, onClose, nodeId }) => {
           </Container>
         </Row>
 
-        <Row p={{ l: '1rem', t: '0.25rem' }} m={{ b: '2rem' }} style={{ paddingLeft: '14px' }}>
+        <Row
+          p={{ l: '1rem', t: '0.25rem' }}
+          m={{ b: '2rem' }}
+          style={{ paddingLeft: '14px' }}
+        >
           <FormControl>
-            <label style={{ fontSize: '16px', fontWeight: '500' }}>Select Properties:</label>
+            <label style={{ fontSize: '16px', fontWeight: '500' }}>
+              Select Properties:
+            </label>
             <FormGroup>
               <FormControlLabel
-                control={<Checkbox checked={primary} onChange={handleCheckbox} name="primary" />}
+                control={
+                  <Checkbox
+                    checked={primary}
+                    onChange={handleCheckbox}
+                    name="primary"
+                  />
+                }
                 label="Primary"
               />
               <FormControlLabel
-                control={<Checkbox checked={unique} onChange={handleCheckbox} name="unique" />}
+                control={
+                  <Checkbox
+                    checked={unique}
+                    onChange={handleCheckbox}
+                    name="unique"
+                  />
+                }
                 label="Unique"
               />
               <FormControlLabel
-                control={<Checkbox checked={not_null} onChange={handleCheckbox} name="not_null" />}
+                control={
+                  <Checkbox
+                    checked={not_null}
+                    onChange={handleCheckbox}
+                    name="not_null"
+                  />
+                }
                 label="Not Null"
               />
             </FormGroup>
@@ -184,7 +219,12 @@ const ModalSize = ({ isOpen, onClose, nodeId }) => {
         </Row>
 
         <div d="flex" justify="flex-end">
-          <Button onClick={onClose} bg="gray200" textColor="medium" m={{ r: '1rem' }}>
+          <Button
+            onClick={onClose}
+            bg="gray200"
+            textColor="medium"
+            m={{ r: '1rem' }}
+          >
             Close
           </Button>
           <Button onClick={onClose} style={{ background: '#9D4EDD' }}>
@@ -210,15 +250,37 @@ const TableModal = ({ isOpen, onClose, nodeId }) => {
   return (
     <Dialog open={isOpen} onClose={onClose} rounded="md">
       <DialogContent style={{ width: '600px' }}>
-        <Row p={{ l: '0.5rem', t: '0.25rem' }} m={{ b: '2rem' }} style={{ paddingBottom: '7px' }}>
+        <Row
+          p={{ l: '0.5rem', t: '0.25rem' }}
+          m={{ b: '2rem' }}
+          style={{ paddingBottom: '7px' }}
+        >
           <Col>
-            <label style={{ fontSize: '20px', fontWeight: '600', paddingBottom: '4px' }}>Table Name:</label>
-            <Input placeholder="Enter Table Name" value={Table_Name} onChange={handleTableName} h="3rem" />
+            <label
+              style={{
+                fontSize: '20px',
+                fontWeight: '600',
+                paddingBottom: '4px',
+              }}
+            >
+              Table Name:
+            </label>
+            <Input
+              placeholder="Enter Table Name"
+              value={Table_Name}
+              onChange={handleTableName}
+              h="3rem"
+            />
           </Col>
         </Row>
 
         <div d="flex" justify="flex-end" style={{ paddingBottom: '3px' }}>
-          <Button onClick={onClose} bg="gray200" textColor="medium" m={{ r: '1rem' }}>
+          <Button
+            onClick={onClose}
+            bg="gray200"
+            textColor="medium"
+            m={{ r: '1rem' }}
+          >
             Close
           </Button>
           <Button onClick={onClose} style={{ background: '#9D4EDD' }}>
@@ -243,10 +305,19 @@ const TableNode = (props) => {
         <CancelIcon
           fontSize="small"
           onClick={() => data.onClick(id)}
-          style={{ position: 'absolute', color: 'red', top: '-5px', left: '135px', cursor: 'default' }}
+          style={{
+            position: 'absolute',
+            color: 'red',
+            top: '-5px',
+            left: '135px',
+            cursor: 'default',
+          }}
         />
         <div className={classes.field_name}>
-          <span onDoubleClick={() => setState(true)} style={{ color: 'black', wordWrap: 'break-word' }}>
+          <span
+            onDoubleClick={() => setState(true)}
+            style={{ color: 'black', wordWrap: 'break-word' }}
+          >
             {tableData.data[tableIndex].table_name}
           </span>
         </div>
@@ -254,9 +325,13 @@ const TableNode = (props) => {
       {outputs.map((port) =>
         cloneElement(port, {
           className: classes.table_panel,
-        }),
+        })
       )}
-      <TableModal isOpen={showModal} onClose={() => setState(false)} nodeId={props.id} />
+      <TableModal
+        isOpen={showModal}
+        onClose={() => setState(false)}
+        nodeId={props.id}
+      />
     </div>
   );
 };
@@ -286,26 +361,50 @@ const Field = (props) => {
             top: '-23%',
             left: '45%',
           },
-        }),
+        })
       )}
       <div style={{ padding: '5px' }}>
         <CancelIcon
           fontSize="small"
           onClick={() => data.onClick(id)}
-          style={{ position: 'absolute', color: '#F32013', top: '-5px', left: '135px', cursor: 'default' }}
+          style={{
+            position: 'absolute',
+            color: '#F32013',
+            top: '-5px',
+            left: '135px',
+            cursor: 'default',
+          }}
         />
         <div className={classes.field_name}>
-          <span onDoubleClick={() => setState(true)} style={{ wordWrap: 'break-word', padding: '10px' }}>
+          <span
+            onDoubleClick={() => setState(true)}
+            style={{ wordWrap: 'break-word', padding: '10px' }}
+          >
             {rowData.data[rowIndex].column_name}
           </span>
         </div>
       </div>
       <div className={classes.field_panel}>
-        <FieldBullet selected={rowData.data[rowIndex].unique} classProperty={classes.unique_circle} />
-        <FieldBullet selected={rowData.data[rowIndex].not_null} classProperty={classes.notnull_circle} />
-        <FieldBullet selected={rowData.data[rowIndex].primary_key} classProperty={classes.primary_circle} />
-        <FieldBullet selected={true} classProperty={classes.autoincrement_circle} />
-        <FieldBullet selected={true} classProperty={classes.foriegnkey_circle} />
+        <FieldBullet
+          selected={rowData.data[rowIndex].unique}
+          classProperty={classes.unique_circle}
+        />
+        <FieldBullet
+          selected={rowData.data[rowIndex].not_null}
+          classProperty={classes.notnull_circle}
+        />
+        <FieldBullet
+          selected={rowData.data[rowIndex].primary_key}
+          classProperty={classes.primary_circle}
+        />
+        <FieldBullet
+          selected={true}
+          classProperty={classes.autoincrement_circle}
+        />
+        <FieldBullet
+          selected={true}
+          classProperty={classes.foriegnkey_circle}
+        />
       </div>
 
       <ModalSize
@@ -541,9 +640,21 @@ const Visualizer = () => {
     return (
       <Dialog open={isOpen} onClose={onClose} rounded="md">
         <DialogContent style={{ width: '600px' }}>
-          <Row p={{ l: '0.5rem', t: '0.25rem' }} m={{ b: '2rem' }} style={{ paddingBottom: '7px' }}>
+          <Row
+            p={{ l: '0.5rem', t: '0.25rem' }}
+            m={{ b: '2rem' }}
+            style={{ paddingBottom: '7px' }}
+          >
             <Col>
-              <label style={{ fontSize: '20px', fontWeight: '600', paddingBottom: '4px' }}>Table Name:</label>
+              <label
+                style={{
+                  fontSize: '20px',
+                  fontWeight: '600',
+                  paddingBottom: '4px',
+                }}
+              >
+                Table Name:
+              </label>
               <Input
                 placeholder="Enter Table Name"
                 value={Table_Name}
@@ -551,9 +662,19 @@ const Visualizer = () => {
                 h="3rem"
               />
 
-              <label style={{ fontSize: '20px', fontWeight: '600', paddingBottom: '2px', paddingTop: '15px' }}>
+              <label
+                style={{
+                  fontSize: '20px',
+                  fontWeight: '600',
+                  paddingBottom: '2px',
+                  paddingTop: '15px',
+                }}
+              >
                 Column Data :{' '}
-                <span style={{ color: 'gray', fontSize: '15px' }}> &nbsp; (Date format : YYYY/MM/DD)</span>
+                <span style={{ color: 'gray', fontSize: '15px' }}>
+                  {' '}
+                  &nbsp; (Date format : YYYY/MM/DD)
+                </span>
               </label>
             </Col>
           </Row>
@@ -562,13 +683,24 @@ const Visualizer = () => {
             return (
               <Row key={index}>
                 <Col xs="5" style={{ paddingBottom: '5px' }}>
-                  <Input placeholder="Enter Column Name" onChange={(e) => handleName(e, index)} h="3rem" />
+                  <Input
+                    placeholder="Enter Column Name"
+                    onChange={(e) => handleName(e, index)}
+                    h="3rem"
+                  />
                 </Col>
                 <Col xs="5" style={{ paddingBottom: '5px' }}>
-                  <Input placeholder="Enter Value" onChange={(e) => handleValues(e, index)} h="3rem" />
+                  <Input
+                    placeholder="Enter Value"
+                    onChange={(e) => handleValues(e, index)}
+                    h="3rem"
+                  />
                 </Col>
                 <Col xs="1">
-                  <Button onClick={() => handleRemove(index)} style={{ background: '#9D4EDD', height: '85%' }}>
+                  <Button
+                    onClick={() => handleRemove(index)}
+                    style={{ background: '#9D4EDD', height: '85%' }}
+                  >
                     {' '}
                     <DeleteIcon style={{ fill: '#fff', height: '25px' }} />
                   </Button>
@@ -582,11 +714,23 @@ const Visualizer = () => {
             </Button>
           </div>
 
-          <div d="flex" justify="flex-end" style={{ paddingBottom: '3px', paddingTop: '10px' }}>
-            <Button onClick={onClose} bg="gray200" textColor="medium" m={{ r: '1rem' }}>
+          <div
+            d="flex"
+            justify="flex-end"
+            style={{ paddingBottom: '3px', paddingTop: '10px' }}
+          >
+            <Button
+              onClick={onClose}
+              bg="gray200"
+              textColor="medium"
+              m={{ r: '1rem' }}
+            >
               Close
             </Button>
-            <Button onClick={handleInsertSubmit} style={{ background: '#9D4EDD' }}>
+            <Button
+              onClick={handleInsertSubmit}
+              style={{ background: '#9D4EDD' }}
+            >
               OK
             </Button>
           </div>
@@ -600,7 +744,10 @@ const Visualizer = () => {
       <Navbar />
       {codeEditorState.codeGenerateLoader && <WifiLoader />}
       <div style={{ height: '22.5rem', width: '99%', textAlign: 'center' }}>
-        <div onClick={handleImageSave} style={{ top: '10%', left: '97%', zIndex: '1', position: 'absolute' }}>
+        <div
+          onClick={handleImageSave}
+          style={{ top: '10%', left: '97%', zIndex: '1', position: 'absolute' }}
+        >
           <ScreenshotIcon style={{ height: '30px', fill: '#8352ff' }} />
         </div>
         <div ref={ref}>
@@ -625,7 +772,9 @@ const Visualizer = () => {
           }}
         >
           {' '}
-          <Typography style={{ fontFamily: 'Poppins', fontWeight: '600' }}>Insert Value </Typography>
+          <Typography style={{ fontFamily: 'Poppins', fontWeight: '600' }}>
+            Insert Value{' '}
+          </Typography>
         </MUIButton>
         <MUIButton
           onClick={addTableNode}
@@ -641,11 +790,15 @@ const Visualizer = () => {
           }}
         >
           {' '}
-          <Typography style={{ fontFamily: 'Poppins', fontWeight: '600' }}>Add Table </Typography>
+          <Typography style={{ fontFamily: 'Poppins', fontWeight: '600' }}>
+            Add Table{' '}
+          </Typography>
         </MUIButton>
         <MUIButton
           onClick={addNewNode}
-          startIcon={<AddToPhotosIcon style={{ fill: '#fff', height: '25px' }} />}
+          startIcon={
+            <AddToPhotosIcon style={{ fill: '#fff', height: '25px' }} />
+          }
           variant="contained"
           style={{
             backgroundColor: '#7158e2',
@@ -657,7 +810,9 @@ const Visualizer = () => {
           }}
         >
           {' '}
-          <Typography style={{ fontFamily: 'Poppins', fontWeight: '600' }}>Add Field </Typography>
+          <Typography style={{ fontFamily: 'Poppins', fontWeight: '600' }}>
+            Add Field{' '}
+          </Typography>
         </MUIButton>
         <MUIButton
           onClick={handleSubmit}
@@ -673,7 +828,9 @@ const Visualizer = () => {
           }}
         >
           {' '}
-          <Typography style={{ fontFamily: 'Poppins', fontWeight: '600' }}>Generate Code </Typography>
+          <Typography style={{ fontFamily: 'Poppins', fontWeight: '600' }}>
+            Generate Code{' '}
+          </Typography>
         </MUIButton>
         <MUIButton
           onClick={clearDiagram}
@@ -689,7 +846,9 @@ const Visualizer = () => {
           }}
         >
           {' '}
-          <Typography style={{ fontFamily: 'Poppins', fontWeight: '600' }}>Clear Screen</Typography>
+          <Typography style={{ fontFamily: 'Poppins', fontWeight: '600' }}>
+            Clear Screen
+          </Typography>
         </MUIButton>
       </div>
 
