@@ -5,13 +5,10 @@ repos:
       # See https://pre-commit.com/hooks.html for more hooks
       - id: check-ast
       - id: check-case-conflict
-      - id: check-executables-have-shebangs
       - id: check-merge-conflict
-      - id: debug-statements
       - id: end-of-file-fixer
       - id: name-tests-test
         args: ['--django']
-      - id: trailing-whitespace
 
   - repo: https://github.com/pre-commit/mirrors-autopep8
     rev: 'v1.5.2'
