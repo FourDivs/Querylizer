@@ -5,12 +5,14 @@ import logo from '../../assets/NavQuery.png';
 import { Link } from 'react-router-dom';
 
 
-import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import VerifiedUserIcon from '@material-ui/icons/VerifiedUser';
 import AssignmentLateIcon from '@material-ui/icons/AssignmentLate';
 import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
 import Information from './Information';
+
+//SVGs
+import { ReactComponent as InfoOutlinedIcon } from '../../assets/icons/info-outlined.svg';
 
 //REDUX
 import { useSelector, useDispatch } from 'react-redux';
