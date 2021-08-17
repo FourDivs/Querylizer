@@ -22,3 +22,8 @@ repos:
       - id: isort
         args: [--filter-files]
         files: \.py$
+
+  - repo: https://github.com/pre-commit/mirrors-prettier
+    rev: '' # Use the sha / tag you want to point at
+    hooks:
+      - id: prettier
