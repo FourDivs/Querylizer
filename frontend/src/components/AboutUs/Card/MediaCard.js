@@ -32,12 +32,7 @@ const MediaCard = (props) => {
   return (
     <Card className={classes.root}>
       <CardActionArea>
-        <CardMedia
-          className={classes.media}
-          image={props.image}
-          title={props.name}
-          data-testid="image-test"
-        />
+        <CardMedia className={classes.media} image={props.image} title={props.name} data-testid="image-test" />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
             {props.name}

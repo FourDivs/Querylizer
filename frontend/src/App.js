@@ -16,10 +16,7 @@ const Home = lazy(() => {
 });
 const Visualizer = lazy(() => {
   return new Promise((resolve) => {
-    setTimeout(
-      () => resolve(import('./components/Visualizer/Visualizer')),
-      1000
-    );
+    setTimeout(() => resolve(import('./components/Visualizer/Visualizer')), 1000);
   });
 });
 const AboutUs = lazy(() => {
