@@ -26,8 +26,7 @@ const AboutUs = () => {
       <div
         className={localclasses.aboutus}
         style={{
-          background:
-            'linear-gradient(180deg, rgba(0,0,0,1) 28%, rgba(255,255,255,1) 100%)',
+          background: 'linear-gradient(180deg, rgba(0,0,0,1) 28%, rgba(255,255,255,1) 100%)',
         }}
       >
         <Typography

@@ -63,11 +63,7 @@ const Home = () => {
       <Navbar>
         <div className={classes.home__navbar__brand}>
           <Link to="/" style={{ color: '#000', textDecoration: 'none' }}>
-            <img
-              src={logo}
-              className={classes.home__navbar__brand__logo}
-              alt="Querylizer"
-            />
+            <img src={logo} className={classes.home__navbar__brand__logo} alt="Querylizer" />
             <span style={{ fontWeight: '800' }}>Query</span>lizer
           </Link>
         </div>
@@ -81,9 +77,7 @@ const Home = () => {
         >
           <Nav>
             <Nav.Link href="#home" className={classes.home__navbar__logo}>
-              <i
-                className={'far fa-envelope ' + classes.home__navbar__icons}
-              ></i>
+              <i className={'far fa-envelope ' + classes.home__navbar__icons}></i>
             </Nav.Link>
             <Nav.Link href="https://github.com/kothariji/Querylizer">
               <i className={'fab fa-github ' + classes.home__navbar__icons}></i>
@@ -91,19 +85,11 @@ const Home = () => {
             <Nav.Link>
               {user?.email ? (
                 <span onClick={handleLogut}>
-                  <i
-                    className={
-                      'fas fa-sign-out-alt ' + classes.home__navbar__icons
-                    }
-                  ></i>
+                  <i className={'fas fa-sign-out-alt ' + classes.home__navbar__icons}></i>
                 </span>
               ) : (
                 <span onClick={handleLogin}>
-                  <i
-                    className={
-                      'fas fa-sign-in-alt ' + classes.home__navbar__icons
-                    }
-                  ></i>
+                  <i className={'fas fa-sign-in-alt ' + classes.home__navbar__icons}></i>
                 </span>
               )}
             </Nav.Link>
@@ -128,16 +114,11 @@ const Home = () => {
         <br />
         {/* <h2 style={{ fontSize: "2.0rem", fontWeight: "300" }}> */}
         <h2>
-          <span className={classes.home_h2_text}>
-            Say Hi 👋 to the No Code Era
-          </span>
+          <span className={classes.home_h2_text}>Say Hi 👋 to the No Code Era</span>
         </h2>
         <br />
         <Row>
-          <Col
-            sm={{ size: 'auto', offset: 1 }}
-            className={classes.home_button_col}
-          >
+          <Col sm={{ size: 'auto', offset: 1 }} className={classes.home_button_col}>
             {user?.email ? (
               <Button
                 onClick={handleLogut}
@@ -160,15 +141,8 @@ const Home = () => {
               </Button>
             )}
             <Link to="/visualizer" style={{ textDecoration: 'none' }}>
-              <Button
-                shadow="3"
-                hoverShadow="4"
-                m={{ r: '1rem' }}
-                className={classes.home_button}
-              >
-                {user?.email
-                  ? `Welcome ${user.displayName} `
-                  : 'Continue as a Guest '}
+              <Button shadow="3" hoverShadow="4" m={{ r: '1rem' }} className={classes.home_button}>
+                {user?.email ? `Welcome ${user.displayName} ` : 'Continue as a Guest '}
                 &nbsp;<i className={'fas fa-user'}></i>
               </Button>
             </Link>
@@ -187,9 +161,7 @@ const Home = () => {
           </Col>
         </Row>
         <br />
-        <h2 className={classes.home_h2_last_text}>
-          Easily convert your Database Diagram to code 👩‍💻 Hassle Free💡
-        </h2>
+        <h2 className={classes.home_h2_last_text}>Easily convert your Database Diagram to code 👩‍💻 Hassle Free💡</h2>
         <br />
         <br />
       </Container>

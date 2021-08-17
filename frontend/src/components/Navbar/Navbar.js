@@ -69,15 +69,8 @@ const Navbar = () => {
     <Fragment>
       <AppBar position="static" style={{ backgroundColor: '#151515' }}>
         <Toolbar>
-          <img
-            src={logo}
-            style={{ maxWidth: '35px', maxHeight: '35px' }}
-            alt="SyntaxMeets"
-          />
-          <Typography
-            variant="h5"
-            style={{ color: 'white', fontFamily: 'poppins' }}
-          >
+          <img src={logo} style={{ maxWidth: '35px', maxHeight: '35px' }} alt="SyntaxMeets" />
+          <Typography variant="h5" style={{ color: 'white', fontFamily: 'poppins' }}>
             &nbsp;
             <Link to="/" style={{ color: '#fff', textDecoration: 'none' }}>
               <span style={{ fontWeight: '700' }}>Query</span>lizer
@@ -98,9 +91,7 @@ const Navbar = () => {
               </Fragment>
             ) : (
               <Fragment>
-                <AssignmentLateIcon
-                  style={{ fill: '#ff5757', height: '25px' }}
-                />
+                <AssignmentLateIcon style={{ fill: '#ff5757', height: '25px' }} />
                 {'  Please Login to save diagrams !'}
               </Fragment>
             )}
@@ -144,16 +135,12 @@ const Navbar = () => {
             {user ? (
               <div onClick={handleLogut} style={{ cursor: 'pointer' }}>
                 {' '}
-                Logout{' '}
-                <ExitToAppIcon style={{ fill: '#fff', height: '25px' }} />{' '}
+                Logout <ExitToAppIcon style={{ fill: '#fff', height: '25px' }} />{' '}
               </div>
             ) : (
               <div onClick={handleLogin} style={{ cursor: 'pointer' }}>
                 {' '}
-                Login{' '}
-                <MeetingRoomIcon
-                  style={{ fill: '#fff', height: '25px' }}
-                />{' '}
+                Login <MeetingRoomIcon style={{ fill: '#fff', height: '25px' }} />{' '}
               </div>
             )}
           </div>
