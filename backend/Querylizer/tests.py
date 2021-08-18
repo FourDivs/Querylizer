@@ -100,3 +100,6 @@ class CreateTableTestCase(TestCase):
         data = {"error": "Invalid Request Type, recieved GET instead of POST"}
         self.assertJSONEqual(str(response.content, encoding='utf8'), data)
         self.assertEquals(response.status_code, 200)
+
+    def add_nums(self, a, b):
+        return a+b
