@@ -8,11 +8,11 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 
 //svgs
-import { ReactComponent as LinkedInIcon } from '../../../assets/icons/linkedin.svg';
-import { ReactComponent as GitHubIcon } from '../../../assets/icons/github.svg';
-import { ReactComponent as EmailIcon } from '../../../assets/icons/email.svg';
-import { ReactComponent as TwitterIcon } from '../../../assets/icons/twitter.svg';
-import { ReactComponent as InstagramIcon } from '../../../assets/icons/instagram.svg';
+import { ReactComponent as LinkedInIcon } from 'assets/icons/linkedin.svg';
+import { ReactComponent as GitHubIcon } from 'assets/icons/github.svg';
+import { ReactComponent as EmailIcon } from 'assets/icons/email.svg';
+import { ReactComponent as TwitterIcon } from 'assets/icons/twitter.svg';
+import { ReactComponent as InstagramIcon } from 'assets/icons/instagram.svg';
 
 const useStyles = makeStyles({
   root: {
